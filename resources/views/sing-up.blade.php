@@ -122,7 +122,8 @@
                             <h1>SIGN UP</h1>
                             <p>We're happy you're here!</p>
                         </div>
-                        <form action="#">
+                        <form method="post" action="{{ route('register.perform') }}">
+                            @csrf
                             <div class="form-group">
                                 <label for="first-name">
                                     <i class="far fa-user"></i>
