@@ -128,7 +128,10 @@
                                 <label for="first-name">
                                     <i class="far fa-user"></i>
                                 </label>
-                                <input id="first-name" class="form-control" type="text" placeholder="First Name">
+                                <input id="first-name" class="form-control" type="text" name="username" value="{{ old('username') }}" placeholder="Username" required="required" autofocus>
+                                @if ($errors->has('username'))
+                                    <span class="text-danger text-left">{{ $errors->first('username') }}</span>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="last-name">
@@ -140,7 +143,10 @@
                                 <label for="email">
                                     <i class="far fa-envelope"></i>
                                 </label>
-                                <input id="email" class="form-control" type="text" placeholder="Email Address">
+                                <input id="email" class="form-control" type="email" name="email" value="{{ old('email') }}" placeholder="Email Address" required="required" autofocus>
+                                @if ($errors->has('email'))
+                                    <span class="text-danger text-left">{{ $errors->first('email') }}</span>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="phone">
@@ -152,15 +158,21 @@
                                 <label for="password">
                                     <i class="fas fa-lock"></i>
                                 </label>
-                                <input id="password" class="form-control" type="password" placeholder="Password">
+                                <input id="password" class="form-control" type="password" name="password" value="{{ old('password') }}" placeholder="Password" required="required">
                                 <span class="show-password"><i class="fas fa-eye"></i></span>
+                                @if ($errors->has('password'))
+                                    <span class="text-danger text-left">{{ $errors->first('password') }}</span>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="password-comfirm">
                                     <i class="fas fa-lock"></i>
                                 </label>
-                                <input id="password-comfirm" class="form-control" type="password" placeholder="Re-Password">
+                                <input id="password-comfirm" class="form-control" type="password" name="password_confirmation" value="{{ old('password_confirmation') }}" placeholder="Confirm Password" required="required">
                                 <span class="show-password"><i class="fas fa-eye"></i></span>
+                                @if ($errors->has('password_confirmation'))
+                                    <span class="text-danger text-left">{{ $errors->first('password_confirmation') }}</span>
+                                @endif
                             </div>
                             <div class="sign-up">
                                 <p>ALREADY HAVE AN ACCOUNT? <a href="sing-in.html">LOGIN</a></p>
@@ -169,6 +181,7 @@
                             <div class="form-group mb-0 mt-4">
                                 <button type="submit">REGISTER</button>
                             </div>
+                            @include('auth.partials.copy')
                         </form>
                     </div>
                     <div class="right-side">
