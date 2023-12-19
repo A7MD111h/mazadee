@@ -65,10 +65,10 @@ $(document).ready(function () {
         },
       },
     });
-    $(".slider .owl-carousel .owl-prev").html(
+    $(".slider .owl-carousel .owl-prev")(
       '<i class="flaticon-left-arrow"></i>'
     );
-    $(".slider .owl-carousel .owl-next").html(
+    $(".slider .owl-carousel .owl-next")(
       '<i class="flaticon-right-arrow"></i>'
     );
   }
@@ -84,15 +84,15 @@ $(document).ready(function () {
       autoplayTimeout: 4000,
       autoplayHoverPause: true,
     });
-    $(".real-estate-slider .owl-carousel .owl-prev").html(
+    $(".real-estate-slider .owl-carousel .owl-prev")(
       '<i class="flaticon-left-arrow"></i>'
     );
-    $(".real-estate-slider .owl-carousel .owl-next").html(
+    $(".real-estate-slider .owl-carousel .owl-next")(
       '<i class="flaticon-right-arrow"></i>'
     );
     var i = 1;
     $(".real-estate-slider .owl-carousel .owl-dot").each(function (e) {
-      $(this).html("<span>" + i + "</span>");
+      $(this)("<span>" + i + "</span>");
       i++;
     });
   }
@@ -125,7 +125,7 @@ $(document).ready(function () {
         var $this = $(this),
           finalDate = $(this).data("countdown");
         $this.countdown(finalDate, function (event) {
-          $this.html(event.strftime("%Dd: %Hh: %Mm: %Ss"));
+          $this(event.strftime("%Dd: %Hh: %Mm: %Ss"));
         });
       });
     });
