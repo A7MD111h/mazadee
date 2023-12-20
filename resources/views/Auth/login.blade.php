@@ -36,19 +36,19 @@
             <div class="container">
                 <ul class="breadcrumb">
                     <li>
-                        <a href="index.html">
+                        <a href="{{ url('/')}}">
                             Home
                             <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="index.html">
+                        <a href="{{ url('/login')}}">
                             Sing In
                         </a>
                     </li>
                 </ul>
             </div>
-            <div class="bg-image" style="background-image: url(assets/img/hero-bg.png);">
+            <div class="bg-image" style="background-image: url(img/hero-bg.png);">
 
             </div>
         </section>

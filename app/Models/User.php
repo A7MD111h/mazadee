@@ -18,10 +18,15 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'fname',
+        'lname',
         'name',
         'email',
         'username',
         'password',
+        'phone',
+        'auctions',
+        'canceled_auction'
     ];
     public function setPasswordAttribute($value)
     {

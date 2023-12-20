@@ -41,6 +41,7 @@ Route::get('/my-account-bids', function () {
     return view('my-account-bids');
 });
 
+
 Route::group(['namespace' => 'App\Http\Controllers'], function()
 {   
     /**
