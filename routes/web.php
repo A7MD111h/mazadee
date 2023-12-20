@@ -29,6 +29,17 @@ Route::get('/sing-up-company', function () {
     return view('sing-up-company');
 });
 
+Route::get('/auction', function () {
+    return view('auction');
+});
+
+Route::get('/auction-details', function () {
+    return view('auction-details');
+});
+
+Route::get('/my-account-bids', function () {
+    return view('my-account-bids');
+});
 
 Route::group(['namespace' => 'App\Http\Controllers'], function()
 {   

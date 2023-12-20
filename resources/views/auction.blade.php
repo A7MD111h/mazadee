@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAZAD</title>
+    <title>Sbidu - Bid And Auction HTML Template</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/font/flaticon.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
@@ -53,9 +53,9 @@
             </div>
         </div>
         <!-- Navbar -->
-        <div class="header-bottom" style="background-image: url(/img/OIP.jpg)">
+        <div class="header-bottom"  style="background-image: url(/img/OIP.jpg)">
             <nav class="navbar navbar-expand-lg">
-                <div class="container"  >
+                <div class="container">
                     <div class="logo">
                         <a class="navbar-brand" href="index">
                             <img src="/img/logo.png"  alt="logo">
@@ -70,16 +70,16 @@
                     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" style="color: black;" href="index">Home</a>
+                                <a class="nav-link" href="index">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" style="color: black;" href="auction">Auction</a>
+                                <a class="nav-link" href="auction">Auction</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" style="color: black;" href="about-us">About Us</a>
+                                <a class="nav-link" href="about-us">About Us</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" style="color: black;" href="contact">Contact</a>
+                                <a class="nav-link" href="contact">Contact</a>
                             </li>
                         </ul>
 
@@ -90,7 +90,7 @@
                         </span>
                         <form class="search-form my-2 my-lg-0">
                             <input class="form-control mr-sm-2" type="search" placeholder="Search for brand, model...."
-                                aria-label="Search" style="color: #bdbdbd;;">
+                                aria-label="Search">
                             <button class="btn-search my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
                         </form>
                     </div>
@@ -101,191 +101,108 @@
     </header>
 
     <main>
-        <!-- Bannar -->
-        <section id="banner"  style="background-image: url(/img/OIP.jpg);">
+        <!-- Breadcrumb -->
+        <section id="breadcrumb">
+            <div class="container">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="index">
+                            Home
+                            <i class="flaticon-right-arrow"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="auction">
+                            Auction
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-image"  style="background-image: url(/img/OIP.jpg);">
+
+            </div>
+        </section>
+        <!-- End Breadcrumb -->
+        <!-- Featured Auctions -->
+        <section id="featured-auctions">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 col-md-12">
-                        <div class="banner-content">
-                            <h5>Next Generation Auction</h5>
-                            <h1>
-                                Find Your
-                                <span>Next Deal!</span>
-                            </h1>
-                            <p>Online Auction is where everyone goes to shop, sell and give, while discovering variety
-                                and affordability.</p>
-                            <a href="#">GET STARTED</a>
+                    <div class="col-lg-12">
+                        <div class="title">
+                            <h2>Bid On These Featured Auctions! </h2>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <img src="/img/vglams2-removebg-preview.png" alt="">
-                    </div>
                 </div>
-            </div>
-            <div class="banner-bottom-image d-none d-lg-block">
-                <img src="/img/banner-shape.png" alt="" class="img-fluid">
-            </div>
-        </section>
-        <!-- End Banner -->
-        <br><br>
-        <!-- Catagory Slider -->
-        <section id="catagory-slider">
-            <div class="container">
                 <div class="row">
-                    <div class="title">
-                        <h5>Browse the highlights</h5>
+                    <div class="col-lg-4">
+                        <div class="auction-item">
+                            <div class="image">
+                                <a href="#">
+                                    <img src="/img/Michelin-Pilot-Sport-All-Season-4-UHP-All-Season-295-35R21-103V-Passenger-Tire_4f2a9690-0b37-46b6-b265-7c7ab20af4c0.bd1d46e64614fcf3743fbd3b01b31899-removebg-preview.png" width="5%" height="70%" alt="">
+                                </a>
+                                
+                                
+                            </div>
+                            <div class="auction-content">
+                                <h5>Wheels</h5>
+                              
+                            </div>
+                            
+                            <div class="button text-center">
+                                <a href="auction-details">Submit A Bid</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-12 slider">
-                        <div class="owl-carousel owl-theme ">
-                            <div class="item">
-                                <a href="auction">
-                                    <img src="/img/catagory01.png" alt="">
-                                    <span>Vehicles</span>
-                                </a>
-                            </div>
-                            <div class="item">
+                    <div class="col-lg-4">
+                        <div class="auction-item">
+                            <div class="image">
                                 <a href="#">
-                                    <img src="/img/catagory02.png" alt="">
-                                    <span>Jewelry</span>
+                                    <img src="/img/s-l500-removebg-preview.png" width="5%" height="70%" alt="">
                                 </a>
+                                
                             </div>
-                            <div class="item">
-                                <a href="#">
-                                    <img src="/img/catagory03.png" alt="">
-                                    <span>Watches</span>
-                                </a>
+                            <div class="auction-content">
+                                <h5>Car Screen</h5></div>
+                               
+                            <div class="button text-center">
+                                <a href="auction-details">Submit A Bid</a>
                             </div>
-                            <div class="item">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="auction-item">
+                            <div class="image">
                                 <a href="#">
-                                    <img src="/img/catagory04.png" alt="">
-                                    <span>Electronics</span>
+                                    <img src="/img/61peYAD2-bL._AC_SL1500_-removebg-preview.png" width="5%" height="70%" alt="">
                                 </a>
+                               
                             </div>
-                            <div class="item">
-                                <a href="#">
-                                    <img src="/img/catagory05.png" alt="">
-                                    <span>Sports</span>
-                                </a>
+                            <div class="auction-content">
+                                <h5>Car Engine Oil</h5>
+                           
                             </div>
-                            <div class="item">
-                                <a href="#">
-                                    <img src="/img/catagory06.png" alt="">
-                                    <span>Real Estate</span>
-                                </a>
-                            </div>
-                            <div class="item">
-                                <a href="#">
-                                    <img src="/img/catagory07.png" alt="">
-                                    <span>Arts</span>
-                                </a>
-                            </div>
-                            <div class="item">
-                                <a href="#">
-                                    <img src="/img/catagory08.png" alt="">
-                                    <span>Coins</span>
-                                </a>
+                          
+                            <div class="button text-center">
+                                <a href="auction-details">Submit A Bid</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- End Catagory Slider -->
-        <!-- Car Auction -->
+        <!-- End Featured Auctions -->
+        <!-- Product Auction -->
        
-        <!-- End Car Auction -->
-        <!-- Car Auction -->
-     
-        <!-- End Car Auction -->
-        <!-- Register For Free -->
-        <section id="register-for-free">
-            <div class="container">
-                <div class="content" style="background-image: url(/img/call-bg.png);">
-                    <div class="row d-flex justify-content-between align-items-center">
-                        <div class="col-lg-5 col-md-8">
-                            <h2>Register For Free & Start Bidding Now!</h2>
-                            <p>From cars to diamonds to iPhones, we have it all.</p>
-                        </div>
-                        <div class="col-lg-2 col-md-4">
-                            <a href="#">Register</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End Register For Free -->
-        <!-- Watches Auction -->
-      
-        <!-- Emd Watches Auction -->
-        <!-- Popular Auctions -->
-       
-        <!-- End Popular Auctions -->
-        <!-- Coins & Bullion -->
-      
-        <!-- End Coins & Bullion -->
-        <!-- Real Estate -->
-      
-        <!-- End Real Estate -->
-        <!-- How It Works -->
-        <section id="how-it-works">
-            <div class="container bg">
-                <div class="title">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h1>How It Works</h1>
-                            <p>Easy 3 steps to win</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="item">
-                            <div class="image">
-                                <img src="/img/OIP__1_-removebg-preview.png" class="img-fluid" alt="">
-                            </div>
-                            <div class="content">
-                                <h3>Sign Up</h3>
-                                <p>No Credit Card Required</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="item">
-                            <div class="image">
-                                <img src="/img/3815759-removebg-preview.png" width="70%" class="img-fluid" alt="">
-                            </div>
-                            <div class="content">
-                                <h3>Bid</h3>
-                                <p>Bidding is free Only pay if you win</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="item">
-                            <div class="image">
-                                <img src="/img/how3.png" class="img-fluid" alt="">
-                            </div>
-                            <div class="content">
-                                <h3>Win</h3>
-                                <p>Fun - Excitement - Great deals</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End How It Works -->
-        <!-- Customer Comments  -->
-       
-        <!-- Customer Comments  -->
+        <!-- End Product Auction -->
     </main>
 
-    <footer style="background-image: url(assets/img/OIP.jpg);">
+    <footer style="background-image: url(/img/OIP.jpg);">
+        
       
         <div class="footer-top">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-3">
                         <div class="item">
                             <h4>
                                 Auction Categories
@@ -318,7 +235,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-3">
                         <div class="item">
                             <h4>
                                 About Us
@@ -348,7 +265,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-3">
                         <div class="item">
                             <h4>
                                 We're Here to Help
@@ -372,7 +289,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-3">
                         <div class="item">
                             <h4>
                                 Follow Us
@@ -411,26 +328,13 @@
         <div class="footer-bottom">
             <div class="container">
                 <div class="copyright">
-                    <img src="/img/logo.png" width="20%" class="logo" alt="">
-                    <!-- <ul class="d-flex">
-                        <li>
-                            <img src="assets/img/paypal.png"   style="color: black;"  alt="">
-                        </li>
-                        <li>
-                            <img src="assets/img/visa.png" alt="">
-                        </li>
-                        <li>
-                            <img src="assets/img/discover.png" alt="">
-                        </li>
-                        <li>
-                            <img src="assets/img/mastercard.png" alt="">
-                        </li>
-                    </ul> -->
+                    <img src="/img/logo.png" class="logo" alt="">
                     
+                   
                 </div>
             </div>
         </div>
-
+        
     </footer>
 
     <div class="back-to-top">
@@ -438,7 +342,6 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
