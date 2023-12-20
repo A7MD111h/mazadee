@@ -20,13 +20,13 @@ class User extends Authenticatable
     protected $fillable = [
         'fname',
         'lname',
-        'name',
+        // 'name',
         'email',
         'username',
         'password',
         'phone',
         'auctions',
-        'canceled_auction'
+        'canceled_auction',
     ];
     public function setPasswordAttribute($value)
     {

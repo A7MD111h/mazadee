@@ -21,6 +21,7 @@ class RegisterRequest extends FormRequest
      */
     public function rules(): array
     {
+        // dd($request);
         return [
             'fname' => 'required',
             'lname' => 'required',
@@ -29,7 +30,7 @@ class RegisterRequest extends FormRequest
             // 'password' => 'required|regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/ |string|min:8|max:32',
             'password' => 'required|min:8',
             'password_confirmation' => 'required|same:password',
-            'phone' => 'numeric|digits:14|required',
+            'phone' => 'numeric|digits:10|required',
             
         ];
     }

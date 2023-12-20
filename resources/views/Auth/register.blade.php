@@ -96,7 +96,7 @@
                                 <label for="last-name">
                                     <i class="far fa-user"></i>
                                 </label>
-                                <input id="last-name" class="form-control" type="text" name="fname" value="{{ old('fname') }}" placeholder="first Name">
+                                <input id="first-name" class="form-control" type="text" name="fname" value="{{ old('fname') }}" placeholder="first Name">
                                 @if ($errors->has('fname'))
                                     <span class="text-danger text-left">{{ $errors->first('fname') }}</span>
                                 @endif
@@ -123,9 +123,9 @@
                                 <label for="phone">
                                     <i class="fa fa-phone"></i>
                                 </label>
-                                <input id="phone" class="form-control" type="number" name="Phone" value="{{ old('Phone') }}" placeholder="Phone">
-                                @if ($errors->has('Phone'))
-                                    <span class="text-danger text-left">{{ $errors->first('Phone') }}</span>
+                                <input id="phone" class="form-control" type="number" name="phone" value="{{ old('phone') }}" placeholder="Phone">
+                                @if ($errors->has('phone'))
+                                    <span class="text-danger text-left">{{ $errors->first('phone') }}</span>
                                 @endif
                             </div>
                             <div class="form-group">
