@@ -249,6 +249,13 @@ $(document).ready(function () {
         $("#password").attr("type", "password");
       }
     });
+    $("#show-confirm-password").click(function () {
+      if ($("#password-comfirm").attr("type") == "password") {
+        $("#password-comfirm").attr("type", "text");
+      } else {
+        $("#password-comfirm").attr("type", "password");
+      }
+    });
   }
 });
 

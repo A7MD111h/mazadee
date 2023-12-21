@@ -143,7 +143,7 @@
                                     <i class="fas fa-lock"></i>
                                 </label>
                                 <input id="password-comfirm" class="form-control" type="password" name="password_confirmation" value="{{ old('password_confirmation') }}" placeholder="Confirm Password" required="required">
-                                <span class="show-password"><i class="fas fa-eye"></i></span>
+                                <span id="show-confirm-password" ><i class="fas fa-eye"></i></span>
                                 @if ($errors->has('password_confirmation'))
                                     <span class="text-danger text-left">{{ $errors->first('password_confirmation') }}</span>
                                 @endif
