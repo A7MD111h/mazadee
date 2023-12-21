@@ -47,13 +47,16 @@
                         </div>
                         <div class="col-lg-12 slider">
                             <div class="owl-carousel owl-theme ">
+                                @foreach ($categories as $category)
                                 <div class="item">
-                                    <a href="auction">
-                                        <img src="/img/catagory01.png" alt="">
-                                        <span>Vehicles</span>
+                                    <a href="{{url ('subCategory', $category->id)}}">
+                                        <img src="{{ asset($category->photo) }}" alt="category photo">
+                                        <span>{{$category->name}}</span>
                                     </a>
                                 </div>
-                                <div class="item">
+                                    
+                                @endforeach
+                                {{-- <div class="item">
                                     <a href="#">
                                         <img src="/img/catagory02.png" alt="">
                                         <span>Jewelry</span>
@@ -94,7 +97,7 @@
                                         <img src="/img/catagory08.png" alt="">
                                         <span>Coins</span>
                                     </a>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>

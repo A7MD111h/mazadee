@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SubCategoryController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,7 +50,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
      * Home Routes
      */
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
-    
+    Route::get('/subCategory/{id}', [SubCategoryController::class,'index']);
 
     Route::group(['middleware' => ['guest']], function() {
         /**
