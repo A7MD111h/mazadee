@@ -24,7 +24,7 @@
     </section>
 
     <header>
-        <div class="header-top">
+        {{-- <div class="header-top">
             <div class="container">
                 <div class="content d-flex justify-content-between align-items-center">
                     <ul class="d-flex">
@@ -51,7 +51,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- Navbar -->
         <div class="header-bottom"  style="background-image: url(/img/OIP.jpg)">
             <nav class="navbar navbar-expand-lg">
@@ -134,26 +134,24 @@
                     </div>
                 </div>
                 <div class="row">
+                    @foreach ($subCategories as $subCategory )
                     <div class="col-lg-4">
                         <div class="auction-item">
                             <div class="image">
                                 <a href="#">
-                                    <img src="/img/Michelin-Pilot-Sport-All-Season-4-UHP-All-Season-295-35R21-103V-Passenger-Tire_4f2a9690-0b37-46b6-b265-7c7ab20af4c0.bd1d46e64614fcf3743fbd3b01b31899-removebg-preview.png" width="5%" height="70%" alt="">
+                                    <img src="{{ asset( $subCategory->photo) }}" width="5%" height="70%" alt="">
                                 </a>
-                                
-                                
                             </div>
                             <div class="auction-content">
-                                <h5>Wheels</h5>
-                              
+                                <h5>{{$subCategory->name}}</h5>
                             </div>
-                            
                             <div class="button text-center">
                                 <a href="auction-details">Submit A Bid</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    @endforeach
+                    {{-- <div class="col-lg-4">
                         <div class="auction-item">
                             <div class="image">
                                 <a href="#">
@@ -186,7 +184,7 @@
                                 <a href="auction-details">Submit A Bid</a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </section>
