@@ -48,9 +48,6 @@
                     </li>
                 </ul>
             </div>
-            <div class="bg-image" style="background-image: url(img/hero-bg.png);">
-
-            </div>
         </section>
         <!-- End Breadcrumb -->
         <!-- Login -->
@@ -58,6 +55,8 @@
             <div class="container">
                 <div class="account d-flex">
                     <div class="left-side">
+                    <img class="left-img" src="/img/1.jpg" alt="">
+
                         <div class="header text-center">
                             <h1>HI, THERE</h1>
                             <p>You can log in to your MAZADe account here.</p>
@@ -90,7 +89,6 @@
                             <div class="form-group mb-0 mt-4">
                                 <button type="submit">LOG IN</button>
                             </div>
-                            @include('auth.partials.copy')
                         </form>
                     </div>
                     <div class="right-side">

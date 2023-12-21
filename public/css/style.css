@@ -427,6 +427,24 @@ footer .footer-bg {
     padding: 5px 20px !important;
     font-size: 16px !important;
   }
+  .left-img{
+    display: block;
+  }
+  .right-img{
+    display: none;
+  }
+  .right-side {
+    width: 0%;
+    padding: 0px;
+  }
+  .left-side {
+    padding: 50px;
+    width: 80%;
+    background: #ffffff;
+    border-radius: 20px;
+    -webkit-box-shadow: 0 0 15px rgba(44, 46, 69, 0.41);
+            box-shadow: 0 0 15px rgba(44, 46, 69, 0.41);
+  }
 }
 
 @media (max-width: 575.98px) {
@@ -2249,7 +2267,7 @@ footer .footer-bg {
 }
 
 #breadcrumb ul li a {
-  color: #ffffff;
+  color: #000;
   -webkit-transition: all ease 0.3s;
   transition: all ease 0.3s;
 }
@@ -2263,7 +2281,7 @@ footer .footer-bg {
 }
 
 #breadcrumb ul li a:hover i {
-  color: #ffffff;
+  color: #000;
 }
 
 #breadcrumb .bg-image {
@@ -4640,12 +4658,17 @@ footer .footer-bg {
 }
 
 #login .account .left-side {
-  padding: 60px 30px 60px 60px;
-  width: 70%;
+  padding: 50px;
+  width: 50%;
   background: #ffffff;
-  border-radius: 10px 0px 0px 10px;
-  -webkit-box-shadow: 0 0 15px rgba(44, 46, 69, 0.11);
-          box-shadow: 0 0 15px rgba(44, 46, 69, 0.11);
+  border-radius: 20px;
+  -webkit-box-shadow: 0 0 15px rgba(44, 46, 69, 0.41);
+          box-shadow: 0 0 15px rgba(44, 46, 69, 0.41);
+}
+
+.left-img{
+  width: 100%;
+  display: none;
 }
 
 #login .account .left-side .header {
@@ -4714,10 +4737,8 @@ footer .footer-bg {
 }
 
 #login .account .right-side {
-  background: -webkit-linear-gradient(90deg, #5140fe 0%, #7757f7 56%, #9d6ef0 100%);
-  border-radius: 0 10px 10px 0;
-  width: 30%;
-  padding: 60px 30px;
+  width: 50%;
+  padding: 30px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4739,6 +4760,10 @@ footer .footer-bg {
 #login .account .right-side p {
   color: #ffffffe6;
   margin-bottom: 20px;
+}
+
+.right-img{
+  width: 100%;
 }
 
 #login .account .right-side a {
