@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Sub_Category;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,8 @@ class SubCategoryController extends Controller
     public function index($id)
     {
         $subCategories=Sub_Category::where('category_id',$id)->get();
-        return view('auction',compact('subCategories'));
+        $category=Category::find($id);
+        return view('auction',compact('subCategories','category'));
     }
 
     /**

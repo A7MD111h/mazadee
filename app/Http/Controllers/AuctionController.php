@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Auction;
+use App\Models\Sub_Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\AddAuctionRequest;
 
 class AuctionController extends Controller
 {
@@ -12,9 +15,10 @@ class AuctionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $subCategory=Sub_Category::find($id);
+        return view("auction-details",compact("subCategory"));
     }
 
     /**
@@ -22,9 +26,28 @@ class AuctionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create( AddAuctionRequest $request)
     {
-        //
+        // dd($request);
+        $userId = Auth::id();
+        // dd($userId);
+        $subCategory = Sub_Category::where('name',$request->name)->first();
+        // dd($subCategory->category_id);
+        $auction=Auction::create([
+            "user_id"=> $userId,
+            "sub_category_id"=> $subCategory->id,
+            "quality"=> $request->quality,
+            "budjet"=> $request->budjet,
+            "city"=> $request->city,
+            "quantity"=> $request->quantity,
+            "description"=> $request->description,
+        ]);
+        // dd($auction);
+        if($auction){
+            return redirect()->back()->with('success', 'Auction start Successfully.');
+        }else{
+            return redirect()->back()->with('error', 'Failed to start Auction.');
+        }
     }
 
     /**
