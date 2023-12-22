@@ -57,7 +57,7 @@
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
                     <div class="logo">
-                        <a class="navbar-brand" href="index">
+                        <a class="navbar-brand" href="/">
                             <img src="/img/logo.png"  alt="logo">
                         </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -70,7 +70,7 @@
                     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="index">Home</a>
+                                <a class="nav-link" href="/">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="auction">Auction</a>
@@ -106,14 +106,14 @@
             <div class="container">
                 <ul class="breadcrumb">
                     <li>
-                        <a href="index">
+                        <a href="/">
                             Home
                             <i class="flaticon-right-arrow"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="auction">
-                            Auction
+                        <a href="auction" style="color: black;"></a>
+                        {{$category->name}}
                         </a>
                     </li>
                 </ul>
@@ -138,7 +138,7 @@
                     <div class="col-lg-4">
                         <div class="auction-item">
                             <div class="image">
-                                <a href="#">
+                                <a href="{{url ('auction-details' , $subCategory->id)}}">
                                     <img src="{{ asset( $subCategory->photo) }}" width="5%" height="70%" alt="">
                                 </a>
                             </div>
@@ -146,7 +146,7 @@
                                 <h5>{{$subCategory->name}}</h5>
                             </div>
                             <div class="button text-center">
-                                <a href="auction-details">Submit A Bid</a>
+                                <a href="{{url ('auction-details' , $subCategory->id)}}">Submit A Bid</a>
                             </div>
                         </div>
                     </div>

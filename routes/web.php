@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuctionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
@@ -35,14 +36,13 @@ Route::get('/auction', function () {
     return view('auction');
 });
 
-Route::get('/auction-details', function () {
-    return view('auction-details');
-});
+Route::get('/auction-details/{id}', [AuctionController::class,'index']);
 
 Route::get('/my-account-bids', function () {
     return view('my-account-bids');
 });
 
+Route::post('createAuction', [AuctionController::class,'create']);
 
 Route::group(['namespace' => 'App\Http\Controllers'], function()
 {   

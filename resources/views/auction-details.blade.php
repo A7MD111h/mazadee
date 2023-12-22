@@ -23,7 +23,7 @@
     </section>
 
     <header>
-        <div class="header-top">
+        {{-- <div class="header-top">
             <div class="container">
                 <div class="content d-flex justify-content-between align-items-center">
                     <ul class="d-flex">
@@ -50,14 +50,14 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- Navbar -->
-        <div class="header-bottom"  style="background-image: url(/img/OIP.jpg)">
+        <div class="header-bottom" style="background-image: url(/img/OIP.jpg)">
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
                     <div class="logo">
-                        <a class="navbar-brand" href="index">
-                            <img src="/img/logo.png"  alt="logo">
+                        <a class="navbar-brand" href="/">
+                            <img src="/img/logo.png" alt="logo">
                         </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -69,7 +69,7 @@
                     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="index">Home</a>
+                                <a class="nav-link" href="/">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="auction">Auction</a>
@@ -90,7 +90,8 @@
                         <form class="search-form my-2 my-lg-0">
                             <input class="form-control mr-sm-2" type="search" placeholder="Search for brand, model...."
                                 aria-label="Search">
-                            <button class="btn-search my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                            <button class="btn-search my-2 my-sm-0" type="submit"><i
+                                    class="fas fa-search"></i></button>
                         </form>
                     </div>
                 </div>
@@ -105,25 +106,25 @@
             <div class="container">
                 <ul class="breadcrumb">
                     <li>
-                        <a href="index" style="color: black;">
+                        <a href="/" style="color: black;">
                             Home
                             <i class="flaticon-right-arrow"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="auction" style="color: black;">
-                           Auction/Wheels
+                        <a href="{{ url('subCategory', $subCategory->category_id) }}" style="color: black;">
+                            {{ $subCategory->category->name }}
                             <i class="flaticon-right-arrow"></i>
                         </a>
                     </li>
-                    <li> 
+                    <li>
                         <a href="auction-details" style="color: black;"></a>
-                        Auction Details
+                        {{ $subCategory->name }}
                         </a>
                     </li>
                 </ul>
             </div>
-            <div class="bg-image"  style="background-image: url(/img/OIP.jpg);">
+            <div class="bg-image" style="background-image: url(/img/OIP.jpg);">
 
             </div>
         </section>
@@ -132,66 +133,150 @@
             <div class="container"><br>
                 <h1 style="text-align: center;">Auction Details</h1>
 
-          
+
                 <div class="details-bid">
                     <div class="row">
-                        <div class="col-lg-11" >
-                            
-                                        <form action="#" style=" align-items: center; box-shadow:3px 3px 3px 3px #111111; background-color: whitesmoke;">
-<br>
-                                            <div class="form-group">
-                                                <label for="exampleFormControlSelect1" style="color: black; font-size: larger;font-weight: bold;"> Quality </label>
-                                                <select class="form-control" id="exampleFormControlSelect1">
-                                                  <option>High</option>
-                                                  <option>Medium</option>
-                                                  <option>Low</option>
-                                                </select>
-                                              </div>
-                                            <div class="form-group">
-                                              <label for="exampleFormControlInput1" style="color: black;font-size: larger;font-weight: bold;"> Budjet </label>
-                                              <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Enter Number..">
-                                            </div>
-                                            <div class="form-group">
-                                              <label for="exampleFormControlSelect1" style="color: black;font-size: larger;font-weight: bold;"> City </label>
-                                              <select class="form-control" id="exampleFormControlSelect1">
-                                                <option>Amman</option>
-                                                <option>Irbid</option>
-                                                <option>Aqaba</option>
-                                                <option>Salt</option>
-                                                <option>Zarqa`a</option>
-                                              </select>
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <label for="exampleFormControlInput1" style="color: black;font-size: larger;font-weight: bold;">Quantity</label>
-                                                <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Enter Number..">
-                                              </div>
+                        <div class="col-lg-11">
 
+                            <form action="{{ url('createAuction') }}" method="post"
+                                style="padding:2% 4%; align-items: center; box-shadow:3px 3px 3px 3px #111111; background-color: whitesmoke;">
+                                @csrf
+                                @if (session('success'))
+                                    <div class="alert alert-success" role="alert">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
 
-                                            <div class="form-group">
-                                              <label for="exampleFormControlTextarea1" style="color: black;font-size: larger;font-weight: bold;">Description</label>
-                                              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                @if (session('error'))
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
+                                <br>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <div class="form-group" style="width:48%">
+                                        <label for="exampleFormControlSelect1"
+                                            style="color: black; font-size: larger;font-weight: bold;"> Category
+                                        </label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                            value="{{ $subCategory->category->name }}" name="category" readonly>
+                                        @error('category')
+                                            <div class="alert alert-danger" role="alert" style="width: 100%">
+                                                {{ $message }}
                                             </div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group" style="width:48%">
+                                        <label for="exampleFormControlSelect1"
+                                            style="color: black; font-size: larger;font-weight: bold;">Sub-Category
+                                        </label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                            value="{{ $subCategory->name }}" name="name" readonly>
+                                        @error('name')
+                                            <div class="alert alert-danger" role="alert" style="width: 100%">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1"
+                                        style="color: black; font-size: larger;font-weight: bold;"> Quality </label>
+                                    <select class="form-control" id="exampleFormControlSelect1" name="quality"
+                                        value="{{ old('quality') }}">
+                                        <option value="Quality" selected disabled>Select Quality</option>
+                                        <option value="High">High</option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="Low">Low</option>
+                                    </select>
+                                    @error('quality')
+                                        <div class="alert alert-danger" role="alert" style="width: 100%">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1"
+                                        style="color: black;font-size: larger;font-weight: bold;"> Budjet </label>
+                                    <input type="number" class="form-control" id="exampleFormControlInput1"
+                                        placeholder="Enter Budjet.." name="budjet" step="any"
+                                        value="{{ old('budjet') }}">
+                                    @error('budjet')
+                                        <div class="alert alert-danger" role="alert" style="width: 100%">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1"
+                                        style="color: black;font-size: larger;font-weight: bold;"> City </label>
+                                    <select class="form-control" id="exampleFormControlSelect1" name="city"
+                                        value="{{ old('city') }}">
+                                        <option value="City" selected disabled>Select City</option>
+                                        <option value="Amman">Amman</option>
+                                        <option value="Ajloun">Ajloun</option>
+                                        <option value="Aqaba">Aqaba</option>
+                                        <option value="Balqa">Balqa</option>
+                                        <option value="Irbid">Irbid</option>
+                                        <option value="Jerash">Jerash</option>
+                                        <option value="Karak">Karak</option>
+                                        <option value="Ma'an">Ma'an</option>
+                                        <option value="Madaba">Madaba</option>
+                                        <option value="Mafraq">Mafraq</option>
+                                        <option value="Tafilah">Tafilah</option>
+                                        <option value="Zarqa">Zarqa</option>
+                                    </select>
+                                    @error('city')
+                                        <div class="alert alert-danger" role="alert" style="width: 100%">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
 
-                                            <div >
-                                                <a class="btn btn-primary btn-lg btn-block text-light" href="my-account-bids">Start Auction </a>
-                                            </div><br>
-                                        </form>
-                            
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1"
+                                        style="color: black;font-size: larger;font-weight: bold;">Quantity</label>
+                                    <input type="number" class="form-control" id="exampleFormControlInput1"
+                                        placeholder="Enter Number.." name="quantity" min="1"
+                                        value="{{ old('quantity') }}">
+                                    @error('quantity')
+                                        <div class="alert alert-danger" role="alert" style="width: 100%">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1"
+                                        style="color: black;font-size: larger;font-weight: bold;">Description</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description.."
+                                        name="description" value="{{ old('description') }}"></textarea>
+                                    @error('description')
+                                        <div class="alert alert-danger" role="alert" style="width: 100%">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+
+                                <div>
+                                    <button class="btn btn-primary btn-lg btn-block text-light" type="submit">Start
+                                        Auction </button>
+                                </div><br>
+                            </form>
+
                         </div>
-                     
+
                     </div>
                 </div>
             </div>
-            
-            
+
+
         </section>
-        
+
     </main>
 
     <footer style="background-image: url(/img/OIP.jpg);">
-        
-      
+
+
         <div class="footer-top">
             <div class="container">
                 <div class="row">
@@ -322,11 +407,11 @@
             <div class="container">
                 <div class="copyright">
                     <img src="/img/logo.png" width="20%" class="logo" alt="">
-                    
+
                 </div>
             </div>
         </div>
-        
+
     </footer>
 
     <div class="back-to-top">
