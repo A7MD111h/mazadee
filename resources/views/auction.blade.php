@@ -129,7 +129,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="title">
-                            <h2>Bid On These Featured Auctions! </h2>
+                            <h2 style="color:#000">Bid On These Featured Auctions! </h2>
                         </div>
                     </div>
                 </div>
