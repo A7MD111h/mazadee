@@ -45,8 +45,10 @@
                         <div class="title">
                             <h5>Browse the highlights</h5>
                         </div>
+                        <br><br><br>
                         <div class="col-lg-12 slider">
-                            <div class="owl-carousel owl-theme ">
+                            <div class=" owl-theme " style="display:flex;justify-content: center; ">
+                                {{-- owl-carousel --}}
                                 @foreach ($categories as $category)
                                 <div class="item">
                                     <a href="{{url ('subCategory', $category->id)}}">
