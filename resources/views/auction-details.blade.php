@@ -22,7 +22,8 @@
         </div>
     </section>
 
-    <header>
+    @include('layouts.partials.navbar')
+    {{-- <header> --}}
         {{-- <div class="header-top">
             <div class="container">
                 <div class="content d-flex justify-content-between align-items-center">
@@ -52,7 +53,7 @@
             </div>
         </div> --}}
         <!-- Navbar -->
-        <div class="header-bottom" style="background-image: url(/img/OIP.jpg)">
+        {{-- <div class="header-bottom" style="background-image: url(/img/OIP.jpg)">
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
                     <div class="logo">
@@ -96,9 +97,9 @@
                     </div>
                 </div>
             </nav>
-        </div>
+        </div> --}}
         <!-- End Navbar -->
-    </header>
+    {{-- </header> --}}
 
     <main>
         <!-- Breadcrumb -->
@@ -114,7 +115,7 @@
                     <li>
                         <a href="{{ url('subCategory', $subCategory->category_id) }}" style="color: black;">
                             {{ $subCategory->category->name }}
-                            <i class="flaticon-right-arrow"></i>
+                            <i class="flaticon-right-arrow" style="color: #000"></i>
                         </a>
                     </li>
                     <li>
@@ -124,22 +125,25 @@
                     </li>
                 </ul>
             </div>
-            <div class="bg-image" style="background-image: url(/img/OIP.jpg);">
+            {{-- <div class="bg-image" style="background-image: url(/img/OIP.jpg);"> --}}
 
             </div>
         </section>
         <!-- End Breadcrumb -->
-        <section id="details" class="mb-5">
+        <section id="details" class="mb-5" style="background-image: url(/img/OIP.jpg);background-size: cover">
             <div class="container"><br>
                 <h1 style="text-align: center;">Auction Details</h1>
 
 
-                <div class="details-bid">
-                    <div class="row">
-                        <div class="col-lg-11">
+                <div class="details-bid" style="padding-bottom:5%">
+                    <div class="row" >
+                        <div class="col-lg-6"  style="display:flex; justify-content: left; align-items: center">
+                            <img src="{{ asset($subCategory->photo) }}" alt="sub-category photo" width="80%" />
+                        </div>
+                        <div class="col-lg-6">
 
                             <form action="{{ url('createAuction') }}" method="post"
-                                style="padding:2% 4%; align-items: center; box-shadow:3px 3px 3px 3px #111111; background-color: whitesmoke;">
+                                style="padding:2% 6%; align-items: center; box-shadow:3px 3px 3px 3px #111111; background-color: whitesmoke;">
                                 @csrf
                                 @if (session('success'))
                                     <div class="alert alert-success" role="alert">
@@ -264,7 +268,7 @@
                             </form>
 
                         </div>
-
+                        
                     </div>
                 </div>
             </div>

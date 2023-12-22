@@ -24,6 +24,7 @@
     </section>
 
     <header>
+        @include('layouts.partials.navbar')
         {{-- <div class="header-top">
             <div class="container">
                 <div class="content d-flex justify-content-between align-items-center">
@@ -53,7 +54,7 @@
             </div>
         </div> --}}
         <!-- Navbar -->
-        <div class="header-bottom"  style="background-image: url(/img/OIP.jpg)">
+        {{-- <div class="header-bottom"  style="background-image: url(/img/OIP.jpg)">
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
                     <div class="logo">
@@ -96,7 +97,7 @@
                     </div>
                 </div>
             </nav>
-        </div>
+        </div> --}}
         <!-- End Navbar -->
     </header>
 

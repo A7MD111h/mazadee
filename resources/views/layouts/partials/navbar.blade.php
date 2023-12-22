@@ -20,19 +20,24 @@
                           <a class="nav-link" href="/">Home</a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="/auction">Auction</a>
+                          <a class="nav-link" href="/">Category</a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="about-us">About Us</a>
+                          <a class="nav-link" href="">About Us</a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="contact">Contact</a>
+                          <a class="nav-link" href="">Contact</a>
                       </li>
                       @auth
                       {{auth()->user()->name}}
                       <li class="nav-item">
                           <a href="{{ route('logout.perform') }}" class="btn btn-outline-light me-2">Logout</a>
                       </li>
+                      <li>
+                        <a href="/profile" class="nav-link" style="background-color: #ee4730; border-radius: 50%;">
+                        <i class="fas fa-user-alt" style="color: #fff ;line-height: inherit;"></i>
+                    </a>
+                    </li>
                       @endauth
                       @guest
                       <li class="nav-item">
@@ -43,11 +48,7 @@
                           <a href="{{ route('register.perform') }}" class="nav-link" >Sing Up</a>
                       </li>
                       @endguest
-                      <li>
-                          <a href="/profile" class="nav-link" style="background-color: #ee4730; border-radius: 50%;">
-                          <i class="fas fa-user-alt" style="color: #fff ;line-height: inherit;"></i>
-                      </a>
-                      </li>
+                      
                   </ul>
               </div>
           </div>
