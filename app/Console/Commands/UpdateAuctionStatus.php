@@ -35,8 +35,9 @@ class UpdateAuctionStatus extends Command
         ->get();
         foreach ($auctions as $auction) {
             $auction->update(['status' => 'pending']);
+            
         }
 
-        // $this->info('Auction statuses updated successfully.');
+        $this->info('Auction statuses updated successfully.');
     }
 }
