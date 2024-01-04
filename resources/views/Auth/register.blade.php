@@ -56,7 +56,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/login')}}">
+                        <a href="{{ url('/register')}}">
                             Sing up
                         </a>
                     </li>
@@ -81,7 +81,7 @@
                             <option value="1">User</option>
                             <option value="2">Company</option>
                         </select>
-                        <form method="POST" action="{{ route('register.perform') }}" id="userForm">
+                        <form method="POST" action="{{ route('register.perform') }}" id="userForm" style="display: none">
                             @csrf
                             <div class="form-group">
                                 <label for="first-name">
@@ -157,16 +157,16 @@
                             </div>
                             @include('auth.partials.copy')
                         </form>
-                        {{-- <form action=" {{url('companyReg')}} " method="POST" id="companyForm">
+                        <form action=" {{route('companyRegister')}} " method="POST" id="companyForm" style="display: none" enctype="multipart/form-data">
                             @csrf
-                            <input type="text" placeholder="Company Name" name="name"><br>
+                            {{-- <input type="text" placeholder="Company Name" name="name"><br>
                             <input type="email" placeholder="Ema-il" name="email"><br>
                             <input type="password" placeholder="8-32 charchters(capital,small letters, number nd special char.)"
                                 name="password"><br>
                             <input type="password" placeholder="Confirm Password" name="conf-password"><br>
                             <input type="number" placeholder="Phone" name="phone"><br>
                             <input type="number" placeholder="Commercial Register" name="commercial_register"><br>
-                            <textarea cols="20" rows="5" placeholder="Company Address" name="address"></textarea><br>
+                            <textarea cols="20" rows="5" placeholder="Company Address" name="address"></textarea><br> --}}
                             
                                 <div class="form-group">
                                     <label for="first-name">
@@ -181,12 +181,12 @@
                                     <label for="last-name">
                                         <i class="far fa-user"></i>
                                     </label>
-                                    <input id="last-name" class="form-control" type="text" name="fname" value="{{ old('fname') }}" placeholder="Last Name">
-                                    @if ($errors->has('fname'))
-                                        <span class="text-danger text-left">{{ $errors->first('fname') }}</span>
+                                    <input id="last-name" class="form-control" type="text" name="name" value="{{ old('name') }}" placeholder="Company Name">
+                                    @if ($errors->has('name'))
+                                        <span class="text-danger text-left">{{ $errors->first('name') }}</span>
                                     @endif
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="last-name">
                                         <i class="far fa-user"></i>
                                     </label>
@@ -194,7 +194,7 @@
                                     @if ($errors->has('lname'))
                                         <span class="text-danger text-left">{{ $errors->first('lname') }}</span>
                                     @endif
-                                </div>
+                                </div> --}}
                                 <div class="form-group">
                                     <label for="email">
                                         <i class="far fa-envelope"></i>
@@ -204,15 +204,7 @@
                                         <span class="text-danger text-left">{{ $errors->first('email') }}</span>
                                     @endif
                                 </div>
-                                <div class="form-group">
-                                    <label for="phone">
-                                        <i class="fa fa-phone"></i>
-                                    </label>
-                                    <input id="phone" class="form-control" type="number" name="Phone" value="{{ old('Phone') }}" placeholder="Phone">
-                                    @if ($errors->has('Phone'))
-                                        <span class="text-danger text-left">{{ $errors->first('Phone') }}</span>
-                                    @endif
-                                </div>
+                                
                                 <div class="form-group">
                                     <label for="password">
                                         <i class="fas fa-lock"></i>
@@ -233,6 +225,81 @@
                                         <span class="text-danger text-left">{{ $errors->first('password_confirmation') }}</span>
                                     @endif
                                 </div>
+                                <div class="form-group">
+                                    <label for="phone">
+                                        <i class="fa fa-phone"></i>
+                                    </label>
+                                    <input id="phone" class="form-control" type="number" name="phone" value="{{ old('phone') }}" placeholder="Phone">
+                                    @if ($errors->has('phone'))
+                                        <span class="text-danger text-left">{{ $errors->first('phone') }}</span>
+                                    @endif
+                                </div>
+                                <div class="form-group">
+                                    {{-- <label for="nationl_number">
+                                        <i class="fa fa-phone"></i>
+                                    </label> --}}
+                                    <input id="phone" class="form-control" type="number" name="national_number" value="{{ old('national_number') }}" placeholder="National Number">
+                                    @if ($errors->has('national_number'))
+                                        <span class="text-danger text-left">{{ $errors->first('national_number') }}</span>
+                                    @endif
+                                </div>
+                                <div class="form-group">
+                                    {{-- <label for="address">
+                                        <i class="fa fa-phone"></i>
+                                    </label> --}}
+                                    <textarea class="form-control" name="address" value="{{ old('address') }}" placeholder="Address"></textarea>
+                                    @if ($errors->has('address'))
+                                        <span class="text-danger text-left">{{ $errors->first('address') }}</span>
+                                    @endif
+                                </div>
+                                <div class="form-group">
+                                    {{-- <label for="city">
+                                        <i class="fa fa-phone"></i>
+                                    </label> --}}
+                                    <select class="form-control" id="exampleFormControlSelect1" name="city"
+                                        value="{{ old('city') }}">
+                                        <option value="City" selected disabled>City</option>
+                                        <option value="Amman">Amman</option>
+                                        <option value="Ajloun">Ajloun</option>
+                                        <option value="Aqaba">Aqaba</option>
+                                        <option value="Balqa">Balqa</option>
+                                        <option value="Irbid">Irbid</option>
+                                        <option value="Jerash">Jerash</option>
+                                        <option value="Karak">Karak</option>
+                                        <option value="Ma'an">Ma'an</option>
+                                        <option value="Madaba">Madaba</option>
+                                        <option value="Mafraq">Mafraq</option>
+                                        <option value="Tafilah">Tafilah</option>
+                                        <option value="Zarqa">Zarqa</option>
+                                    </select>
+                                    @if ($errors->has('city'))
+                                        <span class="text-danger text-left">{{ $errors->first('city') }}</span>
+                                    @endif
+                                </div>
+                                <div class="form-group">
+                                    {{-- <label for="category_id">
+                                        <i class="fa fa-phone"></i>
+                                    </label> --}}
+                                    <select class="form-control" id="exampleFormControlSelect1" name="category_id"
+                                        value="{{ old('category_id') }}">
+                                        <option value="Category_id" selected disabled>Category</option>
+                                        @foreach ($categories as $category )
+                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @if ($errors->has('category_id'))
+                                        <span class="text-danger text-left">{{ $errors->first('category_id') }}</span>
+                                    @endif
+                                </div>
+                                <div class="form-group">
+                                    {{-- <label for="commercial_register">
+                                        <i class="fa fa-phone"></i>
+                                    </label> --}}
+                                    <input type="file" class="form-control" name="commercial_register"/>
+                                    @if ($errors->has('commercial_register'))
+                                        <span class="text-danger text-left">{{ $errors->first('commercial_register') }}</span>
+                                    @endif
+                                </div>
                                 <div class="sign-up">
                                     <p>ALREADY HAVE AN ACCOUNT? <a href="sing-in.html">LOGIN</a></p>
                                     
@@ -241,7 +308,7 @@
                                     <button type="submit">REGISTER</button>
                                 </div>
                                 @include('auth.partials.copy')
-                        </form> --}}
+                        </form>
                     </div>
                     <div class="right-side">
                        <img src="/img/2.jpg" style="width: 100%;" alt="">
