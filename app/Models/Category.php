@@ -12,4 +12,7 @@ class Category extends Model
     public function sub_Category(){
         return $this->hasMany(Sub_Category::class,'category_id');
     }
+    public function company(){
+        return $this->hasMany(Company::class,'category_id');
+    }
 }

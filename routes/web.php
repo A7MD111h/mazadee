@@ -19,18 +19,18 @@ use App\Http\Controllers\SubCategoryController;
 |
 */
 
-Route::get('/home', function () {
-    return view('index');
-});
-Route::get('/sing-in', function () {
-    return view('sing-in');
-});
-Route::get('/sing-up', function () {
-    return view('sing-up');
-});
-Route::get('/sing-up-company', function () {
-    return view('sing-up-company');
-});
+// Route::get('/home', function () {
+//     return view('index');
+// });
+// Route::get('/sing-in', function () {
+//     return view('sing-in');
+// });
+// Route::get('/sing-up', function () {
+//     return view('sing-up');
+// });
+// Route::get('/sing-up-company', function () {
+//     return view('sing-up-company');
+// });
 
 Route::get('/auction', function () {
     return view('auction');
@@ -73,6 +73,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
          */
         Route::get('/register',  [RegisterController::class, 'show'])->name('register.show');
         Route::post('/register', [RegisterController::class, 'register'])->name('register.perform');
+        // Route::post('/companyReg',[RegisterController::class, 'company_register'])->name('company.register');
+        Route::post('/companyReg', [RegisterController::class, 'company_register'])->name('company.register');
 
         /**
          * Login Routes

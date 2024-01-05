@@ -119,15 +119,15 @@
                     </li>
                 </ul>
             </div>
-            <div class="bg-image"  style="background-image: url(/img/OIP.jpg);">
+            {{-- <div class="bg-image"  style="background-image: url(/img/OIP.jpg);"> --}}
 
             </div>
         </section>
         <!-- End Breadcrumb -->
         <!-- Featured Auctions -->
-        <section id="featured-auctions">
+        <section id="featured-auctions"  style="background-image: url(/img/OIP.jpg);background-size: cover">
             <div class="container">
-                <div class="row">
+                <div class="row" >
                     <div class="col-lg-12">
                         <div class="title">
                             <h2 style="color:#000">Bid On These Featured Auctions! </h2>
