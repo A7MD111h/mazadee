@@ -244,7 +244,7 @@
                                                         <div class="buy-now-price d-flex">
                                                             <i class="flaticon-date"></i>
                                                             <p class="d-flex flex-column">Date
-                                                                <span>1-1-2024</span>
+                                                                <span>1/1/2024</span>
                                                             </p>
                                                         </div>
                                                     </div>
