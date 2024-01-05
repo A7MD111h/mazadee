@@ -157,7 +157,7 @@
                             </div>
                             @include('auth.partials.copy')
                         </form>
-                        <form action=" {{route('companyRegister')}} " method="POST" id="companyForm" style="display: none" enctype="multipart/form-data">
+                        <form action="{{ route('company.register') }}" method="POST" id="companyForm" style="display: none" enctype="multipart/form-data">
                             @csrf
                             {{-- <input type="text" placeholder="Company Name" name="name"><br>
                             <input type="email" placeholder="Ema-il" name="email"><br>
@@ -292,9 +292,9 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {{-- <label for="commercial_register">
+                                    <label for="commercial_register">
                                         <i class="fa fa-phone"></i>
-                                    </label> --}}
+                                    </label>
                                     <input type="file" class="form-control" name="commercial_register"/>
                                     @if ($errors->has('commercial_register'))
                                         <span class="text-danger text-left">{{ $errors->first('commercial_register') }}</span>
