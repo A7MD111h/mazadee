@@ -159,15 +159,6 @@
                         </form>
                         <form action="{{ route('company.register') }}" method="POST" id="companyForm" style="display: none" enctype="multipart/form-data">
                             @csrf
-                            {{-- <input type="text" placeholder="Company Name" name="name"><br>
-                            <input type="email" placeholder="Ema-il" name="email"><br>
-                            <input type="password" placeholder="8-32 charchters(capital,small letters, number nd special char.)"
-                                name="password"><br>
-                            <input type="password" placeholder="Confirm Password" name="conf-password"><br>
-                            <input type="number" placeholder="Phone" name="phone"><br>
-                            <input type="number" placeholder="Commercial Register" name="commercial_register"><br>
-                            <textarea cols="20" rows="5" placeholder="Company Address" name="address"></textarea><br> --}}
-                            
                                 <div class="form-group">
                                     <label for="first-name">
                                         <i class="far fa-user"></i>
