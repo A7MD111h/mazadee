@@ -35,7 +35,7 @@ class CompanyRegRequest extends FormRequest
             'address' => 'required',
             'city' => "required|in:Amman,Ajloun,Aqaba,Balqa,Irbid,Jerash,Karak,Ma'an,Madaba,Mafraq,Tafilah,Zarqa",
             'category_id' => 'required|notIn:Category_id',
-            // 'commercial_register' => 'required|file|mimes:pdf|max:2048',
+            'commercial_register' => 'required|file|mimes:pdf|max:2048',
         ];
     }
 }

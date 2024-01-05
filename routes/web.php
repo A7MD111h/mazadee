@@ -58,7 +58,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
          */
         Route::get('/register',  [RegisterController::class, 'show'])->name('register.show');
         Route::post('/register', [RegisterController::class, 'register'])->name('register.perform');
-        Route::post('/companyReg',[RegisterController::class, 'company_register'])->name('companyRegister');
+        // Route::post('/companyReg',[RegisterController::class, 'company_register'])->name('company.register');
+        Route::post('/companyReg', [RegisterController::class, 'company_register'])->name('company.register');
 
         /**
          * Login Routes
