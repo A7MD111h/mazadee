@@ -42,6 +42,21 @@ Route::get('/my-account-bids', function () {
     return view('my-account-bids');
 });
 
+Route::get('/personal-profile', function () {
+    return view('personal-profile');
+});
+
+/** company routes */
+
+Route::get('/profile', function () {
+    return view('company.profile');
+});
+
+Route::get('/company-profile', function () {
+    return view('company.company-profile');
+});
+
+
 Route::post('createAuction', [AuctionController::class,'create']);
 
 Route::group(['namespace' => 'App\Http\Controllers'], function()

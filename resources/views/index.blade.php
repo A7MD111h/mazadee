@@ -412,20 +412,7 @@
             <div class="container">
                 <div class="copyright">
                     <img src="/img/logo.png" width="20%" class="logo" alt="">
-                    <!-- <ul class="d-flex">
-                        <li>
-                            <img src="assets/img/paypal.png"   style="color: black;"  alt="">
-                        </li>
-                        <li>
-                            <img src="assets/img/visa.png" alt="">
-                        </li>
-                        <li>
-                            <img src="assets/img/discover.png" alt="">
-                        </li>
-                        <li>
-                            <img src="assets/img/mastercard.png" alt="">
-                        </li>
-                    </ul> -->
+                  
                     
                 </div>
             </div>
