@@ -60,8 +60,8 @@ class RegisterController extends Controller
                 "commercial_register"=> $fileName,
             ]);
             if($company){
-                auth()->login($company);
-                return redirect('/')->with('success', "Account successfully registered.");
+                // auth()->login($company);
+                return redirect('/home')->with('success', "Account successfully registered.");
             }
         }
     }

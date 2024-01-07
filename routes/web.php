@@ -28,8 +28,8 @@ use App\Http\Controllers\SubCategoryController;
 // Route::get('/sing-up', function () {
 //     return view('sing-up');
 // });
-Route::get('/sing-up-company', function () {
-    return view('sing-up-company');
+Route::get('/home', function () {
+    return view('companyHome');
 });
 
 Route::get('/auction', function () {
@@ -41,6 +41,21 @@ Route::get('/auction-details/{id}', [AuctionController::class,'index']);
 Route::get('/my-account-bids', function () {
     return view('my-account-bids');
 });
+
+Route::get('/personal-profile', function () {
+    return view('personal-profile');
+});
+
+/** company routes */
+
+Route::get('/profile', function () {
+    return view('company.profile');
+});
+
+Route::get('/company-profile', function () {
+    return view('company.company-profile');
+});
+
 
 Route::post('createAuction', [AuctionController::class,'create']);
 
