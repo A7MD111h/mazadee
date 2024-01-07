@@ -29,16 +29,36 @@ class LoginController extends Controller
     {
         $credentials = $request->getCredentials();
 
-        if(!Auth::validate($credentials)):
-            return redirect()->to('login')
-                ->withErrors(trans('auth.failed'));
-        endif;
+        $userProvider = Auth::createUserProvider('users');
+        $companyProvider = Auth::createUserProvider('companies');
 
-        $user = Auth::getProvider()->retrieveByCredentials($credentials);
+        if (!$userProvider->validateCredentials($userProvider->retrieveByCredentials($credentials), $credentials)
+            && !$companyProvider->validateCredentials($companyProvider->retrieveByCredentials($credentials), $credentials)) {
+            return redirect()->to('login')->withErrors(trans('auth.failed'));
+        }
 
-        Auth::login($user);
+        $user = $userProvider->retrieveByCredentials($credentials);
+        $company = $companyProvider->retrieveByCredentials($credentials);
 
-        return $this->authenticated($request, $user);
+        if ($user) {
+            Auth::guard('users')->login($user);
+            return $this->authenticated($request, $user);
+        } elseif ($company) {
+            Auth::guard('company')->login($company);
+            return $this->authenticated($request, $company);
+        }
+        // $credentials = $request->getCredentials();
+
+        // if(!Auth::validate($credentials)):
+        //     return redirect()->to('login')
+        //         ->withErrors(trans('auth.failed'));
+        // endif;
+
+        // $user = Auth::getProvider()->retrieveByCredentials($credentials);
+
+        // Auth::login($user);
+
+        // return $this->authenticated($request, $user);
     }
 
     /**

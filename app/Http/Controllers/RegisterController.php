@@ -39,12 +39,10 @@ class RegisterController extends Controller
 
     public function company_register(CompanyRegRequest $request)
     {
-        // return 'hello';
-        // dd($request);
-        // $filePath = $request->file('pdf_file')->store('companyReg', 'public');
+        
         if ($request->hasFile('commercial_register')) {
         $file = $request->file('commercial_register');
-        $fileName = uniqid() . '_' . $file->getClientOriginalName(); // Generate a unique filename
+        $fileName = uniqid() . '_' . $file->getClientOriginalName();
 
         // Store the file in the 'uploads' directory within the 'public' disk
         $file->storeAs('storage', $fileName, 'public');
@@ -62,8 +60,8 @@ class RegisterController extends Controller
                 "commercial_register"=> $fileName,
             ]);
             if($company){
-                auth()->login($company);
-                return redirect('/')->with('success', "Account successfully registered.");
+                // auth()->login($company);
+                return redirect('/home')->with('success', "Account successfully registered.");
             }
         }
     }
