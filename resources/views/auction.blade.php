@@ -113,9 +113,9 @@
                         </a>
                     </li>
                     <li>
-                        <a href="auction" style="color: black;"></a>
+                        {{-- <a href="auction" style="color: black;"></a> --}}
                         {{$category->name}}
-                        </a>
+                        
                     </li>
                 </ul>
             </div>

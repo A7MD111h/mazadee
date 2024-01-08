@@ -119,7 +119,6 @@
                         </a>
                     </li>
                     <li>
-                        <a href="auction-details" style="color: black;"></a>
                         {{ $subCategory->name }}
                         </a>
                     </li>

@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +67,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
      */
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
     Route::get('/subCategory/{id}', [SubCategoryController::class,'index']);
+    Route::get('profile', [UserController::class, 'profilePages']);
+    Route::post('cancelAuction/{id}', [AuctionController::class, 'cancelAuction'])->name('cancelAuction');
+    Route::post('endAuction/{id}', [AuctionController::class, 'endAuction'])->name('endAuction');
 
     Route::group(['middleware' => ['guest']], function() {
         /**

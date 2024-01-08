@@ -105,4 +105,18 @@ class AuctionController extends Controller
     {
         //
     }
+    public function cancelAuction($id)
+    {
+        $auction= Auction::find($id);
+        $auction->status='canceled';
+        $auction->update();
+        return back()->with('success', 'Auction canceled successfully.');    
+    }
+    public function endAuction($id)
+    {
+        $auction= Auction::find($id);
+        $auction->status='pending';
+        $auction->update();
+        return back()->with('success', 'Auction ended successfully.');    
+    }
 }
