@@ -39,7 +39,7 @@ class RegisterController extends Controller
 
     public function company_register(CompanyRegRequest $request)
     {
-        
+        // dd($request);
         if ($request->hasFile('commercial_register')) {
         $file = $request->file('commercial_register');
         $fileName = uniqid() . '_' . $file->getClientOriginalName();
@@ -59,8 +59,9 @@ class RegisterController extends Controller
                 "category_id"=> $request->category_id,
                 "commercial_register"=> $fileName,
             ]);
+            
             if($company){
-                // auth()->login($company);
+                auth()->login($company);
                 return redirect('/home')->with('success', "Account successfully registered.");
             }
         }

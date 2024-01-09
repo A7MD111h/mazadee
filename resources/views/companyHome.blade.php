@@ -43,6 +43,9 @@
 
                     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                         <ul class="navbar-nav">
+                            @if (auth('companies')->check())
+                                <p>Welcome, {{ auth('companies')->user()->name }}</p>
+                            @endif
                             <li class="nav-item">
                                 <a class="nav-link" href="index.html" style="margin: auto;">Home</a>
                             </li>
@@ -55,19 +58,26 @@
                             <li class="nav-item" style="margin: auto;">
                                 <a href="my-account-bids.html">
                                     <i class="fas fa-user"></i>
-                                </a>                  
+                                </a>
                             </li>
-                            
+
                             <li class="nav-item" style="margin: auto;">
                                 <a href="my-account-bids.html">
                                     <i class="fa fa-comment"></i>
-                                </a>                  
+                                </a>
                             </li>
+                            
+                            @if (auth('companies')->check())
                             <li class="nav-item" style="margin: auto;">
-                                <a href="my-account-bids.html">
+                                <a href="{{ route('logout.perform') }}">
                                     <i class="fa fa-sign-out"></i>
-                                </a>                  
+                                </a>
                             </li>
+
+                            @endif
+                       
+
+                           
                         </ul>
                     </div>
                 </div>
@@ -77,7 +87,7 @@
     </header>
 
     <main>
-      
+
         <!-- Car Auction -->
         <section id="car-auction">
             <div class="container">
@@ -213,9 +223,9 @@
             </div>
         </section>
         <!-- End Car Auction -->
-       
-       
-      
+
+
+
         <!-- Popular Auctions -->
         <section id="popular-auctions">
             <div class="container">
@@ -388,11 +398,11 @@
 
                 </div>
             </div>
-          
+
         </section>
         <!-- End Popular Auctions -->
-       
-      
+
+
         <!-- How It Works -->
         <section id="how-it-works">
             <div class="container bg">
@@ -438,7 +448,7 @@
             </div>
         </section>
         <!-- End How It Works -->
-       
+
     </main>
 
     <footer style="background: linear-gradient(0deg, rgba(199,199,199,1) 0%, rgba(255,255,255,1) 50%)">
@@ -572,7 +582,7 @@
             <div class="container">
                 <div class="copyright">
                     <img src="assets/img/logo2.png" class="logo" alt="">
-                    
+
                     <p>
                         © Copyright 2020 |
                         <a href="#">MAZADe</a>

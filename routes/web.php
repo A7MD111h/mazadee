@@ -29,9 +29,6 @@ use App\Http\Controllers\UserController;
 // Route::get('/sing-up', function () {
 //     return view('sing-up');
 // });
-Route::get('/home', function () {
-    return view('companyHome');
-});
 
 Route::get('/auction', function () {
     return view('auction');
@@ -65,6 +62,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     /**
      * Home Routes
      */
+    Route::get('/home', function () {
+        return view('companyHome');
+    });
+    
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
     Route::get('/subCategory/{id}', [SubCategoryController::class,'index']);
     Route::get('my-bids', [UserController::class, 'profilePages']);
@@ -97,6 +98,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         /**
          * Logout Routes
          */
-        Route::get('/logout', [LogoutController::class, 'perform'])->name('logout.perform');
-    });
+      
+    }); 
+     Route::get('/logout', [LogoutController::class, 'perform'])->name('logout.perform');
 });
