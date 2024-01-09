@@ -34,7 +34,7 @@
                           <a href="{{ route('logout.perform') }}" class="btn btn-outline-light me-2">Logout</a>
                       </li>
                       <li>
-                        <a href="{{url('/profile')}}" class="nav-link" style="background-color: #ee4730; border-radius: 50%;">
+                        <a href="{{url('/my-bids')}}" class="nav-link" style="background-color: #ee4730; border-radius: 50%;">
                         <i class="fas fa-user-alt" style="color: #fff ;line-height: inherit;"></i>
                     </a>
                     </li>

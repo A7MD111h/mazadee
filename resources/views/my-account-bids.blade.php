@@ -115,7 +115,7 @@
                     </li>
                     <li>
                         {{-- <a href="my-account-bids"> --}}
-                        My Account
+                        My Bids
                         {{-- </a> --}}
                     </li>
                 </ul>
@@ -132,11 +132,10 @@
                         <div class="user-menu">
                             <div class="user">
                                 <div class="image">
-                                    <img src="/img/user.png" alt="">
-                                    <label for="user-photo">
+                                    <img src="{{ asset('storage/' . $user->photo) }}" alt="profile picture">
+                                    <label data-toggle="modal" data-target="#profilePicEditModalCenter">
                                         <i class="fas fa-pencil-alt"></i>
                                     </label>
-                                    <input type="file" id="user-photo" class="d-none">
                                 </div>
                                 <div class="content">
                                     <h4>
@@ -147,12 +146,12 @@
                             </div>
                             <ul class="menu">
                                 <li>
-                                    <a href="my-account-bids" class="active">
+                                    <a href="{{ url('my-bids') }}" class="active">
                                         <i class="flaticon-hammer"></i>
                                         My Bids</a>
                                 </li>
                                 <li>
-                                    <a href="personal-profile">
+                                    <a href="{{ url('personal-profile') }}">
                                         <i class="flaticon-settings"></i>
                                         Personal Profile </a>
                                 </li>
@@ -171,14 +170,47 @@
                             </ul>
                         </div>
                     </div>
+                    <form method="post" action="{{ url('profilePicEdit') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="modal fade" id="profilePicEditModalCenter" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">
+                                            Profile Picture</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body" style="margin-left:auto; margin-right:auto; width:70%">
+                                        <img src="{{ asset('storage/' . $user->photo) }}" alt="profile picture"
+                                            style="width:100%">
+                                        <label for="user-photo" style="cursor: pointer">
+                                            <i class="fas fa-pencil-alt"></i>
+                                        </label>
+                                        <input type="file" id="user-photo" name="photo" class="d-none">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+
+
                     <div class="col-lg-8">
                         <div class="my-bids start">
                             <div class="activity">
                                 @if (session('success'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('success') }}
-                            </div>
-                        @endif
+                                    <div class="alert alert-success" role="alert">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
                                 <div class="title">
                                     <h4>My Activity</h4>
                                 </div>
@@ -268,16 +300,17 @@
                                                             data-target="#cancelModalCenter{{ $auction->id }}">Cancel</a>
                                                         <a type="button" class="btn btn-success"
                                                             style="margin-left: 40%;" href=""
-                                                            data-toggle="modal" data-target="#endModalCenter{{ $auction->id }}">End
+                                                            data-toggle="modal"
+                                                            data-target="#endModalCenter{{ $auction->id }}">End
                                                             Auction</a>
                                                     </div>
                                                 </div>
                                             </div>
                                             <form action="{{ route('cancelAuction', $auction->id) }}" method="post">
                                                 @csrf
-                                                <div class="modal fade" id="cancelModalCenter{{ $auction->id }}" tabindex="-1"
-                                                    role="dialog" aria-labelledby="exampleModalCenterTitle"
-                                                    aria-hidden="true">
+                                                <div class="modal fade" id="cancelModalCenter{{ $auction->id }}"
+                                                    tabindex="-1" role="dialog"
+                                                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -303,9 +336,9 @@
                                             </form>
                                             <form action="{{ route('endAuction', $auction->id) }}" method="post">
                                                 @csrf
-                                                <div class="modal fade" id="endModalCenter{{ $auction->id }}" tabindex="-1"
-                                                    role="dialog" aria-labelledby="exampleModalCenterTitle"
-                                                    aria-hidden="true">
+                                                <div class="modal fade" id="endModalCenter{{ $auction->id }}"
+                                                    tabindex="-1" role="dialog"
+                                                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -371,66 +404,66 @@
                                 </div>
                                 <div class="tab-pane fade" id="past">
                                     <div class="row">
-                                        @foreach($oldAuctions as $auction)
-                                        @if($auction->status != 'canceled')
-                                        <div class="col-lg-6">
-                                            <div class="auction-item">
-                                                <div class="image">
-                                                    <a href="">
-                                                        <img src="{{ asset($auction->subCategory->photo) }}"
-                                                            width="5%" height="70%" alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="auction-content">
-                                                    <h5>{{$auction->subCategory->name}}</h5>
-                                                    <div class="bid d-flex justify-content-between">
-
-                                                        <div class="buy-now-price d-flex">
-                                                            <i class="flaticon-money"></i>
-                                                            <p class="d-flex flex-column">last Price
-                                                                <span>{{$auction->company_price}}</span>
-                                                            </p>
+                                        @foreach ($oldAuctions as $auction)
+                                            @if ($auction->status != 'canceled')
+                                                <div class="col-lg-6">
+                                                    <div class="auction-item">
+                                                        <div class="image">
+                                                            <a href="">
+                                                                <img src="{{ asset($auction->subCategory->photo) }}"
+                                                                    width="5%" height="70%" alt="">
+                                                            </a>
                                                         </div>
-                                                        <div class="buy-now-price d-flex">
-                                                            <i class="flaticon-hammer"></i>
-                                                            <p class="d-flex flex-column">status
-                                                                <span>{{$auction->status}}</span>
-                                                            </p>
+                                                        <div class="auction-content">
+                                                            <h5>{{ $auction->subCategory->name }}</h5>
+                                                            <div class="bid d-flex justify-content-between">
+
+                                                                <div class="buy-now-price d-flex">
+                                                                    <i class="flaticon-money"></i>
+                                                                    <p class="d-flex flex-column">last Price
+                                                                        <span>{{ $auction->company_price }}</span>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="buy-now-price d-flex">
+                                                                    <i class="flaticon-hammer"></i>
+                                                                    <p class="d-flex flex-column">status
+                                                                        <span>{{ $auction->status }}</span>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        @else
-                                        <div class="col-lg-6">
-                                            <div class="auction-item">
-                                                <div class="image">
-                                                    <a href="">
-                                                        <img src="{{ asset($auction->subCategory->photo) }}"
-                                                            width="5%" height="70%" alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="auction-content">
-                                                    <h5>{{$auction->subCategory->name}}</h5>
-                                                    <div class="bid d-flex justify-content-between">
-
-                                                        <div class="buy-now-price d-flex">
-                                                            <i class="flaticon-money"></i>
-                                                            <p class="d-flex flex-column">last Price
-                                                                <span>00</span>
-                                                            </p>
+                                            @else
+                                                <div class="col-lg-6">
+                                                    <div class="auction-item">
+                                                        <div class="image">
+                                                            <a href="">
+                                                                <img src="{{ asset($auction->subCategory->photo) }}"
+                                                                    width="5%" height="70%" alt="">
+                                                            </a>
                                                         </div>
-                                                        <div class="buy-now-price d-flex">
-                                                            <i class="flaticon-hammer"></i>
-                                                            <p class="d-flex flex-column">status
-                                                                <span>{{$auction->status}}</span>
-                                                            </p>
+                                                        <div class="auction-content">
+                                                            <h5>{{ $auction->subCategory->name }}</h5>
+                                                            <div class="bid d-flex justify-content-between">
+
+                                                                <div class="buy-now-price d-flex">
+                                                                    <i class="flaticon-money"></i>
+                                                                    <p class="d-flex flex-column">last Price
+                                                                        <span>00</span>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="buy-now-price d-flex">
+                                                                    <i class="flaticon-hammer"></i>
+                                                                    <p class="d-flex flex-column">status
+                                                                        <span>{{ $auction->status }}</span>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        @endif
+                                            @endif
                                         @endforeach
                                     </div>
                                 </div>

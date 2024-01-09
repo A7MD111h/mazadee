@@ -23,10 +23,10 @@ class RegisterRequest extends FormRequest
     {
         // dd($request);
         return [
-            'fname' => 'required',
-            'lname' => 'required',
+            'fname' => 'required|max:255',
+            'lname' => 'required|max:255',
             'email' => 'required|email:rfc,dns|unique:users,email',
-            'username' => 'required|unique:users,username',
+            'username' => 'required|unique:users,username|max:255',
             // 'password' => 'required|regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/ |string|min:8|max:32',
             'password' => 'required|min:8',
             'password_confirmation' => 'required|same:password',

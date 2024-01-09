@@ -24,9 +24,9 @@ class CompanyRegRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|max:255',
             'email' => 'required|email:rfc,dns|unique:users,email',
-            'username' => 'required|unique:users,username',
+            'username' => 'required|unique:users,username|max:255',
             'password' => 'required|min:8',
             'password_confirmation' => 'required|same:password',
             'phone' => 'numeric|digits:14|required',

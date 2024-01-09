@@ -49,9 +49,9 @@ Route::get('/personal-profile', function () {
 
 /** company routes */
 
-Route::get('/profile', function () {
-    return view('company.profile');
-});
+// Route::get('/profile', function () {
+//     return view('company.profile');
+// });
 
 Route::get('/company-profile', function () {
     return view('company.company-profile');
@@ -67,7 +67,13 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
      */
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
     Route::get('/subCategory/{id}', [SubCategoryController::class,'index']);
-    Route::get('profile', [UserController::class, 'profilePages']);
+    Route::get('my-bids', [UserController::class, 'profilePages']);
+    Route::get('/personal-profile', [UserController::class, 'personalProfile']);
+    Route::post('personal-details-edit', [UserController::class, 'personalDetailsEdit']);
+    Route::post('email-address-edit', [UserController::class, 'emailAddressEdit']);
+    Route::post('phone-edit', [UserController::class, 'phoneEdit']);
+    Route::post('password-edit', [UserController::class, 'passwordEdit']);
+    Route::post('profilePicEdit', [UserController::class, 'profilePicEdit']);
     Route::post('cancelAuction/{id}', [AuctionController::class, 'cancelAuction'])->name('cancelAuction');
     Route::post('endAuction/{id}', [AuctionController::class, 'endAuction'])->name('endAuction');
 
