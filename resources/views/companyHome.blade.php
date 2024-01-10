@@ -8,12 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MAZADe</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/font/flaticon.css" />
+    <link rel="stylesheet" href="/font/flaticon.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="assets/img/favicon-logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/img/favicon-logo.png" type="image/x-icon">
 
     <script src="https://kit.fontawesome.com/5f8f97e3fd.js" crossorigin="anonymous"></script>
 </head>
@@ -47,16 +47,16 @@
                                 <p>Welcome, {{ auth('companies')->user()->name }}</p>
                             @endif
                             <li class="nav-item">
-                                <a class="nav-link" href="index.html" style="margin: auto;">Home</a>
+                                <a class="nav-link" href="home" style="margin: auto;">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="auction.html" style="margin: auto;">Winning Auction</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="about-us.html" style="margin: auto;">Your Auctions</a>
+                                <a class="nav-link" href="profile" style="margin: auto;">Your Auctions</a>
                             </li>
                             <li class="nav-item" style="margin: auto;">
-                                <a href="my-account-bids.html">
+                                <a href="company-profile">
                                     <i class="fas fa-user"></i>
                                 </a>
                             </li>
