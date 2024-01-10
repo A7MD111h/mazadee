@@ -24,7 +24,8 @@
     </section>
 
     <header>
-        <div class="header-top">
+        @include('layouts.partials.navbar')
+        {{-- <div class="header-top">
             <div class="container">
                 <div class="content d-flex justify-content-between align-items-center">
                     <ul class="d-flex">
@@ -52,9 +53,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- Navbar -->
-        <div class="header-bottom" style="background-image: url(/img/OIP.jpg)">
+        {{-- <div class="header-bottom" style="background-image: url(/img/OIP.jpg)">
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
                     <div class="logo">
@@ -97,7 +98,7 @@
                     </div>
                 </div>
             </nav>
-        </div>
+        </div> --}}
         <!-- End Navbar -->
     </header>
 
@@ -107,15 +108,15 @@
             <div class="container">
                 <ul class="breadcrumb">
                     <li>
-                        <a href="index">
+                        <a href="/">
                             Home
                             <i class="flaticon-right-arrow"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="my-account-bids">
-                            Active Auction
-                        </a>
+                        {{-- <a href="my-account-bids"> --}}
+                        My Bids
+                        {{-- </a> --}}
                     </li>
                 </ul>
             </div>
@@ -131,28 +132,26 @@
                         <div class="user-menu">
                             <div class="user">
                                 <div class="image">
-                                    <img src="/img/user.png" alt="">
-                                    <label for="user-photo">
+                                    <img src="{{ asset('storage/' . $user->photo) }}" alt="profile picture">
+                                    <label data-toggle="modal" data-target="#profilePicEditModalCenter">
                                         <i class="fas fa-pencil-alt"></i>
                                     </label>
-                                    <input type="file" id="user-photo" class="d-none">
                                 </div>
                                 <div class="content">
                                     <h4>
-                                        Percy Reed
+                                        {{ $user->fname . ' ' . $user->lname }}
                                     </h4>
-                                    <span>john@gmail.com</span>
+                                    <span>{{ $user->email }}</span>
                                 </div>
                             </div>
                             <ul class="menu">
                                 <li>
                                     <a href="{{ url('my-auctions') }}" class="active">
-                                    <a href="my-account-bids" class="active">
                                         <i class="flaticon-hammer"></i>
                                         My Bids</a>
                                 </li>
                                 <li>
-                                    <a href="personal-profile">
+                                    <a href="{{ url('personal-profile') }}">
                                         <i class="flaticon-settings"></i>
                                         Personal Profile </a>
                                 </li>
@@ -161,35 +160,74 @@
                                         <i class="flaticon-best-seller"></i>
                                         Winning Bids</a>
                                 </li> -->
-                            
-                                <li>
+
+                                {{-- <li>
                                     <a href="referrals">
                                         <i class="flaticon-shake-hand"></i>
                                         Referrals</a>
-                                </li>
-                                
+                                </li> --}}
+
                             </ul>
                         </div>
                     </div>
+                    <form method="post" action="{{ url('profilePicEdit') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="modal fade" id="profilePicEditModalCenter" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">
+                                            Profile Picture</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body" style="margin-left:auto; margin-right:auto; width:70%">
+                                        <img src="{{ asset('storage/' . $user->photo) }}" alt="profile picture"
+                                            style="width:100%">
+                                        <label for="user-photo" style="cursor: pointer">
+                                            <i class="fas fa-pencil-alt"></i>
+                                        </label>
+                                        <input type="file" id="user-photo" name="photo" class="d-none">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+
+
                     <div class="col-lg-8">
                         <div class="my-bids start">
                             <div class="activity">
+                                @if (session('success'))
+                                    <div class="alert alert-success" role="alert">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
                                 <div class="title">
                                     <h4>My Activity</h4>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-12">
                                         <div class="item">
                                             <div class="image">
                                                 <img src="/img/bid01.png" class="img-fluid" alt="">
                                             </div>
                                             <div class="content">
-                                                <div class="timer" data-to="80" data-speed="5000"></div>
+                                                <div class="timer" data-to="{{ $activeAuctionsNum }}"
+                                                    data-speed="2000"></div>
                                                 <span>Active Bids</span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
+                                    {{-- <div class="col-lg-4">
                                         <div class="item">
                                             <div class="image">
                                                 <img src="/img/bid02.png" class="img-fluid" alt="">
@@ -199,8 +237,8 @@
                                                 <span>Items Won</span>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-4">
+                                    </div> --}}
+                                    {{-- <div class="col-lg-4">
                                         <div class="item">
                                             <div class="image">
                                                 <img src="/img/bid03.png" class="img-fluid" alt="">
@@ -210,13 +248,14 @@
                                                 <span>Favorites</span>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <ul class="nav d-flex">
                                     <li class="nav-item">
-                                        <a href="#upcoming" data-toggle="tab" class="upcoming nav-link active">Upcoming</a>
+                                        <a href="#upcoming" data-toggle="tab"
+                                            class="upcoming nav-link active">Active</a>
                                     </li>
-                                    <li  class="nav-item">
+                                    <li class="nav-item">
                                         <a href="#past" data-toggle="tab" class="past nav-link">Past</a>
                                     </li>
                                 </ul>
@@ -224,44 +263,108 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="upcoming">
                                     <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="auction-item">
-                                                <div class="image">
-                                                    <a href="#">
-                                                        <img src="/img/Michelin-Pilot-Sport-All-Season-4-UHP-All-Season-295-35R21-103V-Passenger-Tire_4f2a9690-0b37-46b6-b265-7c7ab20af4c0.bd1d46e64614fcf3743fbd3b01b31899-removebg-preview.png" width="5%" height="70%" alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="auction-content">
-                                                    <h5>Michelin Tires 11435 Tires
-                                                    </h5>
-                                                    <div class="bid d-flex justify-content-between">
-                                                        <div class="current-bid d-flex">
-                                                            <i class="flaticon-hammer"></i>
-                                                            <p class="d-flex flex-column">Current Bid
-                                                                <span>$876.00</span>
-                                                            </p>
+                                        @foreach ($activeAuctions as $auction)
+                                            <div class="col-lg-6">
+                                                <div class="auction-item">
+                                                    <div class="image">
+                                                        <a href="#">
+                                                            <img src="{{ asset($auction->subCategory->photo) }}"
+                                                                width="5%" height="70%" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <div class="auction-content">
+                                                        <h5>{{ $auction->subCategory->name }}
+                                                        </h5>
+                                                        <div class="bid d-flex justify-content-between">
+                                                            <div class="current-bid d-flex">
+                                                                <i class="flaticon-hammer"></i>
+                                                                <p class="d-flex flex-column">Current Bid
+                                                                    <span>{{ $auction->company_price }}</span>
+                                                                </p>
+                                                            </div>
+                                                            <div class="buy-now-price d-flex">
+                                                                <i class="flaticon-money"></i>
+                                                                <p class="d-flex flex-column">Your Budjet
+                                                                    <span>{{ $auction->budjet }}</span>
+                                                                </p>
+                                                            </div>
                                                         </div>
-                                                        <div class="buy-now-price d-flex">
-                                                            <i class="flaticon-money"></i>
-                                                            <p class="d-flex flex-column">Buy Now
-                                                                <span>$5000.00</span>
-                                                            </p>
+                                                    </div>
+                                                    <div class="time d-flex ">
+                                                        <div class="countdown" data-countdown="10/31/2020 20:00"
+                                                            style="margin-left: 20%;"></div>
+                                                    </div>
+                                                    <div>
+                                                        <a type="button" class="btn btn-danger" href="index"
+                                                            data-toggle="modal"
+                                                            data-target="#cancelModalCenter{{ $auction->id }}">Cancel</a>
+                                                        <a type="button" class="btn btn-success"
+                                                            style="margin-left: 40%;" href=""
+                                                            data-toggle="modal"
+                                                            data-target="#endModalCenter{{ $auction->id }}">End
+                                                            Auction</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <form action="{{ route('cancelAuction', $auction->id) }}" method="post">
+                                                @csrf
+                                                <div class="modal fade" id="cancelModalCenter{{ $auction->id }}"
+                                                    tabindex="-1" role="dialog"
+                                                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLongTitle">
+                                                                    Cancel Auction</h5>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Are you sure you want to cancel the auction?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close</button>
+                                                                <button type="submit"
+                                                                    class="btn btn-primary">Yes</button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="time d-flex ">
-                                                    <div class="countdown" data-countdown="10/31/2020 20:00" style="margin-left: 20%;"></div>
+                                            </form>
+                                            <form action="{{ route('endAuction', $auction->id) }}" method="post">
+                                                @csrf
+                                                <div class="modal fade" id="endModalCenter{{ $auction->id }}"
+                                                    tabindex="-1" role="dialog"
+                                                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLongTitle">
+                                                                    Cancel Auction</h5>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Are you sure you want to end the auction?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close</button>
+                                                                <button type="submit"
+                                                                    class="btn btn-primary">Yes</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div >
-                                                    <a type="button" class="btn btn-danger" href="index">Cancel</a>
-                                                    <a type="button" class="btn btn-success" style="margin-left: 40%;" href="">End Auction</a>
+                                            </form>
+                                        @endforeach
 
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                       
-                                        <div class="col-lg-6">
+                                        {{-- <div class="col-lg-6">
                                             <div class="auction-item">
                                                 <div class="image">
                                                     <a href="#">
@@ -296,47 +399,85 @@
                                                 </div>
                                                 
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="past">
                                     <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="auction-item">
-                                                <div class="image">
-                                                    <a href="#">
-                                                        <img src="/img/61peYAD2-bL._AC_SL1500_-removebg-preview.png" width="5%" height="70%" alt="">
-                                                    </a>
-                                                   
-                                                </div>
-                                                <div class="auction-content">
-                                                    <h5>Oil Car</h5>
-                                                    <div class="bid d-flex justify-content-between">
-                                                        
-                                                        <div class="buy-now-price d-flex">
-                                                            <i class="flaticon-money"></i>
-                                                            <p class="d-flex flex-column">Sold
-                                                                <span>$5000.00</span>
-                                                            </p>
+                                        @foreach ($oldAuctions as $auction)
+                                            @if ($auction->status != 'canceled')
+                                                <div class="col-lg-6">
+                                                    <div class="auction-item">
+                                                        <div class="image">
+                                                            <a href="">
+                                                                <img src="{{ asset($auction->subCategory->photo) }}"
+                                                                    width="5%" height="70%" alt="">
+                                                            </a>
+                                                        </div>
+                                                        <div class="auction-content">
+                                                            <h5>{{ $auction->subCategory->name }}</h5>
+                                                            <div class="bid d-flex justify-content-between">
+
+                                                                <div class="buy-now-price d-flex">
+                                                                    <i class="flaticon-money"></i>
+                                                                    <p class="d-flex flex-column">last Price
+                                                                        <span>{{ $auction->company_price }}</span>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="buy-now-price d-flex">
+                                                                    <i class="flaticon-hammer"></i>
+                                                                    <p class="d-flex flex-column">status
+                                                                        <span>{{ $auction->status }}</span>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                       
+                                            @else
+                                                <div class="col-lg-6">
+                                                    <div class="auction-item">
+                                                        <div class="image">
+                                                            <a href="">
+                                                                <img src="{{ asset($auction->subCategory->photo) }}"
+                                                                    width="5%" height="70%" alt="">
+                                                            </a>
+                                                        </div>
+                                                        <div class="auction-content">
+                                                            <h5>{{ $auction->subCategory->name }}</h5>
+                                                            <div class="bid d-flex justify-content-between">
+
+                                                                <div class="buy-now-price d-flex">
+                                                                    <i class="flaticon-money"></i>
+                                                                    <p class="d-flex flex-column">last Price
+                                                                        <span>00</span>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="buy-now-price d-flex">
+                                                                    <i class="flaticon-hammer"></i>
+                                                                    <p class="d-flex flex-column">status
+                                                                        <span>{{ $auction->status }}</span>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>   
+                </div>
             </div>
         </section>
     </main>
 
     <footer style="background-image: url(/img/OIP.jpg);">
-       
-        
+
+
         <div class="footer-top">
             <div class="container">
                 <div class="row">
@@ -466,13 +607,13 @@
         <div class="footer-bottom">
             <div class="container">
                 <div class="copyright">
-                    <img src="/img/logo.png"  class="logo" alt="">
-                    
-                    
+                    <img src="/img/logo.png" class="logo" alt="">
+
+
                 </div>
             </div>
         </div>
-        
+
     </footer>
 
     <div class="back-to-top">

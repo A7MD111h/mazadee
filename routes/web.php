@@ -29,6 +29,9 @@ use App\Http\Controllers\UserController;
 // Route::get('/sing-up', function () {
 //     return view('sing-up');
 // });
+Route::get('/home', function () {
+    return view('companyHome');
+});
 
 Route::get('/auction', function () {
     return view('auction');
@@ -46,18 +49,9 @@ Route::get('/personal-profile', function () {
 
 /** company routes */
 
-Route::get('/profile', function () {
-    return view('company.profile');
-});
-
-
-Route::get('/winning-bids', function () {
-    return view('company.winning-bids');
-});
-
-Route::get('/code', function () {
-    return view('company.code');
-});
+// Route::get('/profile', function () {
+//     return view('company.profile');
+// });
 
 Route::get('/company-profile', function () {
     return view('company.company-profile');
@@ -71,13 +65,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     /**
      * Home Routes
      */
-    Route::get('/home', function () {
-        return view('companyHome');
-    });
-    
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
     Route::get('/subCategory/{id}', [SubCategoryController::class,'index']);
-    Route::get('my-auctions', [UserController::class, 'profilePages']);
+    Route::get('my-bids', [UserController::class, 'profilePages']);
     Route::get('/personal-profile', [UserController::class, 'personalProfile']);
     Route::post('personal-details-edit', [UserController::class, 'personalDetailsEdit']);
     Route::post('email-address-edit', [UserController::class, 'emailAddressEdit']);
@@ -107,7 +97,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         /**
          * Logout Routes
          */
-      
-    }); 
-     Route::get('/logout', [LogoutController::class, 'perform'])->name('logout.perform');
+        Route::get('/logout', [LogoutController::class, 'perform'])->name('logout.perform');
+    });
 });
