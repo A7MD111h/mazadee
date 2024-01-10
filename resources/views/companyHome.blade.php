@@ -32,7 +32,7 @@
                 <div class="container">
                     <div class="logo">
                         <a class="navbar-brand" href="index.html">
-                            <img src="assets/img/logo2.png" alt="logo">
+                            <img src="/img/logo.png" alt="logo">
                         </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -47,7 +47,7 @@
                                 <p>Welcome, {{ auth('companies')->user()->name }}</p>
                             @endif
                             <li class="nav-item">
-                                <a class="nav-link" href="home" style="margin: auto;">Home</a>
+                                <a class="nav-link" href="{{ url('home') }}" style="margin: auto;">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="auction.html" style="margin: auto;">Winning Auction</a>
@@ -73,11 +73,7 @@
                                     <i class="fa fa-sign-out"></i>
                                 </a>
                             </li>
-
                             @endif
-                       
-
-                           
                         </ul>
                     </div>
                 </div>
@@ -96,52 +92,57 @@
                         <div class="title d-flex">
                             <img src="assets/img/Mercedes-Logo.svg.png" alt="">
                             <div class="text" style="margin: auto;">
-                                <h1>mercedes</h1>
+                                <h1>{{$company->name}}</h1>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row justify-content-center">
+                    
+                    @foreach($auctions as $auction)
+                    @foreach($auction as $auc)
                     <div class="col-lg-4 col-md-6 col-sm-10">
                         <div class="auction-item">
                             <div class="image">
                                 <a href="auction-details.html">
-                                    <img src="assets/img/auction-1.jpg" alt="">
+                                    <img src="{{ asset($auc->subCategory->photo) }}" alt="">
                                 </a>
-                                <a href="#" class="star">
+                                {{-- <a href="#" class="star">
                                     <i class="far fa-star"></i>
-                                </a>
+                                </a> --}}
                                 <a href="#" class="hammer">
                                     <i class="flaticon-hammer"></i>
                                 </a>
                             </div>
                             <div class="auction-content">
-                                <h5>2018 Hyundai Sonata</h5>
+                                <h5>{{$auc->subCategory->name}}</h5>
                                 <div class="bid d-flex justify-content-between">
                                     <div class="current-bid d-flex">
                                         <i class="flaticon-hammer"></i>
                                         <p class="d-flex flex-column">Current Bid
-                                            <span>$876.00</span>
+                                            <span>{{$auc->company_price}}</span>
                                         </p>
                                     </div>
                                     <div class="buy-now-price d-flex">
                                         <i class="flaticon-money"></i>
-                                        <p class="d-flex flex-column">Buy Now
-                                            <span>$5000.00</span>
+                                        <p class="d-flex flex-column">Budjet
+                                            <span>{{$auc->budjet}}</span>
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="time d-flex ">
+                            {{-- <div class="time d-flex ">
                                 <div class="countdown" data-countdown="10/31/2020 20:00"></div>
                                 <span>30 Bids</span>
-                            </div>
+                            </div> --}}
                             <div class="button text-center">
                                 <a href="auction-details.html">Submit A Bid</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-10">
+                    @endforeach
+                    @endforeach
+                    {{-- <div class="col-lg-4 col-md-6 col-sm-10">
                         <div class="auction-item">
                             <div class="image">
                                 <a href="auction-details.html">
@@ -179,8 +180,8 @@
                                 <a href="auction-details.html">Submit A Bid</a>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-10">
+                    </div> --}}
+                    {{-- <div class="col-lg-4 col-md-6 col-sm-10">
                         <div class="auction-item">
                             <div class="image">
                                 <a href="auction-details.html">
@@ -218,7 +219,7 @@
                                 <a href="auction-details.html">Submit A Bid</a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </section>
@@ -227,7 +228,7 @@
 
 
         <!-- Popular Auctions -->
-        <section id="popular-auctions">
+        {{-- <section id="popular-auctions">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -399,7 +400,7 @@
                 </div>
             </div>
 
-        </section>
+        </section> --}}
         <!-- End Popular Auctions -->
 
 
@@ -417,7 +418,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="item">
                             <div class="image">
-                                <img src="assets/img/how1.png" class="img-fluid" alt="">
+                                <img src="/img/how1.png" class="img-fluid" alt="">
                             </div>
                             <div class="content">
                                 <h3>Sign Up</h3>
@@ -427,7 +428,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="item">
                             <div class="image">
-                                <img src="assets/img/how2.png" class="img-fluid" alt="">
+                                <img src="/img/how2.png" class="img-fluid" alt="">
                             </div>
                             <div class="content">
                                 <h3>Bid</h3>
@@ -437,7 +438,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="item">
                             <div class="image">
-                                <img src="assets/img/how3.png" class="img-fluid" alt="">
+                                <img src="/img/how3.png" class="img-fluid" alt="">
                             </div>
                             <div class="content">
                                 <h3>Win</h3>

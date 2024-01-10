@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Auction;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
@@ -81,5 +83,30 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         //
+    }
+
+    public function homePage()
+    {
+        $company_id = Auth::id();
+        // dd($company_id);
+        $company = Company::find($company_id);
+        // dd($company);
+        if ($company) {
+            $category = $company->category;
+            // dd($category);
+            if ($category) {
+                $subCategories=$category->sub_Category;
+                // dd($subCategories);
+                foreach($subCategories as $subCategory){
+                    $auctions[]=Auction::where('sub_category_id',$subCategory->id)->where('city',$company->city)->get();
+                }
+                // dd($auctions);
+                return view('companyHome', compact('company','subCategories','auctions'));
+            } else {
+                return 'error';
+            }
+        } else {
+            return 'error';
+        }
     }
 }
