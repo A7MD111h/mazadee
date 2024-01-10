@@ -67,7 +67,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
      */
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
     Route::get('/subCategory/{id}', [SubCategoryController::class,'index']);
-    Route::get('my-bids', [UserController::class, 'profilePages']);
+    Route::get('my-auctions', [UserController::class, 'profilePages']);
     Route::get('/personal-profile', [UserController::class, 'personalProfile']);
     Route::post('personal-details-edit', [UserController::class, 'personalDetailsEdit']);
     Route::post('email-address-edit', [UserController::class, 'emailAddressEdit']);

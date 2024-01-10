@@ -146,7 +146,7 @@
                             </div>
                             <ul class="menu">
                                 <li>
-                                    <a href="{{ url('my-bids') }}">
+                                    <a href="{{ url('my-auctions') }}">
                                         <i class="flaticon-hammer"></i>
                                         My Bids</a>
                                 </li>
