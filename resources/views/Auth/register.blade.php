@@ -81,7 +81,7 @@
                             <option value="1">User</option>
                             <option value="2">Company</option>
                         </select>
-                        <form method="POST" action="{{ route('register.perform') }}" id="userForm" style="display: none">
+                        <form method="POST" action="{{ route('register.perform') }}" id="userForm" >
                             @csrf
                             <div class="form-group">
                                 <label for="first-name">
@@ -302,7 +302,7 @@
                         </form>
                     </div>
                     <div class="right-side">
-                       <img src="/img/2.jpg" style="width: 100%;" alt="">
+                        <img src="/img/2.jpg" style="width: 100%;" alt="">
                     </div>
                 </div>
             </div>

@@ -4,96 +4,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sbidu - Bid And Auction HTML Template</title>
+    <title>MAZADe</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="/font/flaticon.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="shortcut icon" href="assets/img/favicon-logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="/img/favicon-logo.png" type="image/x-icon">
 
     <script src="https://kit.fontawesome.com/5f8f97e3fd.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
-<section id="loader">
+    {{-- <section id="loader">
         <div class="img-loader">
         </div>
-    </section>
+    </section> --}}
 
     <header>
-        <div class="header-top">
-            <div class="container">
-                <div class="content d-flex justify-content-between align-items-center">
-                    <ul class="d-flex">
-                        <li>
-                            <a href="#" class="mr-3">
-                                <i class="fas fa-phone-alt"></i>
-                                <span>Customer Support</span>
-                            </a>
-                        </li>
-                        <li>
-                            <i class="fas fa-globe"></i>
-                            <select name="language" class="select-bar">
-                                <option value="en">En</option>
-                                <option value="az">Az</option>
-                                <option value="ru">Ru</option>
-                            </select>
-                        </li>
-                    </ul>
-                    <div class="my-account d-flex align-items-center">
-                        <a href="sing-in" class="login">Login</a>
-                        <a href="profile" class="user">
-                            <img src="/img/R-removebg-preview.png" alt="logo">
-
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- Navbar -->
-        <div class="header-bottom" style="background-image: url(/img/OIP.jpg)">
+        <div class="header-bottom">
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
                     <div class="logo">
                         <a class="navbar-brand" href="index">
-                            <img src="/img/logo.png"  alt="logo">
+                            <img src="img/logo.png" alt="logo">
                         </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
-                            <i class="fas fa-bars navbar-toggler-icon"></i>
+                            <i class="fas fa-bars navbar-toggler-icon" style="color: black;"></i>
                         </button>
                     </div>
 
                     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                         <ul class="navbar-nav">
+                            @if (auth('companies')->check())
+                                <p>Welcome, {{ auth('companies')->user()->name }}</p>
+                            @endif
                             <li class="nav-item">
-                                <a class="nav-link" href="index">Home</a>
+                                <a class="nav-link" href="home" style="margin: auto;">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="auction">Auction</a>
+                                <a class="nav-link" href="winning-bids" style="margin: auto;">Winning Auction</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="about-us">About Us</a>
+                            <a class="nav-link" href="profile" style="margin: auto;">Your Auctions</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="contact">Contact</a>
+                            <li class="nav-item" style="margin: auto;">
+                                <a href="company-profile">
+                                    <i class="fas fa-user"></i>
+                                </a>
                             </li>
-                        </ul>
 
-                    </div>
-                    <div class="search-nav">
-                        <span class="icon">
-                            <i class="fas fa-search"></i>
-                        </span>
-                        <form class="search-form my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search for brand, model...."
-                                aria-label="Search">
-                            <button class="btn-search my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-                        </form>
+                            <li class="nav-item" style="margin: auto;">
+                                <a href="my-account-bids.html">
+                                    <i class="fa fa-comment"></i>
+                                </a>
+                            </li>
+                            
+                            @if (auth('companies')->check())
+                            <li class="nav-item" style="margin: auto;">
+                                <a href="{{ route('logout.perform') }}">
+                                    <i class="fa fa-sign-out"></i>
+                                </a>
+                            </li>
+
+                            @endif
+                       
+
+                           
+                        </ul>
                     </div>
                 </div>
             </nav>
@@ -107,14 +90,14 @@
             <div class="container">
                 <ul class="breadcrumb">
                     <li>
-                        <a href="index">
+                        <a href="home">
                             Home
                             <i class="flaticon-right-arrow"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="index">
-                            Auction
+                        <a href="company-profile">
+                           My Profile
                         </a>
                     </li>
                 </ul>

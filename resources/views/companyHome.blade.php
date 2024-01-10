@@ -8,12 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MAZADe</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/font/flaticon.css" />
+    <link rel="stylesheet" href="/font/flaticon.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="assets/img/favicon-logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/img/favicon-logo.png" type="image/x-icon">
 
     <script src="https://kit.fontawesome.com/5f8f97e3fd.js" crossorigin="anonymous"></script>
 </head>
@@ -43,31 +43,41 @@
 
                     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                         <ul class="navbar-nav">
+                            @if (auth('companies')->check())
+                                <p>Welcome, {{ auth('companies')->user()->name }}</p>
+                            @endif
                             <li class="nav-item">
-                                <a class="nav-link" href="index.html" style="margin: auto;">Home</a>
+                                <a class="nav-link" href="home" style="margin: auto;">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="auction.html" style="margin: auto;">Winning Auction</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="about-us.html" style="margin: auto;">Your Auctions</a>
+                                <a class="nav-link" href="profile" style="margin: auto;">Your Auctions</a>
                             </li>
                             <li class="nav-item" style="margin: auto;">
-                                <a href="my-account-bids.html">
+                                <a href="company-profile">
                                     <i class="fas fa-user"></i>
-                                </a>                  
+                                </a>
                             </li>
-                            
+
                             <li class="nav-item" style="margin: auto;">
                                 <a href="my-account-bids.html">
                                     <i class="fa fa-comment"></i>
-                                </a>                  
+                                </a>
                             </li>
+                            
+                            @if (auth('companies')->check())
                             <li class="nav-item" style="margin: auto;">
-                                <a href="my-account-bids.html">
+                                <a href="{{ route('logout.perform') }}">
                                     <i class="fa fa-sign-out"></i>
-                                </a>                  
+                                </a>
                             </li>
+
+                            @endif
+                       
+
+                           
                         </ul>
                     </div>
                 </div>
@@ -77,7 +87,7 @@
     </header>
 
     <main>
-      
+
         <!-- Car Auction -->
         <section id="car-auction">
             <div class="container">
@@ -213,9 +223,9 @@
             </div>
         </section>
         <!-- End Car Auction -->
-       
-       
-      
+
+
+
         <!-- Popular Auctions -->
         <section id="popular-auctions">
             <div class="container">
@@ -388,11 +398,11 @@
 
                 </div>
             </div>
-          
+
         </section>
         <!-- End Popular Auctions -->
-       
-      
+
+
         <!-- How It Works -->
         <section id="how-it-works">
             <div class="container bg">
@@ -438,7 +448,7 @@
             </div>
         </section>
         <!-- End How It Works -->
-       
+
     </main>
 
     <footer style="background: linear-gradient(0deg, rgba(199,199,199,1) 0%, rgba(255,255,255,1) 50%)">
@@ -572,7 +582,7 @@
             <div class="container">
                 <div class="copyright">
                     <img src="assets/img/logo2.png" class="logo" alt="">
-                    
+
                     <p>
                         © Copyright 2020 |
                         <a href="#">MAZADe</a>
