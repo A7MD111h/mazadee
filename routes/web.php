@@ -46,9 +46,18 @@ Route::get('/personal-profile', function () {
 
 /** company routes */
 
-// Route::get('/profile', function () {
-//     return view('company.profile');
-// });
+Route::get('/profile', function () {
+    return view('company.profile');
+});
+
+
+Route::get('/winning-bids', function () {
+    return view('company.winning-bids');
+});
+
+Route::get('/code', function () {
+    return view('company.code');
+});
 
 Route::get('/company-profile', function () {
     return view('company.company-profile');
