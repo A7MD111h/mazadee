@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuctionController;
+use App\Http\Controllers\CompanyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
@@ -29,9 +30,7 @@ use App\Http\Controllers\UserController;
 // Route::get('/sing-up', function () {
 //     return view('sing-up');
 // });
-Route::get('/home', function () {
-    return view('companyHome');
-});
+Route::get('/home',[CompanyController::class, 'homePage']);
 
 Route::get('/auction', function () {
     return view('auction');
