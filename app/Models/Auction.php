@@ -15,4 +15,7 @@ class Auction extends Model
     public function subCategory(){
         return $this->belongsTo(Sub_Category::class);
     }
+    public function company(){
+        return $this->belongsTo(Company::class);
+    }
 }

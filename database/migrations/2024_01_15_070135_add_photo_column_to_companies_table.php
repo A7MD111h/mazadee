@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('phone', 14)->change();
+        Schema::table('companies', function (Blueprint $table) {
+            $table->string('photo')->default('images/companyPicture.png')->before('name');
         });
     }
 
@@ -25,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('companies', function (Blueprint $table) {
+            //
+        });
     }
 };

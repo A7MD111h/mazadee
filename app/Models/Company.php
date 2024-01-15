@@ -47,4 +47,8 @@ class Company extends Model implements Authenticatable
     public function category(){
         return $this->belongsTo(Category::class);
     }
+
+    public function auction(){
+        return $this->hasMany(Auction::class,'company_id');
+    }
 }
