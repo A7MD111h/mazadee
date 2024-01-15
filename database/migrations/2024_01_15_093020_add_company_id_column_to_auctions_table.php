@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('phone', 14)->change();
+        Schema::table('auctions', function (Blueprint $table) {
+            $table->foreignId('company_id')->nullable()->constrained('companies')->after('user_id');
         });
     }
 
@@ -25,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('auctions', function (Blueprint $table) {
+            //
+        });
     }
 };

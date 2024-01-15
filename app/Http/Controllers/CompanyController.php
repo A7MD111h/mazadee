@@ -95,18 +95,96 @@ class CompanyController extends Controller
             $category = $company->category;
             // dd($category);
             if ($category) {
-                $subCategories=$category->sub_Category;
+                $subCategories = $category->sub_Category;
                 // dd($subCategories);
-                foreach($subCategories as $subCategory){
-                    $auctions[]=Auction::where('sub_category_id',$subCategory->id)->where('city',$company->city)->get();
+                foreach ($subCategories as $subCategory) {
+                    $auctions[] = Auction::where('sub_category_id', $subCategory->id)->where('city', $company->city)->where('status', 'active')->get();
                 }
                 // dd($auctions);
-                return view('companyHome', compact('company','subCategories','auctions'));
+                return view('companyHome', compact('company', 'subCategories', 'auctions'));
             } else {
-                return 'error';
+                return 'errorrr';
             }
         } else {
             return 'error';
+        }
+
+
+
+
+        // if ($company) {
+        //     // Eager load the category and its subcategories
+        //     $company->load('category.sub_Category');
+
+        //     $category = $company->category;
+
+        //     if ($category) {
+        //         // Collect subcategory IDs to use in a single query
+        //         $subCategoryIds = $category->sub_Category->pluck('id')->toArray();
+
+        //         // Eager load auctions for the specified subcategories and city
+        //         $auctions = Auction::whereIn('sub_category_id', $subCategoryIds)
+        //             ->where('city', $company->city)
+        //             ->get();
+
+        //         return view('companyHome', compact('company', 'auctions'));
+        //     } else {
+        //         return 'Error: No category associated with this company.';
+        //     }
+        // } else {
+        //     return 'Error: User not authenticated.';
+        // }
+    }
+
+    public function submitBid($id)
+    {
+        $auction = Auction::find($id);
+        // dd($auction);
+        $company = Company::find(Auth::id());
+        // dd($company);
+        return view('bid-auction', compact('auction', 'company'));
+    }
+
+    public function addbid($id, Request $request)
+    {
+        $request->validate([
+            'company_price' => 'required|numeric|min:0'
+        ]);
+        $company = Company::find(Auth::id());
+        if ($company) {
+            $auction = Auction::find($id);
+            if ($auction) {
+                if ($auction->company_price == NULL) {
+                    $auction->company_price = $request->input('company_price');
+                    $auction->company_id = $company->id;
+                    if ($auction->update()) {
+                        $company->bid_count=$company->bid_count + 1;
+                        if($company->update())
+                        {
+                            return back()->with('success', 'Bid Save Successfully.');
+                        }else{
+                            return back()->with('error', 'Error increment bid count');
+                        }
+                    } else {
+                        return back()->with('error', 'Can\'t Save Your Bid, Try again later.');
+                    }
+                } else {
+                    // dd(gettype($auction->company_price));
+                    if (floatval($request->input('company_price')) < $auction->company_price) {
+                        $auction->company_price = $request->input('company_price');
+                        $auction->company_id = $company->id;
+                        if ($auction->update()) {
+                            return back()->with('success', 'Bid Save Successfully.');
+                        } else {
+                            return back()->with('error', 'Can\'t Save Your Bid, Try again later..');
+                        }
+                    } else {
+                        return back()->with('error', 'Your bid is more than the last price.');
+                    }
+                }
+            } else {
+                return back()->with('error', 'Auction not found.');
+            }
         }
     }
 }

@@ -47,6 +47,8 @@ Route::get('/personal-profile', function () {
 });
 
 /** company routes */
+Route::get('/submit-a-bid/{id}',[CompanyController::class, 'submitBid']);
+Route::post('addbid/{id}',[CompanyController::class, 'addbid']);
 
 // Route::get('/profile', function () {
 //     return view('company.profile');
