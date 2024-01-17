@@ -58,6 +58,12 @@ Route::get('/company-profile', function () {
     return view('company.company-profile');
 });
 
+//Route payment
+Route::get('/payment', function () {
+    return view('payment');
+});
+
+
 
 Route::post('createAuction', [AuctionController::class,'create']);
 
