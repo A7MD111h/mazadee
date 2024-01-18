@@ -429,7 +429,11 @@
                                                                         <span>{{ $auction->status }}</span>
                                                                     </p>
                                                                 </div>
-                                                            </div>
+                                                            </div><br>
+                                                            <div >
+                                                              <a href="{{ url('/payment') }}">
+                                                                 <button type="submit"  class="btn btn-primary btn-lg btn-block text-light"    >Payment</button></a>
+                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
