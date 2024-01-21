@@ -15,10 +15,18 @@ class LogoutController extends Controller
      */
     public function perform()
     {
-        Session::flush();
+        // Session::flush();
         
-        Auth::logout();
-
+        // Auth::logout();
+        auth()->guard('web')->logout();
+        return redirect('/');
+    }
+    public function logout_company()
+    {
+        // Session::flush();
+        
+        // Auth::logout();
+        auth()->guard('companies')->logout();
         return redirect('/');
     }
 }

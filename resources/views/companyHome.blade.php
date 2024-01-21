@@ -55,21 +55,22 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="profile" style="margin: auto;">Your Auctions</a>
                             </li>
-                            <li class="nav-item" style="margin: auto;">
-                                <a href="company-profile">
-                                    <i class="fas fa-user"></i>
-                                </a>
-                            </li>
-
-                            <li class="nav-item" style="margin: auto;">
-                                <a href="my-account-bids.html">
-                                    <i class="fa fa-comment"></i>
-                                </a>
-                            </li>
-
+                            
                             @if (auth('companies')->check())
                                 <li class="nav-item" style="margin: auto;">
-                                    <a href="{{ route('logout.perform') }}">
+                                    <a href="company-profile">
+                                        <i class="fas fa-user"></i>
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="margin: auto;">
+                                    <a href="my-account-bids.html">
+                                        <i class="fa fa-comment"></i>
+                                    </a>
+                                </li>
+
+                            
+                                <li class="nav-item" style="margin: auto;">
+                                    <a href="{{ route('company.logout') }}">
                                         <i class="fa fa-sign-out"></i>
                                     </a>
                                 </li>

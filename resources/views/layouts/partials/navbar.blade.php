@@ -31,7 +31,7 @@
                         @auth
                             {{ auth()->user()->name }}
                             <li class="nav-item">
-                                <a href="{{ route('logout.perform') }}" class="btn btn-outline-light me-2">Logout</a>
+                                <a href="{{ route('user.logout') }}" class="btn btn-outline-light me-2">Logout</a>
                             </li>
                             <li>
                                 <a href="{{ url('/my-bids') }}" class="nav-link"

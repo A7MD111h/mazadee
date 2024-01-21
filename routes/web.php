@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Controllers\AuctionController;
-use App\Http\Controllers\CompanyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\AuctionController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SubCategoryController;
-use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +64,7 @@ Route::get('/payment', function () {
     return view('payment');
 });
 
+Route::post('/payment', [PaymentController::class, 'checkout'])->name('payment');
 
 
 Route::post('createAuction', [AuctionController::class,'create']);
@@ -100,10 +102,26 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
 
     });
 
-    Route::group(['middleware' => ['auth']], function() {
-        /**
-         * Logout Routes
-         */
-        Route::get('/logout', [LogoutController::class, 'perform'])->name('logout.perform');
+    
+    
+  
+});
+Route::middleware(['auth:web'])->group(function () {
+    // Routes accessible to regular users
+    
+    
+    Route::middleware(['auth:web'])->group(function () {
+        Route::get('/logout', [LogoutController::class, 'perform'])->name('user.logout');
+    });
+});
+
+Route::middleware(['auth:companies'])->group(function () {
+    // Routes accessible to administrators
+
+    Route::get('/home',[CompanyController::class, 'homePage']);
+
+    
+    Route::middleware(['auth:companies'])->group(function () {
+        Route::get('/logout-company', [LogoutController::class, 'logout_company'])->name('company.logout');
     });
 });

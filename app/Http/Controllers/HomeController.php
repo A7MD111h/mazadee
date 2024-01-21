@@ -12,4 +12,5 @@ class HomeController extends Controller
         $categories = Category::all();
         return view('home.index', compact('categories'));
     }
+    
 }

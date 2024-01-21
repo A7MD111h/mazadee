@@ -88,19 +88,24 @@ class CompanyController extends Controller
     public function homePage()
     {
         $company_id = Auth::id();
-        // dd($company_id);
         $company = Company::find($company_id);
-        // dd($company);
+        
         if ($company) {
             $category = $company->category;
-            // dd($category);
+
             if ($category) {
                 $subCategories = $category->sub_Category;
-                // dd($subCategories);
+                $auctions = []; // Initialize the $auctions array
+
                 foreach ($subCategories as $subCategory) {
-                    $auctions[] = Auction::where('sub_category_id', $subCategory->id)->where('city', $company->city)->where('status', 'active')->get();
+                    // Merge the arrays for each subcategory into a single array
+                    $auctions = array_merge($auctions, Auction::where('sub_category_id', $subCategory->id)
+                        ->where('city', $company->city)
+                        ->where('status', 'active')
+                        ->get()
+                        ->toArray());
                 }
-                // dd($auctions);
+
                 return view('companyHome', compact('company', 'subCategories', 'auctions'));
             } else {
                 return 'errorrr';
