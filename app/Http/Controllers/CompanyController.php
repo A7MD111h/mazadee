@@ -6,6 +6,11 @@ use App\Models\Auction;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\PhoneEditRequest;
+use App\Http\Requests\CompanyEditRequest;
+use App\Http\Requests\PasswordEditRequest;
+use App\Http\Requests\CommercialEditRequest;
+use App\Http\Requests\EmailAddressEditRequest;
 
 class CompanyController extends Controller
 {
@@ -106,7 +111,7 @@ class CompanyController extends Controller
                         ->toArray());
                 }
 
-                return view('companyHome', compact('company', 'subCategories', 'auctions'));
+                return view('company.companyHome', compact('company', 'subCategories', 'auctions'));
             } else {
                 return 'errorrr';
             }
@@ -192,4 +197,59 @@ class CompanyController extends Controller
             }
         }
     }
+
+    public function CompanyProfile()
+    {
+        $Company_id=Auth::id();
+        $Company=Company::find($Company_id);
+        return view('company.company-profile', compact('Company'));
+    }
+
+    
+    public function commercialEdit(CommercialEditRequest $request)
+    {
+        $Company_id=Auth::id();
+        $Company=Company::find($Company_id);
+        $Company->commercial_register=$request->commercial_register;
+        if($Company->update()){
+            return back()->with('success', 'Phone Number updated Successfully.');    
+        }else{
+            return back()->with('error', "Can't update your Phone Number.");    
+        }
+    }
+    public function companyProfileEdit(CompanyEditRequest $request)
+    {
+        $Company_id=Auth::id();
+        $Company=Company::find($Company_id);
+        $Company->name=$request->name;
+        $Company->username=$request->username;
+        $Company->email=$request->email;
+        $Company->phone=$request->phone;
+        $Company->national_number=$request->national_number;
+        $Company->address=$request->address;
+        $Company->city=$request->city;
+        if($Company->update()){
+            return back()->with('success', 'Phone Number updated Successfully.');    
+        }else{
+            return back()->with('error', "Can't update your Phone Number.");    
+        }
+    }
+    public function passwordEdit(PasswordEditRequest $request)
+    {
+        $Company_id=Auth::id();
+        $Company=Company::find($Company_id);
+        if (password_verify($request->input('oldPassword'), $Company->password)) {
+            $Company->password = $request->input('password');
+            if($Company->update())
+            {
+                return back()->with('success', 'Password updated successfully');
+            }
+            else{
+                return back()->with('error', "Can't update your Password.");
+            }
+        } else {
+            return back()->with('error', 'Old Password incorrect!!');
+        }
+    }
+
 }

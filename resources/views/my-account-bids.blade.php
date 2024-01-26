@@ -431,7 +431,7 @@
                                                                 </div>
                                                             </div><br>
                                                             <div >
-                                                              <a href="{{ url('/payment') }}">
+                                                                <a href="{{ route('test.checkout') }}" >
                                                                  <button type="submit"  class="btn btn-primary btn-lg btn-block text-light"    >Payment</button></a>
                                                              </div>
                                                         </div>

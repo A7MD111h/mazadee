@@ -7,6 +7,7 @@ use App\Models\Auction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
 use App\Http\Requests\PhoneEditRequest;
 use App\Http\Requests\PasswordEditRequest;
 use App\Http\Requests\EmailAddressEditRequest;
@@ -78,8 +79,8 @@ class UserController extends Controller
     {
         $user_id=Auth::id();
         $user=User::find($user_id);
-        if (Hash::check($request->input('oldPassword'), $user->password)) {
-            $user->password = Hash::make($request->input('password'));
+        if (password_verify($request->input('oldPassword'), $user->password)) {
+            $user->password = $request->input('password');
             if($user->update())
             {
                 return back()->with('success', 'Password updated successfully');

@@ -25,81 +25,6 @@
 
     <header>
         @include('layouts.partials.navbar')
-        {{-- <div class="header-top">
-            <div class="container">
-                <div class="content d-flex justify-content-between align-items-center">
-                    <ul class="d-flex">
-                        <li>
-                            <a href="#" class="mr-3">
-                                <i class="fas fa-phone-alt"></i>
-                                <span>Customer Support</span>
-                            </a>
-                        </li>
-                        <li>
-                            <i class="fas fa-globe"></i>
-                            <select name="language" class="select-bar">
-                                <option value="en">En</option>
-                                <option value="az">Az</option>
-                                <option value="ru">Ru</option>
-                            </select>
-                        </li>
-                    </ul>
-                    <div class="my-account d-flex align-items-center">
-                        <a href="sing-in" class="login">Login</a>
-                        <a href="my-account-bids" class="user">
-                            <img src="/img/R-removebg-preview.png" alt="logo">
-
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-        <!-- Navbar -->
-        {{-- <div class="header-bottom" style="background-image: url(/img/OIP.jpg)">
-            <nav class="navbar navbar-expand-lg">
-                <div class="container">
-                    <div class="logo">
-                        <a class="navbar-brand" href="index">
-                            <img src="/img/logo.png"  alt="logo">
-                        </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                            <i class="fas fa-bars navbar-toggler-icon"></i>
-                        </button>
-                    </div>
-
-                    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="index">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="auction">Auction</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="about-us">About Us</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="contact">Contact</a>
-                            </li>
-                        </ul>
-
-                    </div>
-                    <div class="search-nav">
-                        <span class="icon">
-                            <i class="fas fa-search"></i>
-                        </span>
-                        <form class="search-form my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search for brand, model...."
-                                aria-label="Search">
-                            <button class="btn-search my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-                        </form>
-                    </div>
-                </div>
-            </nav>
-        </div> --}}
-        <!-- End Navbar -->
     </header>
 
     <main>
@@ -398,7 +323,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <form action="{{ url('email-address-edit') }}" method="post">
+                            <form action="{{ route('email-address-edit') }}" method="post">
                                 @csrf
                                 <div class="modal fade" id="emailAddressEditModalCenter" tabindex="-1"
                                     role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -516,11 +441,11 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body" style="padding-left: 10%">
-                                                <label for="oldPassword">Old Password</label>
+                                                <label for="oldPassword">Old Password  : </label>
                                                 <input type="password" id="oldPassword" name="oldPassword" /><br />
-                                                <label for="password">New Password</label>
+                                                <label for="password">New Password  : </label>
                                                 <input type="password" id="password" name="password" /><br />
-                                                <label for="confirm-password">Confirm Password</label>
+                                                <label for="confirm-password">Confirm Password :</label>
                                                 <input type="password" id="confirm-password"
                                                     name="confirm-password" /><br />
                                             </div>

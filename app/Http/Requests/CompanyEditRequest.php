@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class CompanyRegRequest extends FormRequest
+class CompanyEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,16 +26,12 @@ class CompanyRegRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'email' => 'required|email:rfc,dns|unique:users,email',
             'username' => 'required|unique:users,username|max:255',
-            'password' => 'required|min:8|max:32',
-            'password_confirmation' => 'required|same:password',
+            'email' => ['required','email:rfc,dns|unique:users,email',Rule::unique('users')->ignore(auth()->user()->id)],
             'phone' => 'numeric|digits:14|required',
             'national_number' => 'required|max:255',
             'address' => 'required|max:255',
             'city' => "required|in:Amman,Ajloun,Aqaba,Balqa,Irbid,Jerash,Karak,Ma'an,Madaba,Mafraq,Tafilah,Zarqa",
-            'category_id' => 'required|notIn:Category_id',
-            'commercial_register' => 'required|file|mimes:pdf|max:2048',
         ];
     }
 }

@@ -48,23 +48,27 @@ Route::get('/personal-profile', function () {
 });
 
 /** company routes */
-Route::get('/submit-a-bid/{id}',[CompanyController::class, 'submitBid']);
-Route::post('addbid/{id}',[CompanyController::class, 'addbid']);
+// Route::get('/submit-a-bid/{id}',[CompanyController::class, 'submitBid']);
+// Route::post('addbid/{id}',[CompanyController::class, 'addbid']);
 
 // Route::get('/profile', function () {
 //     return view('company.profile');
 // });
 
-Route::get('/company-profile', function () {
-    return view('company.company-profile');
-});
+// Route::get('/company-profile', function () {
+//     return view('company.company-profile');
+// });
+
+// Route::get('/company-winning-bids', function () {
+//     return view('company.winning-bids');
+// });
 
 //Route payment
-Route::get('/payment', function () {
-    return view('payment');
-});
+// Route::get('/payment', function () {
+//     return view('payment');
+// });
 
-Route::post('/payment', [PaymentController::class, 'checkout'])->name('payment');
+// Route::post('/payment', [PaymentController::class, 'checkout'])->name('payment');
 
 
 Route::post('createAuction', [AuctionController::class,'create']);
@@ -81,7 +85,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::post('personal-details-edit', [UserController::class, 'personalDetailsEdit']);
     Route::post('email-address-edit', [UserController::class, 'emailAddressEdit']);
     Route::post('phone-edit', [UserController::class, 'phoneEdit']);
-    Route::post('password-edit', [UserController::class, 'passwordEdit']);
+    Route::post('password-edit', [UserController::class, 'passwordEdit'])->name('password-edit');
     Route::post('profilePicEdit', [UserController::class, 'profilePicEdit']);
     Route::post('cancelAuction/{id}', [AuctionController::class, 'cancelAuction'])->name('cancelAuction');
     Route::post('endAuction/{id}', [AuctionController::class, 'endAuction'])->name('endAuction');
@@ -109,7 +113,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
 Route::middleware(['auth:web'])->group(function () {
     // Routes accessible to regular users
     
-    
+    Route::get('/checkout', [PaymentController::class, 'checkout'])->name('test.checkout');
+    // {{ route('user.logout') }}
     Route::middleware(['auth:web'])->group(function () {
         Route::get('/logout', [LogoutController::class, 'perform'])->name('user.logout');
     });
@@ -119,8 +124,25 @@ Route::middleware(['auth:companies'])->group(function () {
     // Routes accessible to administrators
 
     Route::get('/home',[CompanyController::class, 'homePage']);
+    Route::get('/submit-a-bid/{id}',[CompanyController::class, 'submitBid']);
+    Route::post('addbid/{id}',[CompanyController::class, 'addbid']);
 
+    Route::get('/profile', function () {
+        return view('company.profile');
+    });
+    Route::get('company-profile', [CompanyController::class, 'CompanyProfile'])->name('company-profile');
     
+    Route::get('/company-winning-bids', function () {
+        return view('company.winning-bids');
+    });
+    Route::get('/company-code', function () {
+        return view('company.code');
+    });
+    Route::post('/company-profile/email-address-edit', [CompanyController::class, 'emailAddressEdit'])->name('company-email-edit');
+    Route::post('/company-profile/commercial-edit', [CompanyController::class, 'commercialEdit'])->name('company-commercial-edit');
+    Route::post('/company-profile/company-profile-edit', [CompanyController::class, 'companyProfileEdit'])->name('company-profile-edit');
+    Route::post('/company-profile/password-edit', [CompanyController::class, 'passwordEdit'])->name('company-password-edit');
+
     Route::middleware(['auth:companies'])->group(function () {
         Route::get('/logout-company', [LogoutController::class, 'logout_company'])->name('company.logout');
     });

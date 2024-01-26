@@ -1,90 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('company.layout.master-page')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAZADe</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/font/flaticon.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="/img/favicon-logo.png" type="image/x-icon">
-
-    <script src="https://kit.fontawesome.com/5f8f97e3fd.js" crossorigin="anonymous"></script>
-</head>
-
-<body>
-
-    {{-- <section id="loader">
-        <div class="img-loader">
-        </div>
-    </section> --}}
-
-    <header>
-        <!-- Navbar -->
-        <div class="header-bottom">
-            <nav class="navbar navbar-expand-lg">
-                <div class="container">
-                    <div class="logo">
-                        <a class="navbar-brand" href="index">
-                            <img src="img/logo.png" alt="logo">
-                        </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                            <i class="fas fa-bars navbar-toggler-icon" style="color: black;"></i>
-                        </button>
-                    </div>
-
-                    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                        <ul class="navbar-nav">
-                            @if (auth('companies')->check())
-                                <p>Welcome, {{ auth('companies')->user()->name }}</p>
-                            @endif
-                            <li class="nav-item">
-                                <a class="nav-link" href="home" style="margin: auto;">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="winning-bids" style="margin: auto;">Winning Auction</a>
-                            </li>
-                            <li class="nav-item">
-                            <a class="nav-link" href="profile" style="margin: auto;">Your Auctions</a>
-                            </li>
-                            <li class="nav-item" style="margin: auto;">
-                                <a href="company-profile">
-                                    <i class="fas fa-user"></i>
-                                </a>
-                            </li>
-
-                            <li class="nav-item" style="margin: auto;">
-                                <a href="my-account-bids.html">
-                                    <i class="fa fa-comment"></i>
-                                </a>
-                            </li>
-                            
-                            @if (auth('companies')->check())
-                            <li class="nav-item" style="margin: auto;">
-                                <a href="{{ route('logout.perform') }}">
-                                    <i class="fa fa-sign-out"></i>
-                                </a>
-                            </li>
-
-                            @endif
-                       
-
-                           
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
-        <!-- End Navbar -->
-    </header>
+@section('content_company')
 
     <main>
+
         <!-- Breadcrumb -->
         <section id="breadcrumb">
             <div class="container">
@@ -122,24 +41,23 @@
                                 </div>
                                 <div class="content">
                                     <h4>
-                                        Auto Car
+                                        {{ auth('companies')->user()->name }}
                                     </h4>
-                                    <span>car@gmail.com</span>
                                 </div>
                             </div>
                             <ul class="menu">
                                 <li>
-                                    <a href="profile">
+                                    <a href="{{ url('/profile') }}">
                                         <i class="flaticon-hammer"></i>
                                         My Bids</a>
                                 </li>
                                 <li>
-                                    <a href="company-profile" class="active">
+                                    <a href="{{ url('/company-profile') }}" class="active">
                                         <i class="flaticon-settings"></i>
                                         Company Profile </a>
                                 </li>
                                 <li>
-                                    <a href="winning-bids">
+                                    <a href="{{ url('/company-winning-bids') }}">
                                         <i class="flaticon-best-seller"></i>
                                         Winning Bids</a>
                                 </li>
@@ -154,12 +72,77 @@
                         </div>
                     </div>
                     <div class="col-lg-8">
+                        @if (session('success'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                        @if (session('error'))
+                            <div class="alert alert-danger" role="alert">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+                        @error('name')
+                            <div class="alert alert-danger" role="alert" style="width: 100%">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        @error('username')
+                            <div class="alert alert-danger" role="alert" style="width: 100%">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        @error('email')
+                            <div class="alert alert-danger" role="alert" style="width: 100%">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        @error('phone')
+                        <div class="alert alert-danger" role="alert" style="width: 100%">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                        @error('national_number')
+                        <div class="alert alert-danger" role="alert" style="width: 100%">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                        @error('address')
+                            <div class="alert alert-danger" role="alert" style="width: 100%">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        @error('city')
+                            <div class="alert alert-danger" role="alert" style="width: 100%">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        @error('commercial_register')
+                            <div class="alert alert-danger" role="alert" style="width: 100%">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        @error('oldPassword')
+                            <div class="alert alert-danger" role="alert" style="width: 100%">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        @error('password')
+                            <div class="alert alert-danger" role="alert" style="width: 100%">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        @error('confirm-password')
+                            <div class="alert alert-danger" role="alert" style="width: 100%">
+                                {{ $message }}
+                            </div>
+                        @enderror
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="details">
                                     <div class="header d-flex justify-content-between">
                                         <h3>Company Details</h3>
-                                        <a href="#">
+                                        <a href="#" data-toggle="modal" data-target="#phoneEditModalCenter">
                                             <i class="flaticon-edit"></i>
                                             Edit
                                         </a>
@@ -167,32 +150,131 @@
                                     <ul>
                                         <li>
                                             <div class="info">
-                                                Name
+                                                Name  
                                             </div>
                                             <div class="info-value">
-                                                Percy Reed
+                                                @if (auth('companies')->check())
+                                                    {{ auth('companies')->user()->name }}
+                                                @endif
                                             </div>
                                         </li>
                                         <li>
                                             <div class="info">
-                                                Date of Birth
+                                                User Name  
                                             </div>
                                             <div class="info-value">
-                                                15-03-1980
+                                                @if (auth('companies')->check())
+                                                    {{ auth('companies')->user()->username }}
+                                                @endif
                                             </div>
                                         </li>
                                         <li>
                                             <div class="info">
-                                                Address
+                                                E-mail 
                                             </div>
                                             <div class="info-value">
-                                                8198 Fieldstone Dr.La Crosse, WI 54601
+                                                @if (auth('companies')->check())
+                                                    {{ auth('companies')->user()->email }}
+                                                @endif
                                             </div>
                                         </li>
+                                        <li>
+                                            <div class="info">
+                                                Phone 
+                                            </div>
+                                            <div class="info-value">
+                                                {{ auth('companies')->user()->phone }}
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="info">
+                                                Address 
+                                            </div>
+                                            <div class="info-value">
+                                                    {{ auth('companies')->user()->city . '/' .auth('companies')->user()->address }}                                                
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="info">
+                                                National N
+                                            </div>
+                                            <div class="info-value">
+                                                {{ auth('companies')->user()->national_number }}
+                                            </div>
+                                        </li>
+                                        
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-lg-12">
+                            
+                            <form action="{{ route('company-profile-edit') }}" method="post">
+                                @csrf
+                                <div class="modal fade" id="phoneEditModalCenter" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            
+                                            <div class="modal-body" style="padding-left: 10%">
+                                                <label for="name">name</label>
+                                                <input type="text" id="name" name="name"
+                                                    value="{{ auth('companies')->user()->name }}" /><br />
+                                            </div>
+                                            <div class="modal-body" style="padding-left: 10%">
+                                                <label for="username">username</label>
+                                                <input type="text" id="username" name="username"
+                                                    value="{{ auth('companies')->user()->username }}" /><br />
+                                            </div>
+                                           
+                                            <div class="modal-body" style="padding-left: 10%">
+                                                <label for="email">Email</label>
+                                                <input type="text" id="email" name="email"
+                                                    value=" {{ auth('companies')->user()->email }}" /><br />
+                                            </div>
+                                            <div class="modal-body" style="padding-left: 10%">
+                                                <label for="phone">Phone</label>
+                                                <input type="text" id="phone" name="phone"
+                                                    value="{{ auth('companies')->user()->phone }}" /><br />
+                                            </div>
+                                            <div class="modal-body" style="padding-left: 10%">
+                                                <label for="address"> Address</label>
+                                                <input type="test" id="address" name="address"
+                                                    value="{{ auth('companies')->user()->address }}" /><br />
+                                            </div>
+                                            <div class="modal-body" style="padding-left: 10%">
+                                                <label for="city">city</label>
+                                                <select class="form-control" id="exampleFormControlSelect1" name="city">
+                                                    {{-- value="{{ auth('companies')->user()->city }}"> --}}
+                                                    <option value="City" disabled>Select City</option>
+                                                    <option value="Amman" {{ auth('companies')->user()->city === 'Amman' ? 'selected' : '' }}>Amman</option>
+                                                    <option value="Amman" {{ auth('companies')->user()->city === 'Amman' ? 'selected' : '' }}>Amman</option>
+                                                    <option value="Ajloun" {{ auth('companies')->user()->city === 'Ajloun' ? 'selected' : '' }}>Ajloun</option>
+                                                    <option value="Aqaba" {{ auth('companies')->user()->city === 'Aqaba' ? 'selected' : '' }}>Aqaba</option>
+                                                    <option value="Balqa"  {{ auth('companies')->user()->city === 'Balqa' ? 'selected' : '' }}>Balqa</option>
+                                                    <option value="Irbid"  {{ auth('companies')->user()->city === 'Irbid' ? 'selected' : '' }}>Irbid</option>
+                                                    <option value="Jerash"  {{ auth('companies')->user()->city === 'Jerash' ? 'selected' : '' }}>Jerash</option>
+                                                    <option value="Karak"  {{ auth('companies')->user()->city === 'Karak' ? 'selected' : '' }}>Karak</option>
+                                                    <option value="Ma'an"  {{ auth('companies')->user()->city === "Ma'an" ? 'selected' : '' }}>Ma'an</option>
+                                                    <option value="Madaba"  {{ auth('companies')->user()->city === 'Madaba' ? 'selected' : '' }}>Madaba</option>
+                                                    <option value="Mafraq"  {{ auth('companies')->user()->city === 'Mafraq' ? 'selected' : '' }}>Mafraq</option>
+                                                    <option value="Tafilah"  {{ auth('companies')->user()->city === 'Tafilah' ? 'selected' : '' }}>Tafilah</option>
+                                                    <option value="Zarqa"  {{ auth('companies')->user()->city === 'Zarqa' ? 'selected' : '' }}>Zarqa</option>
+                                                </select>
+                                            </div>
+                                            <div class="modal-body" style="padding-left: 10%">
+                                                <label for="national_number">national number</label>
+                                                <input type="number" id="national_number" name="national_number"
+                                                    value="{{ auth('companies')->user()->national_number }}" /><br />
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cancel</button>
+                                                <button type="submit" class="btn btn-primary">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            {{-- <div class="col-lg-12">
                                 <div class="details">
                                     <div class="header d-flex justify-content-between">
                                         <h3>Account Settings</h3>
@@ -229,12 +311,14 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </div> 
-                            <div class="col-lg-12">
+                            </div>  --}}
+                            
+                            {{-- <div class="col-lg-12">
                                 <div class="details">
                                     <div class="header d-flex justify-content-between">
                                         <h3>Email Address</h3>
-                                        <a href="#">
+                                        <a href="#" data-toggle="modal"
+                                            data-target="#emailAddressEditModalCenter">
                                             <i class="flaticon-edit"></i>
                                             Edit
                                         </a>
@@ -245,17 +329,48 @@
                                                 Email
                                             </div>
                                             <div class="info-value">
-                                                albert349@gmail.com
+                                                
+                                                @if (auth('companies')->check())
+                                                    {{ auth('companies')->user()->email }}
+                                                @endif
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
+                            <form action="{{ route('company-email-edit') }}" method="post">
+                                @csrf
+                                <div class="modal fade" id="emailAddressEditModalCenter" tabindex="-1"
+                                    role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">
+                                                    Email Address</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body" style="padding-left: 10%">
+                                                <label for="email">Email</label>
+                                                <input type="text" id="email" name="email"
+                                                    value="{{ $Company->email }}" /><br />
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cancel</button>
+                                                <button type="submit" class="btn btn-primary">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form> --}}
                             <div class="col-lg-12">
                                 <div class="details">
                                     <div class="header d-flex justify-content-between">
-                                        <h3>Phone</h3>
-                                        <a href="#">
+                                        <h3>Commercial </h3>
+                                        <a href="#" data-toggle="modal" data-target="#commercialEditModalCenter">
                                             <i class="flaticon-edit"></i>
                                             Edit
                                         </a>
@@ -263,20 +378,50 @@
                                     <ul>
                                         <li>
                                             <div class="info">
-                                                Mobile
+                                                Commercial 
                                             </div>
                                             <div class="info-value">
-                                                +1 234-567-8925 
+                                                {{ auth('companies')->user()->commercial_register }}
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
+                            <form action="{{ route('company-commercial-edit') }}" method="post">
+                                @csrf
+                                <div class="modal fade" id="commercialEditModalCenter" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">
+                                                    Commercial </h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body" style="padding-left: 10%">
+                                                <label for="commercial_register">commercial :</label>
+                                                <input type="file" id="commercial_register" name="commercial_register"
+                                                    value="{{ auth('companies')->user()->commercial_register }}" /><br />
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cancel</button>
+                                                <button type="submit" class="btn btn-primary">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            
+                            
                             <div class="col-lg-12">
                                 <div class="details">
                                     <div class="header d-flex justify-content-between">
                                         <h3>Security</h3>
-                                        <a href="#">
+                                        <a href="#" data-toggle="modal" data-target="#passwordEditModalCenter">
                                             <i class="flaticon-edit"></i>
                                             Edit
                                         </a>
@@ -287,169 +432,48 @@
                                                 Password
                                             </div>
                                             <div class="info-value">
-                                                xxxxxxxxxxxxxxxx
+                                                ********
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
+                            <form action="{{ route('company-password-edit') }}" method="post">
+                                @csrf
+                                <div class="modal fade" id="passwordEditModalCenter" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">
+                                                    Password</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body" style="padding-left: 10%">
+                                                <label for="oldPassword">Old Password  : </label>
+                                                <input type="password" id="oldPassword" name="oldPassword" /><br />
+                                                <label for="password">New Password  : </label>
+                                                <input type="password" id="password" name="password" /><br />
+                                                <label for="confirm-password">Confirm Password :</label>
+                                                <input type="password" id="confirm-password"
+                                                    name="confirm-password" /><br />
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cancel</button>
+                                                <button type="submit" class="btn btn-primary">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>   
             </div>
         </section>
     </main>
-
-    <footer style="background-image: url(/img/OIP.jpg);">
-       
-        
-       <div class="footer-top">
-           <div class="container">
-               <div class="row">
-                   <div class="col-lg-3">
-                       <div class="item">
-                           <h4>
-                               Auction Categories
-                           </h4>
-                           <ul>
-                               <li>
-                                   <a href="#">Ending Now</a>
-                               </li>
-                               <li>
-                                   <a href="#">Vehicles</a>
-                               </li>
-                               <li>
-                                   <a href="#">Watches</a>
-                               </li>
-                               <li>
-                                   <a href="#">Electronics</a>
-                               </li>
-                               <li>
-                                   <a href="#">Real Estate </a>
-                               </li>
-                               <li>
-                                   <a href="#">Jewelry</a>
-                               </li>
-                               <li>
-                                   <a href="#">Art</a>
-                               </li>
-                               <li>
-                                   <a href="#">Sports & Outdoor</a>
-                               </li>
-                           </ul>
-                       </div>
-                   </div>
-                   <div class="col-lg-3">
-                       <div class="item">
-                           <h4>
-                               About Us
-                           </h4>
-                           <ul>
-                               <li>
-                                   <a href="#">About Sbidu</a>
-                               </li>
-                               <li>
-                                   <a href="#">Help</a>
-                               </li>
-                               <li>
-                                   <a href="#">Affiliates</a>
-                               </li>
-                               <li>
-                                   <a href="#">Jobs</a>
-                               </li>
-                               <li>
-                                   <a href="#">Press</a>
-                               </li>
-                               <li>
-                                   <a href="#">Our blog</a>
-                               </li>
-                               <li>
-                                   <a href="#">Collectors' portal</a>
-                               </li>
-                           </ul>
-                       </div>
-                   </div>
-                   <div class="col-lg-3">
-                       <div class="item">
-                           <h4>
-                               We're Here to Help
-                           </h4>
-                           <ul>
-                               <li>
-                                   <a href="#">Your Account</a>
-                               </li>
-                               <li>
-                                   <a href="#">Safe and Secure</a>
-                               </li>
-                               <li>
-                                   <a href="#">Shipping Information</a>
-                               </li>
-                               <li>
-                                   <a href="#">Contact Us</a>
-                               </li>
-                               <li>
-                                   <a href="#">Help & FAQ</a>
-                               </li>
-                           </ul>
-                       </div>
-                   </div>
-                   <div class="col-lg-3">
-                       <div class="item">
-                           <h4>
-                               Follow Us
-                           </h4>
-                           <ul>
-                               <li>
-                                   <a href="#">
-                                       <i class="fas fa-phone-alt"></i>
-                                       (646) 663-4575
-                                   </a>
-                               </li>
-                               <li>
-                                   <a href="#">
-                                       <i class="fas fa-blender-phone"></i>
-                                       (646) 968-0608
-                                   </a>
-                               </li>
-                               <li>
-                                   <a href="#">
-                                       <i class="fas fa-envelope-open-text"></i>
-                                       help@engotheme.com
-                                   </a>
-                               </li>
-                               <li>
-                                   <a href="#">
-                                       <i class="fas fa-location-arrow"></i>
-                                       1201 Broadway Suite
-                                   </a>
-                               </li>
-                           </ul>
-                       </div>
-                   </div>
-               </div>
-           </div>
-       </div>
-       <div class="footer-bottom">
-           <div class="container">
-               <div class="copyright">
-                   <img src="/img/logo.png"  class="logo" alt="">
-                   
-                   
-               </div>
-           </div>
-       </div>
-       
-   </footer>
-
-   <div class="back-to-top">
-       <i class="fas fa-angle-up"></i>
-   </div>
-
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-   <script src="/js/jquery.countTo.js"></script>
-   <script src="/js/main.js"></script>
-</body>
-</html>
+@endsection
