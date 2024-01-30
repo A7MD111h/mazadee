@@ -97,20 +97,20 @@ class CompanyController extends Controller
         
         if ($company) {
             $category = $company->category;
-
+            // dd($category);
             if ($category) {
                 $subCategories = $category->sub_Category;
-                $auctions = []; // Initialize the $auctions array
-
+                // $auctions = []; 
+                // dd($subCategories);
                 foreach ($subCategories as $subCategory) {
-                    // Merge the arrays for each subcategory into a single array
-                    $auctions = array_merge($auctions, Auction::where('sub_category_id', $subCategory->id)
-                        ->where('city', $company->city)
-                        ->where('status', 'active')
-                        ->get()
-                        ->toArray());
+                    $auctions[] = Auction::where('sub_category_id', $subCategory->id)->where('city', $company->city)->where('status', 'active')->get();
+                    // $auctions = array_merge($auctions, Auction::where('sub_category_id', $subCategory->id)
+                    //     ->where('city', $company->city)
+                    //     ->where('status', 'active')
+                    //     ->get()
+                    //     ->toArray());
                 }
-
+                    // dd($auctions);
                 return view('company.companyHome', compact('company', 'subCategories', 'auctions'));
             } else {
                 return 'errorrr';
@@ -152,7 +152,7 @@ class CompanyController extends Controller
         // dd($auction);
         $company = Company::find(Auth::id());
         // dd($company);
-        return view('bid-auction', compact('auction', 'company'));
+        return view('company.bid-auction', compact('auction', 'company'));
     }
 
     public function addbid($id, Request $request)
@@ -165,19 +165,25 @@ class CompanyController extends Controller
             $auction = Auction::find($id);
             if ($auction) {
                 if ($auction->company_price == NULL) {
-                    $auction->company_price = $request->input('company_price');
-                    $auction->company_id = $company->id;
-                    if ($auction->update()) {
-                        $company->bid_count=$company->bid_count + 1;
-                        if($company->update())
-                        {
-                            return back()->with('success', 'Bid Save Successfully.');
-                        }else{
-                            return back()->with('error', 'Error increment bid count');
+                    // $obj=$auction->budjet;
+                    // dd($obj);
+                    if (floatval($request->input('company_price')) < $auction->budjet){
+                        $auction->company_price = $request->input('company_price');
+                        $auction->company_id = $company->id;
+                    
+                    
+                        if ($auction->update()) {
+                            $company->bid_count=$company->bid_count + 1;
+                            if($company->update())
+                            {
+                                return back()->with('success', 'Bid Save Successfully.');
+                            }else{
+                                return back()->with('error', 'Error increment bid count');
+                            }
+                        }} else {
+                            return back()->with('error',  'Your bid is more than the last price.');//'Can\'t Save Your Bid, Try again later..
                         }
-                    } else {
-                        return back()->with('error', 'Can\'t Save Your Bid, Try again later.');
-                    }
+                    
                 } else {
                     // dd(gettype($auction->company_price));
                     if (floatval($request->input('company_price')) < $auction->company_price) {
@@ -251,5 +257,43 @@ class CompanyController extends Controller
             return back()->with('error', 'Old Password incorrect!!');
         }
     }
+
+    public function companyWinningBids(Request $request)
+    {
+        
+        // return view('company.winning-bids');
+        // return view('company.winning-bids',compact('user', 'oldAuctions', 'activeAuctions', 'activeAuctionsNum'));
+        // return back()->with('error', 'Old Password incorrect!!');
+
+        $company_id=Auth::id();
+        $company=Company::find($company_id);
+        $oldAuctions = $company->auction()->where('status','!=','active')->get();
+        $activeAuctions = $company->auction()->where('status','active')->get();
+        
+        // $data['page_title']="My Winning Bids";
+        return view('company.winning-bids',compact('company', 'oldAuctions', 'activeAuctions'));
+    }
+    public function activity_profile(Request $request)
+    {
+        $company_id=Auth::id();
+        $company=Company::find($company_id);
+        $oldAuctions = $company->auction()->where('status','!=','active')->get();
+        $activeAuctions = $company->auction()->where('status','active')->get();
+        if($activeAuctions->count()>0){
+            $activeAuctionsNum=$activeAuctions->count();
+        }else{
+            $activeAuctionsNum=0;
+        }
+        if($oldAuctions->count()>0){
+            $oldAuctionsNum=$oldAuctions->count();
+        }else{
+            $oldAuctionsNum=0;
+        }
+        // dd($oldAuctionsNum);
+        
+        return view('company.profile',compact('company', 'oldAuctions', 'activeAuctions', 'activeAuctionsNum', 'oldAuctionsNum'))->with('error', 'Old Password incorrect!!');
+        
+    }
+
 
 }

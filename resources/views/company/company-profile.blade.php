@@ -30,46 +30,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4">
-                        <div class="user-menu">
-                            <div class="user">
-                                <div class="image">
-                                <img src="/img/companyname.jpg" alt="">
-                                    <label for="user-photo">
-                                        <i class="fas fa-pencil-alt"></i>
-                                    </label>
-                                    <input type="file" id="user-photo" class="d-none">
-                                </div>
-                                <div class="content">
-                                    <h4>
-                                        {{ auth('companies')->user()->name }}
-                                    </h4>
-                                </div>
-                            </div>
-                            <ul class="menu">
-                                <li>
-                                    <a href="{{ url('/profile') }}">
-                                        <i class="flaticon-hammer"></i>
-                                        My Bids</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/company-profile') }}" class="active">
-                                        <i class="flaticon-settings"></i>
-                                        Company Profile </a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/company-winning-bids') }}">
-                                        <i class="flaticon-best-seller"></i>
-                                        Winning Bids</a>
-                                </li>
-                              
-                                <li>
-                                    <a href="referrals">
-                                        <i class="flaticon-shake-hand"></i>
-                                        Referrals</a>
-                                </li>
-                                
-                            </ul>
-                        </div>
+                        @include('company.layout.company-menu')
                     </div>
                     <div class="col-lg-8">
                         @if (session('success'))
@@ -245,7 +206,6 @@
                                                 <select class="form-control" id="exampleFormControlSelect1" name="city">
                                                     {{-- value="{{ auth('companies')->user()->city }}"> --}}
                                                     <option value="City" disabled>Select City</option>
-                                                    <option value="Amman" {{ auth('companies')->user()->city === 'Amman' ? 'selected' : '' }}>Amman</option>
                                                     <option value="Amman" {{ auth('companies')->user()->city === 'Amman' ? 'selected' : '' }}>Amman</option>
                                                     <option value="Ajloun" {{ auth('companies')->user()->city === 'Ajloun' ? 'selected' : '' }}>Ajloun</option>
                                                     <option value="Aqaba" {{ auth('companies')->user()->city === 'Aqaba' ? 'selected' : '' }}>Aqaba</option>

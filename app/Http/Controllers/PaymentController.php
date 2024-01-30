@@ -2,10 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Auction;
+use App\Models\Company;
 use Illuminate\Http\Request;
+
 
 class PaymentController extends Controller
 {
+
+    public function index()
+    {
+        
+        
+        return view('payment_test');
+
+    }
+    public function checkout(Request $request, $id)
+    {
+        $auction = Auction::where('id', $id)->first();
+        return view('payment_test', compact('auction' ));
+
+    }
+    public function chenk_payment(Request $request, $id)
+    {
+        $obj = Auction::where('id', $id)->first();
+        $obj->payment_Status = true ;
+        
+        // dd($obj->payment_Status);
+        // return view('my-account-bids')->with('success, payment is successfully') ;
+        $obj->update();
+        if ($obj) {
+            return redirect()->route('my_bids')->with('success', 'payment is successfully.');
+        }
+
+    }
     // public function checkout() 
     // {
     //     $requestParams = array(
@@ -22,8 +52,10 @@ class PaymentController extends Controller
     //         );
             
     // }
-    public function checkout()
-    {
+
+
+    // public function checkout()
+    // {
         // $shaString = '';
         // $url = 'https://sbpaymentservices.payfort.com/FortAPI/paymentPage';
 
@@ -59,6 +91,16 @@ class PaymentController extends Controller
         // $result = curl_exec($ch);
         // curl_close($ch);
         // echo "<pre>$result</pre>";
-        return view('payment');
-    }
+        
+
+
+        
+        
+        // return view('admin.auctions.edit')->withOrder($order)->withCompany($company);
+        
+
+    //     return view('payment');
+    // }
+    
+
 }

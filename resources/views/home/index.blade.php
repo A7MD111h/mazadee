@@ -52,7 +52,7 @@
                                 @foreach ($categories as $category)
                                 <div class="item">
                                     <a href="{{url ('subCategory', $category->id)}}">
-                                        <img src="{{ asset($category->photo) }}" alt="category photo">
+                                        <img src="{{ asset('uploads/'.$category->photo) }}" alt="category photo">
                                         <span>{{$category->name}}</span>
                                     </a>
                                 </div>

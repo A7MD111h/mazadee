@@ -23,9 +23,9 @@
         </div>
     </section>
 
-    <header>
+    
         @include('layouts.partials.navbar')
-    </header>
+    
 
     <main>
         <!-- Breadcrumb -->
@@ -323,7 +323,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <form action="{{ route('email-address-edit') }}" method="post">
+                            <form action="{{ url('email-address-edit') }}" method="post">
                                 @csrf
                                 <div class="modal fade" id="emailAddressEditModalCenter" tabindex="-1"
                                     role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

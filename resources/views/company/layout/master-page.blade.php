@@ -264,6 +264,9 @@
                 // Initial call to set up the countdown
                 updateCountdown();
             }
+            document.getElementById('bidBtn').addEventListener('click',function(){
+            document.getElementById('bidForm').style.display='block';
+        })
         });
     </script>
     

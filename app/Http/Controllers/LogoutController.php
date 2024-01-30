@@ -29,4 +29,12 @@ class LogoutController extends Controller
         auth()->guard('companies')->logout();
         return redirect('/');
     }
+    public function logout_admin()
+    {
+        // Session::flush();
+        
+        // Auth::logout();
+        auth()->guard('admin')->logout();
+        return redirect('/');
+    }
 }

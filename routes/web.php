@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
@@ -10,7 +11,9 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SubCategoryController;
-
+use App\Http\Controllers\Admin\AdminLoginController;
+use App\Http\Controllers\Admin\CategoriesController;
+// use App\Http\Controllers\Admin\SubCategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -80,7 +83,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
      */
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
     Route::get('/subCategory/{id}', [SubCategoryController::class,'index']);
-    Route::get('my-bids', [UserController::class, 'profilePages']);
+    Route::get('my-bids', [UserController::class, 'profilePages'])->name('my_bids');
     Route::get('/personal-profile', [UserController::class, 'personalProfile']);
     Route::post('personal-details-edit', [UserController::class, 'personalDetailsEdit']);
     Route::post('email-address-edit', [UserController::class, 'emailAddressEdit']);
@@ -113,7 +116,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
 Route::middleware(['auth:web'])->group(function () {
     // Routes accessible to regular users
     
-    Route::get('/checkout', [PaymentController::class, 'checkout'])->name('test.checkout');
+    Route::get('/checkout/{id}', [PaymentController::class, 'checkout'])->name('test.checkout');
+    Route::post('/payment/checkout/{id}', [PaymentController::class, 'chenk_payment'])->name('chenk_payment');
+    Route::get('/payment', [PaymentController::class, 'index'])->name('payment');
     // {{ route('user.logout') }}
     Route::middleware(['auth:web'])->group(function () {
         Route::get('/logout', [LogoutController::class, 'perform'])->name('user.logout');
@@ -131,10 +136,12 @@ Route::middleware(['auth:companies'])->group(function () {
         return view('company.profile');
     });
     Route::get('company-profile', [CompanyController::class, 'CompanyProfile'])->name('company-profile');
+    Route::get('/profile', [CompanyController::class, 'activity_profile'])->name('activity_profile');
+    Route::get('/company-winning-bids', [CompanyController::class, 'companyWinningBids'])->name('company-winning-bids');
     
-    Route::get('/company-winning-bids', function () {
-        return view('company.winning-bids');
-    });
+    // Route::get('/company-winning-bids', function () {
+    //     return view('company.winning-bids');
+    // });
     Route::get('/company-code', function () {
         return view('company.code');
     });
@@ -147,3 +154,48 @@ Route::middleware(['auth:companies'])->group(function () {
         Route::get('/logout-company', [LogoutController::class, 'logout_company'])->name('company.logout');
     });
 });
+
+//admin
+// Route::get('/dashboard', function () {
+//     return view('admin.dashboard');
+// });
+
+
+Route::middleware(['auth:admin'])->group(function () {
+    // Admin-only routes
+    
+
+
+    Route::middleware(['auth:admin'])->group(function () {
+        Route::get('/logout-admin', [LogoutController::class, 'logout_admin'])->name('admin.logout');
+    });
+});
+
+Route::get('/admin/dashboard', [AdminLoginController::class, 'index'])->name('dashboard');
+Route::get('/admin/dashboard/login', [AdminLoginController::class, 'showLoginForm'])->name('admin_login');
+Route::post('/admin/dashboard/login/gg', [AdminLoginController::class, 'login'])->name('admin_login_dashboard');
+Route::get('/admin/dashboard/signin', [AdminLoginController::class, 'signin'])->name('admin_signin');
+Route::post('/admin/dashboard/save', [AdminLoginController::class, 'stor'])->name('admin_sing_in');
+
+
+// Route::get('/admin/login', [AdminLoginController::class, 'index'])->name('admin_login');
+// Route::get('/admin/dashboard/login', [AdminLoginController::class, 'showLoginForm'])->name('admin_login');
+// Route::post('/admin/dashboard/login/gg', [AdminLoginController::class, 'login'])->name('admin_login_dashboard');
+// Route::get('/admin/dashboard/signin', [AdminLoginController::class, 'signin'])->name('admin_signin');
+// Route::post('/admin/dashboard/save', [AdminLoginController::class, 'stor'])->name('admin_sing_in');
+
+Route::get('/admin/dashboard/categories', [CategoriesController::class, 'index'])->name('view_Categories');
+Route::get('/admin/dashboard/category/add', [CategoriesController::class, 'create'])->name('admin_category_add');//admin_category_add
+Route::post('/admin/dashboard/category/store', [CategoriesController::class, 'store'])->name('admin_category_store');
+Route::get('/admin/dashboard/category/edit/{id}', [CategoriesController::class, 'edit'])->name('admin_category_edit');//admin_category_edit
+Route::post('/admin/dashboard/category/update/{id}', [CategoriesController::class, 'update'])->name('admin_category_update');
+Route::delete('/admin/dashboard/category/delete/{id}', [CategoriesController::class, 'destroy'])->name('admin_category_delete');//admin_category_delete
+Route::get('/admin/dashboard/category/delete/permanently/{id}', [CategoriesController::class, 'destroyPermanently'])->name('admin_category_finsh');//admin_category_delete
+
+Route::get('/admin/dashboard/Sub_Category', [SubCategoryController::class, 'view'])->name('view_Sub_Category');
+Route::get('/admin/dashboard/Sub_Category/add', [SubCategoryController::class, 'create'])->name('admin_sub_category_add');//admin_sub_category_add
+Route::post('/admin/dashboard/Sub_Category/store', [SubCategoryController::class, 'store'])->name('admin_sub_category_store');
+Route::get('/admin/dashboard/Sub_Category/edit/{id}', [SubCategoryController::class, 'edit'])->name('admin_sub_category_edit');//admin_sub_category_edit
+Route::post('/admin/dashboard/Sub_Category/update/{id}', [SubCategoryController::class, 'update'])->name('admin_sub_category_update');
+Route::delete('/admin/dashboard/Sub_Category/delete/{id}', [SubCategoryController::class, 'destroy'])->name('admin_sub_category_delete');//admin_sub_category_delete
+Route::get('/admin/dashboard/Sub_Category/change-stock/{id}', [SubCategoryController::class, 'change_stock'])->name('admin_sub_category_change_stock');

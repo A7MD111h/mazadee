@@ -22,84 +22,9 @@
         </div>
     </section>
 
-    <header>
+
         @include('layouts.partials.navbar')
-        {{-- <div class="header-top">
-            <div class="container">
-                <div class="content d-flex justify-content-between align-items-center">
-                    <ul class="d-flex">
-                        <li>
-                            <a href="#" class="mr-3">
-                                <i class="fas fa-phone-alt"></i>
-                                <span>Customer Support</span>
-                            </a>
-                        </li>
-                        <li>
-                            <i class="fas fa-globe"></i>
-                            <select name="language" class="select-bar">
-                                <option value="en">En</option>
-                                <option value="az">Az</option>
-                                <option value="ru">Ru</option>
-                            </select>
-                        </li>
-                    </ul>
-                    <div class="my-account d-flex align-items-center">
-                        <a href="sing-in" class="login">Login</a>
-                        <a href="my-account-bids" class="user">
-                            <img src="/img/R-removebg-preview.png" alt="logo">
 
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-        <!-- Navbar -->
-        {{-- <div class="header-bottom" style="background-image: url(/img/OIP.jpg)">
-            <nav class="navbar navbar-expand-lg">
-                <div class="container">
-                    <div class="logo">
-                        <a class="navbar-brand" href="index">
-                            <img src="/img/logo.png"  alt="logo">
-                        </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                            <i class="fas fa-bars navbar-toggler-icon"></i>
-                        </button>
-                    </div>
-
-                    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="index">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="auction">Auction</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="about-us">About Us</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="contact">Contact</a>
-                            </li>
-                        </ul>
-
-                    </div>
-                    <div class="search-nav">
-                        <span class="icon">
-                            <i class="fas fa-search"></i>
-                        </span>
-                        <form class="search-form my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search for brand, model...."
-                                aria-label="Search">
-                            <button class="btn-search my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-                        </form>
-                    </div>
-                </div>
-            </nav>
-        </div> --}}
-        <!-- End Navbar -->
-    </header>
 
     <main>
         <!-- Breadcrumb -->
@@ -123,6 +48,7 @@
 
             </div>
         </section>
+        
         <!-- End Breadcrumb -->
         <section id="dashboard">
             <div class="container">
@@ -226,28 +152,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {{-- <div class="col-lg-4">
-                                        <div class="item">
-                                            <div class="image">
-                                                <img src="/img/bid02.png" class="img-fluid" alt="">
-                                            </div>
-                                            <div class="content">
-                                                <div class="timer" data-to="15" data-speed="5000"></div>
-                                                <span>Items Won</span>
-                                            </div>
-                                        </div>
-                                    </div> --}}
-                                    {{-- <div class="col-lg-4">
-                                        <div class="item">
-                                            <div class="image">
-                                                <img src="/img/bid03.png" class="img-fluid" alt="">
-                                            </div>
-                                            <div class="content">
-                                                <div class="timer" data-to="115" data-speed="5000"></div>
-                                                <span>Favorites</span>
-                                            </div>
-                                        </div>
-                                    </div> --}}
                                 </div>
                                 <ul class="nav d-flex">
                                     <li class="nav-item">
@@ -363,42 +267,7 @@
                                             </form>
                                         @endforeach
 
-                                        {{-- <div class="col-lg-6">
-                                            <div class="auction-item">
-                                                <div class="image">
-                                                    <a href="#">
-                                                        <img src="/img/s-l500-removebg-preview.png" width="5%" height="70%" alt="">
-                                                    </a>
-                                                    
-                                                </div>
-                                                <div class="auction-content">
-                                                    <h5>7 Inch Car Stereo Radio Bluetooth USB TF Touch Screen</h5>
-                                                    <div class="bid d-flex justify-content-between">
-                                                        <div class="current-bid d-flex">
-                                                            <i class="flaticon-hammer"></i>
-                                                            <p class="d-flex flex-column">Current Bid
-                                                                <span>$876.00</span>
-                                                            </p>
-                                                        </div>
-                                                        <div class="buy-now-price d-flex">
-                                                            <i class="flaticon-money"></i>
-                                                            <p class="d-flex flex-column">Buy Now
-                                                                <span>$5000.00</span>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="time d-flex ">
-                                                    <div class="countdown" data-countdown="10/31/2020 20:00" style="margin-left: 20%;"></div>
-                                                </div>
-                                                <div >
-                                                    <a type="button" class="btn btn-danger" href="index" >Cancel</a>
-                                                    <a type="button" class="btn btn-success" style="margin-left: 40%;" href="">End Auction</a>
-
-                                                </div>
-                                                
-                                            </div>
-                                        </div> --}}
+                                        
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="past">
@@ -431,9 +300,16 @@
                                                                 </div>
                                                             </div><br>
                                                             <div >
-                                                                <a href="{{ route('test.checkout') }}" >
-                                                                 <button type="submit"  class="btn btn-primary btn-lg btn-block text-light"    >Payment</button></a>
-                                                             </div>
+                                                                @if ($auction->payment_Status == 0)
+                                                                <a href="{{ route('test.checkout', $auction->id) }}">
+                                                                    <button type="submit" class="btn btn-primary btn-lg btn-block text-light">Payment</button>
+                                                                </a>
+                                                            @else
+                                                                <p class="btn btn-primary btn-lg btn-block text-light">The payment was made</p>
+                                                            @endif
+                                                            
+
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
