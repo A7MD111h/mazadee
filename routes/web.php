@@ -50,6 +50,14 @@ Route::get('/personal-profile', function () {
     return view('personal-profile');
 });
 
+Route::get('/auction-done-details', function () {
+    return view('auction-done-details');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+
 /** company routes */
 // Route::get('/submit-a-bid/{id}',[CompanyController::class, 'submitBid']);
 // Route::post('addbid/{id}',[CompanyController::class, 'addbid']);
