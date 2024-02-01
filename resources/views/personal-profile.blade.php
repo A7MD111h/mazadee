@@ -80,12 +80,12 @@
                                         <i class="flaticon-settings"></i>
                                         Personal Profile </a>
                                 </li>
-                                {{-- <li>
-                                    <a href="winning-bids">
+                                <li>
+                                    <a href="auction-done-details">
                                         <i class="flaticon-best-seller"></i>
-                                        Winning Bids</a>
+                                        Auction done Details</a>
                                 </li>
-                              
+                                {{--
                                 <li>
                                     <a href="referrals">
                                         <i class="flaticon-shake-hand"></i>

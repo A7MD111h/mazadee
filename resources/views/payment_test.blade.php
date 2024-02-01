@@ -18,10 +18,10 @@
 
 <body>
 
-    <section id="loader">
+     <section id="loader">
         <div class="img-loader">
         </div>
-    </section>
+     </section>
 
     
         @include('layouts.partials.navbar')
@@ -75,7 +75,7 @@
                                       
                                     
                                     <label for="cvv">card holder name:</label>
-                                    <input type="text" id="card_holder_name" NAME="card_holder_name" class="form-control" placeholder="Enter CVV"><br>
+                                    <input type="text" id="card_holder_name" NAME="card_holder_name" class="form-control" placeholder="Enter Name"><br>
        
                                     <label for="card-number">Card Number:</label>
                                     <input type="text" id="card_number" NAME="card_number" class="form-control" placeholder="Enter card number">
@@ -87,7 +87,12 @@
     
     
                                     <label for="cvv">CVV:</label>
-                                    <input type="text" id="card_security_code" NAME="card_security_code" class="form-control" placeholder="Enter CVV"><br>
+                                    <input type="text" id="card_security_code" NAME="card_security_code" class="form-control" placeholder="Enter CVV">
+                                    <label for="code">Code:</label>
+                                   
+                                    
+                                    
+                                    <br>
                                     
                                     <div>
                                             <button class="btn btn-primary btn-lg btn-block text-light" type="submit">
@@ -116,46 +121,64 @@
                     </div>
                 </div>        
             </section>
-        </main>
-        <div class="col-lg-4 col-md-4 checkout-right">
-            <div class="inner">
-                <h4 class="mb_10">Billing Details</h4>
-                <div>
-                    Name: {{ $auction->company->name}}
-                </div>
+       
+
+            <div class="container">
+
+             <div class="row" >
+                    <div class="col-lg-12"  style="padding:2% 6%; align-items: center; box-shadow:3px 3px 3px 3px #111111; background-color: whitesmoke;">
+
+                         <div class="details">
+ 
+                                             <div class="header d-flex justify-content-between">
+                                                  <h4 class="mb_10">Billing Details</h4>
+                                             </div>
+                                                     <ul>
+                                                          <li>
+                                                                 <div class="info">
+                                                                   Name: {{ $auction->company->name}} 
+                                                                 </div>
                 
-                <div>
-                    Phone: {{ $auction->company->phone}}
-                </div>
-                <div>
-                    city: {{ $auction->company->city}}
-                </div>
-                <div>
-                    Address: {{ $auction->company->address}}
-                </div>
-                {{-- <div>
-                    price: {{ $auction->budjet}}
-                </div> --}}
                 
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-4 checkout-right">
-            <div class="inner">
-                <h4 class="mb_10">price Details</h4>
-                <div class="table-responsive">
-                    <table class="table">
-                        <tbody>
-                           
+                                                                 <div class="info">
+                                                                          Phone: {{ $auction->company->phone}}
+                                                                    </div>
+
+                                                                 <div class="info">
+                                                                           city: {{ $auction->company->city}}
+                                                                  </div>
+                                                                 <div class="info">
+                                                                            Address: {{ $auction->company->address}}
+                                                                </div>
+                                                                {{-- <div class="info">
+                                                                                 price: {{ $auction->budjet}}
+                                                                      </div> --}}
+
+                          
+                                                            </li>
+                                                     </ul>
+                                                                           <br>
+
+                                              <div class="header d-flex justify-content-between">
+
+                                                   <h4 class="mb_10">price Details</h4>
+                                                </div>
+                                                     <ul>
+                                                         <li>
+                                                                   <div class="info">
                                                            
-                            <tr>
-                                <td><b>Total:</b></td>
-                                <td class="p_price"><b>{{ $auction->budjet}}</b></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                                                                          <b>Total:{{ $auction->budjet}}</b>
+                                                                     </div>
+                                       
+                                                            </li>
+                                                       </ul>
+               
+                        </div>
+                  </div>
+              </div>
             </div>
-        </div>
+         </main>
+
     <footer style="background-image: url(/img/OIP.jpg);">
 
 
