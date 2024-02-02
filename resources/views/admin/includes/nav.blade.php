@@ -93,11 +93,11 @@
         </div>
         {{-- @auth
         {{ auth('admin')->user()->username }} --}}
-        @if (auth('admins')->check())
+        {{-- @if (auth('admin')->check())
             <div>
                 <a href="{{ route('admin.logout') }}" class="btn btn-sm btn-primary">Logout</a>
             </div>
-        @endif
+        @endif --}}
         {{-- @endauth --}}
         <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">

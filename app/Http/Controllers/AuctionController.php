@@ -41,6 +41,7 @@ class AuctionController extends Controller
             "city"=> $request->city,
             "quantity"=> $request->quantity,
             "description"=> $request->description,
+            'code' => null,
         ]);
         // dd($auction);
         if($auction){

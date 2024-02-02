@@ -24,8 +24,8 @@ class SubCategoryController extends Controller
     {
         $sub_category = Sub_Category::all(); 
         $test = Sub_Category::find(1);
-        $categoryId = $test->category->category_id;
-        $categoryName = $test->category->category_Name;
+        // $categoryId = $test->category->category_id;
+        // $categoryName = $test->category->category_Name;
         // dd($categoryName);
         return view('admin.layout.sub_category_view', compact('sub_category'));
     }

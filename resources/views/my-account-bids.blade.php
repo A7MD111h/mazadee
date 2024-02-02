@@ -171,7 +171,7 @@
                                                 <div class="auction-item">
                                                     <div class="image">
                                                         <a href="#">
-                                                            <img src="{{ asset($auction->subCategory->photo) }}"
+                                                            <img src="{{asset('uploads/'.$auction->subCategory->photo)  }}"
                                                                 width="5%" height="70%" alt="">
                                                         </a>
                                                     </div>
@@ -305,7 +305,10 @@
                                                                     <button type="submit" class="btn btn-primary btn-lg btn-block text-light">Payment</button>
                                                                 </a>
                                                             @else
-                                                                <p class="btn btn-primary btn-lg btn-block text-light">The payment was made</p>
+                                                            <a href="{{ route('order_details', $auction->id) }}">
+                                                                <button type="submit" class="btn btn-primary btn-lg btn-block text-light">The payment was made</button>
+                                                            </a>
+                                                                {{-- <p class="btn btn-primary btn-lg btn-block text-light">The payment was made</p> --}}
                                                             @endif
                                                             
 

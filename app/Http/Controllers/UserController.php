@@ -109,4 +109,14 @@ class UserController extends Controller
             return back()->with('error', "Can't update your Profile Picture....");    
         }
     }
+
+    public function orderDetails(Request $request, $id)
+    {
+        $auction = Auction::where('id', $id)->first();
+        return view('auction-done-details', compact('auction' ));
+        
+        
+    }
+
+
 }

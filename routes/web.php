@@ -127,6 +127,7 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/checkout/{id}', [PaymentController::class, 'checkout'])->name('test.checkout');
     Route::post('/payment/checkout/{id}', [PaymentController::class, 'chenk_payment'])->name('chenk_payment');
     Route::get('/payment', [PaymentController::class, 'index'])->name('payment');
+    Route::get('/auction-done-details/{id}', [UserController::class, 'orderDetails'])->name('order_details');
     // {{ route('user.logout') }}
     Route::middleware(['auth:web'])->group(function () {
         Route::get('/logout', [LogoutController::class, 'perform'])->name('user.logout');

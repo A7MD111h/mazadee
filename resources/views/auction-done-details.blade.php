@@ -137,61 +137,75 @@
 
             
 
-                                            <div class="row" >
-                                                    <div class="col-lg-12" >
-
-                                                       <div class="details">
-
-                                                            <div class="header d-flex justify-content-between">
-                                                              <h4 class="mb_10">Billing Details</h4>
+                                        <div class="row" >
+                                            <div class="col-lg-12" >
+                                                <div class="details">
+                                                    <div class="header d-flex justify-content-between">
+                                                        <h4 class="mb_10">Billing Details</h4>
+                                                    </div>
+                                                        <ul>
+                                                            <li>
+                                                                <div class="info">
+                                                                    Name
+                                                                </div>
+                                                                <div class="info-value">
+                                                                    {{ $auction->company->name}}
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="info">
+                                                                    Phone
+                                                                </div>
+                                                                <div class="info-value">
+                                                                    {{ $auction->company->phone}}
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="info">
+                                                                    City
+                                                                </div>
+                                                                <div class="info-value">
+                                                                    {{ $auction->company->city}}
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="info">
+                                                                    Address
+                                                                </div>
+                                                                <div class="info-value">
+                                                                    {{ $auction->company->address}}
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="info">
+                                                                    Your  Code 
+                                                                </div>
+                                                                <div class="info-value">
+                                                                    {{ $auction->code}}
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                        <br>
+                                                        <div class="header d-flex justify-content-between">
+                                                            <h4 class="mb_10">price Details</h4>
                                                             </div>
-                                                              <ul>
-                                                                  <li>
-                                                                      <div class="info">
-                                                                              Name:<br>Company-Name
-                                                                          </div>
-                                                                                     
-   
-                                                                       <div class="info">
-                                                                              Phone:<br>company-phone
-
-                                                                        </div>
-
-                                                                         <div class="info">
-                                                                               city:<br>company->city
-                                                                           </div>
-                                                                            <div class="info">
-                                                                            Address:<br>company->address
-                                                                             </div>
-                                                                           <div class="info">
-                                                                                   price:<br>budjet
-                                                                             </div> 
-
-             
-                                                                    </li>
-                                                              </ul>
-                                                                                              <br>
-
-                                                       <div class="header d-flex justify-content-between">
-
-                                                         <h4 class="mb_10">price Details</h4>
-                                                         </div>
                                                                 <ul>
-                                                                      <li>
-                                                                           <div class="info">
-                                              
-                                                                          <b>Total:budjet</b>
-                                                                           </div>
-                          
-                                                                       </li>
+                                                                    <li>
+                                                                        <div class="info">
+                                                                            Total
+                                                                        </div>
+                                                                        <div class="info-value">
+                                                                            {{ $auction->company_price}}
+                                                                        </div>
+                                                                    </li>
+                                                                    
                                                                 </ul>
-                                             </div>
-                                      
+                                            </div>
                             </div>   
                     
                     </div>
-             </div>
-          </div>
+                </div>
+            </div>
     <section>
     </main>
 

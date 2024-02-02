@@ -167,7 +167,7 @@
                                                          <li>
                                                                    <div class="info">
                                                            
-                                                                          <b>Total:{{ $auction->budjet}}</b>
+                                                                          <b>Total:{{ $auction->company_price}}</b>
                                                                      </div>
                                        
                                                             </li>
