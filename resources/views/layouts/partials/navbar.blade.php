@@ -23,22 +23,37 @@
                             <a class="nav-link" href="/">Category</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">About Us</a>
+                            <a class="nav-link" href="about">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Contact</a>
+                            <a class="nav-link" href="contact">Contact</a>
                         </li>
                         @auth
                             {{ auth()->user()->name }}
-                            <li class="nav-item">
-                                <a href="{{ route('user.logout') }}" class="btn btn-outline-light me-2">Logout</a>
-                            </li>
                             <li>
                                 <a href="{{ url('/my-bids') }}" class="nav-link"
-                                    style="background-color: #ee4730; border-radius: 50%;">
-                                    <i class="fas fa-user-alt" style="color: #fff ;line-height: inherit;"></i>
+                                    >
+                                    <i class="fas fa-user"></i>
                                 </a>
                             </li>
+                            
+                            <li class="nav-item" style="margin: auto;">
+                                    <a href="notification">
+                                    <i class="far fa-bell"></i></i>
+                                    </a>
+                                </li>
+
+
+                            <li class="nav-item">
+                                <a href="{{ route('user.logout') }}" class="btn btn-outline-light me-2">
+                                <i class="fa fa-sign-out"></i>
+
+                                </a>
+                            </li>
+                           
+
+                           
+                            
                         @endauth
                         @guest
                             <li class="nav-item">

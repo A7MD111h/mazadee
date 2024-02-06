@@ -101,6 +101,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     
     <link rel="stylesheet" href="/css/style.css">
+    
     <link rel="shortcut icon" href="/img/icon-logo.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/5f8f97e3fd.js" crossorigin="anonymous"></script>
 </head>

@@ -58,6 +58,14 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+Route::get('/about', function () {
+    return view('about');
+});
+
+
+Route::get('/notification', function () {
+    return view('notification');
+});
 /** company routes */
 // Route::get('/submit-a-bid/{id}',[CompanyController::class, 'submitBid']);
 // Route::post('addbid/{id}',[CompanyController::class, 'addbid']);
@@ -81,6 +89,9 @@ Route::get('/contact', function () {
 
 // Route::post('/payment', [PaymentController::class, 'checkout'])->name('payment');
 
+Route::get('/notificationcompany', function () {
+    return view('company.notificationcompany');
+});
 
 Route::post('createAuction', [AuctionController::class,'create']);
 

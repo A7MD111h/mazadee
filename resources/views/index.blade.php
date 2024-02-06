@@ -11,6 +11,7 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="{{ asset('css2/style.css') }}">
     <link rel="shortcut icon" href="/img/favicon-logo.png" type="image/x-icon">
 
     <script src="https://kit.fontawesome.com/5f8f97e3fd.js" crossorigin="anonymous"></script>
@@ -429,6 +430,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
+    <script src="{{ asset('js2/script.js') }}"></script>
 </body>
 
 </html>

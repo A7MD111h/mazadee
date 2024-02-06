@@ -16,6 +16,21 @@
     <link rel="shortcut icon" href="/img/favicon-logo.png" type="image/x-icon">
 
     <script src="https://kit.fontawesome.com/5f8f97e3fd.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="/css2/style.css">
+    <link rel="shortcut icon" href="assets/img/favicon-logo.png" type="image/x-icon">
+
+    <script src="https://kit.fontawesome.com/5f8f97e3fd.js" crossorigin="anonymous"></script>
+    <script src="/js/script.js"></script> 
+    <!-- displays site properly based on user's device -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="/css2/style.css" />
+    <title>Frontend Mentor | Notifications page</title>
 </head>
 
 <body>
@@ -63,8 +78,8 @@
                                     </a>
                                 </li>
                                 <li class="nav-item" style="margin: auto;">
-                                    <a href="my-account-bids.html">
-                                        <i class="fa fa-comment"></i>
+                                    <a href="notificationcompany">
+                                    <i class="far fa-bell"></i>
                                     </a>
                                 </li>
 
