@@ -51,8 +51,72 @@
         </section>
         <!-- End Contact Us Form -->
 
-
-
+   <!-- About Header -->
+   <section id="about-header">
+            <div class="container bg">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h1 style="color:red">ABOUT US</h1>
+                        <p><strong>At MAZADe, we wield the power to transform your buying experience. Through cutting-edge reverse auctions, we not only empower customers but revolutionize the entire purchasing process. We seamlessly connect you with the most competitive market prices, ensuring you wield unparalleled control and secure the best deals. Welcome to a realm of purchasing prowess with MAZADe.</strong></p>
+                        
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="image">
+                            <img src="/img/about.png" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End About Header -->
+<!-- Expect -->
+<section id="expect">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="content">
+                            <div class="header">
+                                <h1>What Can You Expect?</h1>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="item">
+                                        <img src="/img/expect01.png" alt="">
+                                        <h5>Save Time </h5>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="item">
+                                        <img src="/img/expect02.png" alt="">
+                                        <h5> Save Money</h5>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="item">
+                                        <img src="/img/expect03.png" alt="">
+                                        <h5>Credibility</h5>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="item">
+                                        <img src="/img/expect04.png" alt="">
+                                        <h5> Fast Communication</h5>
+                                    </div>
+                                </div>
+                               
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 ">
+                        <div class="bg">
+                            <img src="/img/overview-bg.png"  alt="" height="500px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Expect -->
 
 
 
