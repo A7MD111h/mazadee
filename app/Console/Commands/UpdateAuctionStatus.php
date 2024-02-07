@@ -4,7 +4,14 @@ namespace App\Console\Commands;
 
 use Carbon\Carbon;
 use App\Models\Auction;
+use App\Models\Company;
+use App\Models\User;
+use App\Notifications\endAuctionNotification;
+use App\Notifications\winAuctionNotification;
 use Illuminate\Console\Command;
+// use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Notification;
+
 
 class UpdateAuctionStatus extends Command
 {
@@ -35,7 +42,12 @@ class UpdateAuctionStatus extends Command
         ->get();
         foreach ($auctions as $auction) {
             $auction->update(['status' => 'pending']);
-            
+            $user=User::find($auction->user_id);
+            Notification::send($user, new endAuctionNotification($auction->id));
+            if($auction->company_id != NULL){
+                $company=Company::find($auction->company_id);
+                Notification::send($company,new winAuctionNotification($auction->id));
+            }            
         }
 
         $this->info('Auction statuses updated successfully.');
