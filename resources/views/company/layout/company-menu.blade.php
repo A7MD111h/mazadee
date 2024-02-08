@@ -31,7 +31,7 @@
         </li>
       
         <li>
-            <a href="referrals">
+            <a href="{{ route('company_code') }}">
                 <i class="flaticon-shake-hand"></i>
                 Referrals</a>
         </li>

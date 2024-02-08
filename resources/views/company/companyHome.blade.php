@@ -25,7 +25,7 @@
                                 <div class="auction-item">
                                     <div class="image">
                                         <a href="auction-details.html">
-                                            <img src="{{ asset($auc->subCategory->photo) }}" alt="">
+                                            <img src="{{ asset('uploads/'.$auc->subCategory->photo) }}" alt="">
                                         </a>
                                         {{-- <a href="#" class="star">
                                     <i class="far fa-star"></i>

@@ -11,7 +11,7 @@ class Auction extends Model
     use HasFactory;
     public $guarded;
     protected $fillable = [
-        'id ',
+        'id',
         'user_id',
         'sub_category_id',
         'quality',
@@ -21,11 +21,10 @@ class Auction extends Model
         'description',
         'status',
         'company_price',
-        'company_id ',
+        'company_id',
         'payment_Status',
         'code',
-        
-    ];
+    ];    
     public function user(){
         return $this->belongsTo(User::class);
     }

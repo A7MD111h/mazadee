@@ -148,7 +148,7 @@ Route::middleware(['auth:web'])->group(function () {
 Route::middleware(['auth:companies'])->group(function () {
     // Routes accessible to administrators
 
-    Route::get('/home',[CompanyController::class, 'homePage']);
+    Route::get('/home',[CompanyController::class, 'homePage'])->name('homePage');
     Route::get('/submit-a-bid/{id}',[CompanyController::class, 'submitBid']);
     Route::post('addbid/{id}',[CompanyController::class, 'addbid']);
 
@@ -159,12 +159,9 @@ Route::middleware(['auth:companies'])->group(function () {
     Route::get('/profile', [CompanyController::class, 'activity_profile'])->name('activity_profile');
     Route::get('/company-winning-bids', [CompanyController::class, 'companyWinningBids'])->name('company-winning-bids');
     
-    // Route::get('/company-winning-bids', function () {
-    //     return view('company.winning-bids');
-    // });
-    Route::get('/company-code', function () {
-        return view('company.code');
-    });
+    Route::get('/company-code', [CompanyController::class, 'companyCode'])->name('company_code');
+    Route::post('/company-codes', [CompanyController::class, 'companyCodes'])->name('company_codes');
+    
     Route::post('/company-profile/email-address-edit', [CompanyController::class, 'emailAddressEdit'])->name('company-email-edit');
     Route::post('/company-profile/commercial-edit', [CompanyController::class, 'commercialEdit'])->name('company-commercial-edit');
     Route::post('/company-profile/company-profile-edit', [CompanyController::class, 'companyProfileEdit'])->name('company-profile-edit');

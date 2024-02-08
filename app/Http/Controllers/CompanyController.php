@@ -11,6 +11,8 @@ use App\Http\Requests\CompanyEditRequest;
 use App\Http\Requests\PasswordEditRequest;
 use App\Http\Requests\CommercialEditRequest;
 use App\Http\Requests\EmailAddressEditRequest;
+use Illuminate\Database\QueryException;
+use Illuminate\Validation\ValidationException;
 
 class CompanyController extends Controller
 {
@@ -218,28 +220,44 @@ class CompanyController extends Controller
         $Company=Company::find($Company_id);
         $Company->commercial_register=$request->commercial_register;
         if($Company->update()){
-            return back()->with('success', 'Phone Number updated Successfully.');    
+            return back()->with('success', ' ‘pdated Successfully.');    
         }else{
-            return back()->with('error', "Can't update your Phone Number.");    
+            return back()->with('error', "Can't update Try again.");    
         }
     }
+
     public function companyProfileEdit(CompanyEditRequest $request)
     {
-        $Company_id=Auth::id();
-        $Company=Company::find($Company_id);
-        $Company->name=$request->name;
-        $Company->username=$request->username;
-        $Company->email=$request->email;
-        $Company->phone=$request->phone;
-        $Company->national_number=$request->national_number;
-        $Company->address=$request->address;
-        $Company->city=$request->city;
-        if($Company->update()){
-            return back()->with('success', 'Phone Number updated Successfully.');    
-        }else{
-            return back()->with('error', "Can't update your Phone Number.");    
+        try {
+            $company_id = Auth::id();
+            
+            $company = Company::find($company_id);
+            
+            $company->name = $request->name;
+            $company->username = $request->username;
+            $company->email = $request->email;
+            $company->phone = $request->phone;
+            $company->national_number = $request->national_number;
+            $company->address = $request->address;
+            $company->city = $request->city;
+            
+            if ($company->save()) {
+                return back()->with('success', 'Profile updated successfully.');
+            } else {
+                return back()->with('error', "Failed to update profile. Please try again.");
+            }
+        } catch (ValidationException $e) {
+            return back()->withErrors($e->validator)->withInput();
+        } catch (QueryException $e) {
+            if ($e->errorInfo[1] == 1062) {
+                return back()->with('error', "Username / E-mail already exists. Please choose a different username / E-mail.");
+            } else {
+                return back()->with('error', "An error occurred while updating profile. Please try again later.");
+            }
         }
     }
+    
+
     public function passwordEdit(PasswordEditRequest $request)
     {
         $Company_id=Auth::id();
@@ -260,10 +278,6 @@ class CompanyController extends Controller
 
     public function companyWinningBids(Request $request)
     {
-        
-        // return view('company.winning-bids');
-        // return view('company.winning-bids',compact('user', 'oldAuctions', 'activeAuctions', 'activeAuctionsNum'));
-        // return back()->with('error', 'Old Password incorrect!!');
 
         $company_id=Auth::id();
         $company=Company::find($company_id);
@@ -294,6 +308,63 @@ class CompanyController extends Controller
         return view('company.profile',compact('company', 'oldAuctions', 'activeAuctions', 'activeAuctionsNum', 'oldAuctionsNum'))->with('error', 'Old Password incorrect!!');
         
     }
+
+
+    public function companyCode(Request $request)
+    {
+        
+            
+            return view('company.code');
+        
+    }
+    public function companyCodes(Request $request)
+    {
+        try {
+            $company_id = Auth::id();
+            $company = Company::find($company_id);
+    
+            // Retrieve the code input from the request
+            $code = $request->input('code');
+    
+            // Check if the provided code matches any code in the 'auctions' table
+            $matchingAuction = Auction::where('code', $code)->first();
+            // Check if the matching auction exists
+            if (!$matchingAuction) {
+                return redirect()->back()->with('error', 'Invalid code!');
+            }
+    
+            // Check if the matching auction belongs to the company
+            if ($matchingAuction->company_id != $company_id) {
+                // dd($matchingAuction->payment_Status);
+
+                return redirect()->back()->with('error', 'This code does not belong to your company!');
+            }
+    
+            if ($matchingAuction->payment_Status === 1) {
+                // Payment status is 'true', continue processing
+                return redirect()->route('homePage')->with('success', 'Code accepted!');
+            } elseif ($matchingAuction->payment_Status === 0) {
+                // Payment status is 'false', return payment not completed error
+                return redirect()->back()->with('error', 'Payment not completed!');
+            } else {
+                // Payment status is null, handle this case (e.g., display an error message)
+                // dd($matchingAuction->payment_Status);
+                return redirect()->back()->with('error', 'Payment status is not set!');
+            }
+            
+            
+            
+    
+            // Code exists, belongs to the company, and payment status is 'true'
+            return redirect()->route('homePage')->with('success', 'Code accepted!');
+        } catch (\Exception $e) {
+            // Handle any other unexpected exceptions
+            return redirect()->back()->with('error', 'An error occurred. Please try again later.');
+        }
+
+    
+    }
+    
 
 
 }

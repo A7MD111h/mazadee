@@ -173,7 +173,7 @@
                                                     <div class="auction-item">
                                                         <div class="image">
                                                             <a href="#">
-                                                            <img src="{{ asset($auction->subCategory->photo) }}" width="5%" height="70%" alt="">
+                                                            <img src="{{ asset('uploads/'.$auction->subCategory->photo) }}" width="5%" height="70%" alt="">
                                                             </a>
                                                             <a href="#" class="star">
                                                                 <i class="far fa-star"></i>

@@ -23,7 +23,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/company-code') }}">
+                        <a href="{{ route('company_code') }}">
                             Code            
                          </a>
                     </li>
@@ -42,42 +42,40 @@
                         <div class="winning-bids">
                            
                             <div style="width:100% ;margin-left:50%">
-                              
-                                <div class="col-lg-6">
-                                    <div class="auction-item">
-                                      
-                                        <div class="auction-content" >
+                                <form method="POST" action="{{route('company_codes')}}">
+                                    @csrf
+                                    <div class="col-lg-6">
+                                        <div class="auction-item">
                                         
-
-                                            <h5>2020 Hyundai Elantra, Sel</h5>
-                                            <div class="bid d-flex justify-content-between">
-                                                <div class="buy-now-price d-flex">
-                                                    <i class="flaticon-money"></i>
-                                                    <p class="d-flex flex-column">Sold
-                                                        <span>$5000.00</span>
-                                                    </p>
+                                            <div class="auction-content" >
+                                                <h5>2020 Hyundai Elantra, Sel</h5>
+                                                <div class="bid d-flex justify-content-between">
+                                                    <div class="buy-now-price d-flex">
+                                                        <i class="flaticon-money"></i>
+                                                        <p class="d-flex flex-column">Sold
+                                                            <span>$5000.00</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="buy-now-price d-flex">
+                                                                <i class="flaticon-date"></i>
+                                                                <p class="d-flex flex-column">Date
+                                                                    <span>1/1/2024</span>
+                                                                </p>
+                                                            </div>
                                                 </div>
-                                                <div class="buy-now-price d-flex">
-                                                            <i class="flaticon-date"></i>
-                                                            <p class="d-flex flex-column">Date
-                                                                <span>1/1/2024</span>
-                                                            </p>
-                                                        </div>
                                             </div>
+                                            <br>
+                                            <div >
+                                            <input type="text" name="code" placeholder="Check Code" style="width:100%;text-align:center"> 
                                         </div>
                                         <br>
-                                        <div >
-                                        <input type="text" placeholder="Check Code" style="width:100%;text-align:center"> 
+                                            {{-- <div class="bid d-flex justify-content-between"> --}}
+                                                <button type="submit" class="btn btn-success" href="#">Accept</button>
+                                                {{-- <a type="button" class="btn btn-danger " style="margin-left: 40%;" href="winning-bids">Cancel</a> --}}
+                                            {{-- </div> --}}
+                                        </div>
                                     </div>
-                                    <br>
-                                        <div class="bid d-flex justify-content-between">
-                                        <a type="button" class="btn btn-success" href="#">Accept</a>
-                                                    <a type="button" class="btn btn-danger " style="margin-left: 40%;" href="winning-bids">Cancel</a>
-
-                                            </div>
-                                    </div>
-                                </div>
-                               
+                                </form>
                             </div>
                         </div>
                     </div>
