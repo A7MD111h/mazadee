@@ -51,15 +51,15 @@
     <div class="container">
         <ul class="breadcrumb">
             <li>
-                <a href="home">
+                <a href="/">
                     Home
                     <i class="flaticon-right-arrow"></i>
                 </a>
             </li>
             <li>
-                <a href="notification">
+                {{-- <a href="notification"> --}}
                    My Notification
-                </a>
+                {{-- </a> --}}
             </li>
         </ul>
     </div>
@@ -87,22 +87,23 @@
 <header>
 <div class="notif_box">
   <h2 class="title">Notifications</h2>
-  <span id="notifes"></span>
+  <span id="notifes">{{Auth::User()->unreadNotifications->count()}}</span>
 </div>
 <p id="mark_all">Mark all as read</p>
 </header>
 
+@foreach(Auth::User()->unreadNotifications as $notification)
 <div class="notif_card unread">
-  <img src="/img/OIP__2_-removebg-preview.png" alt="avatar" id=img1 />
+  <img src="{{ asset($notification->data['subCatgeoryPhoto']) }}" alt="avatar" id=img1 />
   <div class="description">
     <p class="user_activity">
-      <strong>Unfortunately,you didn`t get the bid</strong> 
+      <strong>Auction Ends</strong> 
     </p>
-    <p class="time">5 days ago</p>
+    <p class="time">{{$notification->created_at}}</p>
   </div>
 </div>
-
-<div class="notif_card unread">
+@endforeach
+{{-- <div class="notif_card unread">
   <img src="/img/R__2_-removebg-preview.png" alt="avatar" id=img2 />
   <div class="description">
     <p class="user_activity">
@@ -110,14 +111,14 @@
     </p>
     <p class="time">1 day ago</p>
   </div>
-</div>
+</div> --}}
 <div>
   
 </div>
 
 
 
-<div class="notif_card">
+{{-- <div class="notif_card">
   <img src="/img/R__2_-removebg-preview.png" alt="avatar" id=img3 />
   <div class="description">
     <p class="user_activity">
@@ -125,7 +126,7 @@
     </p>
     <p class="time">2 weeks ago</p>
   </div>
-</div>
+</div> --}}
 
 
 </div>
