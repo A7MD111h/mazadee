@@ -1,142 +1,120 @@
-<base href="/public">
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAZADe</title>
+    <title>Sbidu - Bid And Auction HTML Template</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="/font/flaticon.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
+    <link rel="stylesheet" href="/css/style.css">
     <link rel="shortcut icon" href="/img/favicon-logo.png" type="image/x-icon">
 
     <script src="https://kit.fontawesome.com/5f8f97e3fd.js" crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" href="/css2/style.css">
-    <link rel="shortcut icon" href="assets/img/favicon-logo.png" type="image/x-icon">
-
-    <script src="https://kit.fontawesome.com/5f8f97e3fd.js" crossorigin="anonymous"></script>
-    <script src="/js/script.js"></script>
-    <!-- displays site properly based on user's device -->
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
-    <link rel="stylesheet" href="/css2/style.css" />
-    <title>Frontend Mentor | Notifications page</title>
 </head>
 
 <body>
 
-    {{-- <section id="loader">
+    <section id="loader">
         <div class="img-loader">
         </div>
-    </section> --}}
-
+    </section>
 
     @include('layouts.partials.navbar')
-
-
     <main>
-
         <!-- Breadcrumb -->
         <section id="breadcrumb">
             <div class="container">
                 <ul class="breadcrumb">
                     <li>
-                        <a href="/">
+                        <a href="/" style="color: black;">
                             Home
                             <i class="flaticon-right-arrow"></i>
                         </a>
                     </li>
                     <li>
-                        {{-- <a href="notification"> --}}
-                        My Notification
-                        {{-- </a> --}}
+                        Auction Ends Notification
+                        </a>
                     </li>
                 </ul>
             </div>
-            <div class="bg-image" style="background-image: url(/img/OIP.jpg)">
+            {{-- <div class="bg-image" style="background-image: url(/img/OIP.jpg);"> --}}
 
             </div>
         </section>
-
-        <section id="contact-form">
-            <div class="container ">
-                <div class="bg">
+        <!-- End Breadcrumb -->
+        <section id="details" class="mb-5" style="background-image: url(/img/OIP.jpg);background-size: cover">
+            <div class="container"><br>
+                <h1 style="text-align: center;">Auction Details</h1>
+                <div class="details-bid" style="padding-bottom:5%">
                     <div class="row">
-                        <div class="col-lg-12">
-                            <div class="header text-center">
+                        <div class="col-lg-6" style="display:flex; justify-content: left; align-items: center">
+                            <img src="{{ asset($auction->subCategory->photo) }}" alt="sub-category photo"
+                                width="80%" />
+                        </div>
+                        <div class="col-lg-6">
+                            <div
+                                style="padding:2% 6%; align-items: center; box-shadow:3px 3px 3px 3px #111111; background-color: whitesmoke;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <div class="auction-item">
+                                        <div class="auction-content" style="padding-top:10%">
+                                            <h2>{{ $auction->subCategory->name }}</h2>
+                                            <div class="bid d-flex justify-content-between" style="font-size:20px">
 
-                                <h1> My Notification </h1>
+                                                <div class="buy-now-price d-flex">
+                                                    <i class="flaticon-money"></i>
+                                                    <p class="d-flex flex-column">last Price
+                                                        <span>{{ $auction->company_price }}</span>
+                                                    </p>
+                                                </div>
+                                                <div class="buy-now-price d-flex">
+                                                    <i class="flaticon-hammer"></i>
+                                                    <p class="d-flex flex-column">status
+                                                        <span>{{ $auction->status }}</span>
+                                                    </p>
+                                                </div>
+                                            </div><br>
+                                            <div>
+                                                @if ($auction->company_id == null)
+                                                    <p class="d-flex flex-column">
+                                                        Sorry, there is no bids for this auction
+                                                    </p>
+                                                @else
+                                                    @if ($auction->payment_Status == 0)
+                                                        <a href="{{ route('test.checkout', $auction->id) }}">
+                                                            <button type="submit"
+                                                                class="btn btn-primary btn-lg btn-block text-light">Payment</button>
+                                                        </a>
+                                                    @else
+                                                        <a href="{{ route('order_details', $auction->id) }}">
+                                                            <button type="submit"
+                                                                class="btn btn-primary btn-lg btn-block text-light">The
+                                                                payment was made</button>
+                                                        </a>
+                                                        {{-- <p class="btn btn-primary btn-lg btn-block text-light">The payment was made</p> --}}
+                                                    @endif
+                                                @endif
 
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-8">
-
-                            <div class="container">
-                                <header>
-                                    <div class="notif_box">
-                                        <h2 class="title">Notifications</h2>
-                                        <span id="notifes">{{ Auth::User()->unreadNotifications->count() }}</span>
-                                    </div>
-                                    <a href="{{url('readAllNotification')}}">
-                                        <p id="mark_all">Mark all as read</p>
-                                    </a>
-                                </header>
-
-                                @foreach (Auth::User()->unreadNotifications as $notification)
-                                    <a href="{{ route('viewAuction', $notification->data['auction_id']) }}">
-                                        <div class="notif_card unread">
-                                            <img src="{{ asset($notification->data['subCatgeoryPhoto']) }}"
-                                                alt="avatar" id=img1 />
-                                            <div class="description">
-                                                <p class="user_activity">
-                                                    <strong>Auction Ends</strong>
-                                                </p>
-                                                <p class="time">{{ $notification->created_at }}</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                @endforeach
-                                {{-- <div class="notif_card unread">
-  <img src="/img/R__2_-removebg-preview.png" alt="avatar" id=img2 />
-  <div class="description">
-    <p class="user_activity">
-      <strong>Congratulations,you are the winning bidder</strong> 
-    </p>
-    <p class="time">1 day ago</p>
-  </div>
-</div> --}}
-                                <div>
-
-                                </div>
-
-
-
-                                {{-- <div class="notif_card">
-  <img src="/img/R__2_-removebg-preview.png" alt="avatar" id=img3 />
-  <div class="description">
-    <p class="user_activity">
-      <strong>Congratulations,you are the winning bidder</strong> 
-    </p>
-    <p class="time">2 weeks ago</p>
-  </div>
-</div> --}}
-
-
-                            </div>
+                </div>
+            </div>
         </section>
     </main>
-    <footer style="background: linear-gradient(0deg, rgba(199,199,199,1) 0%, rgba(255,255,255,1) 50%)">
+
+    <footer style="background-image: url(/img/OIP.jpg);">
         <div class="footer-top">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-3">
                         <div class="item">
                             <h4>
                                 Auction Categories
@@ -169,7 +147,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-3">
                         <div class="item">
                             <h4>
                                 About Us
@@ -199,7 +177,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-3">
                         <div class="item">
                             <h4>
                                 We're Here to Help
@@ -223,7 +201,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-3">
                         <div class="item">
                             <h4>
                                 Follow Us
@@ -262,14 +240,8 @@
         <div class="footer-bottom">
             <div class="container">
                 <div class="copyright">
-                    <img src="assets/img/logo2.png" class="logo" alt="">
+                    <img src="/img/logo.png" width="20%" class="logo" alt="">
 
-                    <p>
-                        © Copyright 2020 |
-                        <a href="#">MAZADe</a>
-                        By
-                        <a href="#">Uiaxis</a>
-                    </p>
                 </div>
             </div>
         </div>
@@ -279,46 +251,13 @@
     <div class="back-to-top">
         <i class="fas fa-angle-up"></i>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var countdownElement = document.querySelector('.countdown');
-
-            if (countdownElement) {
-                var creationTime = new Date(countdownElement.dataset.creationTime);
-                var targetTime = new Date(creationTime);
-                targetTime.setHours(targetTime.getHours() + 24);
-
-                function updateCountdown() {
-                    var now = new Date();
-                    var timeDiff = targetTime - now;
-
-                    // Calculate remaining hours, minutes, and seconds
-                    var hours = Math.floor(timeDiff / (1000 * 60 * 60));
-                    var minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-                    var seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
-
-                    // Format and display the remaining time
-                    countdownElement.innerHTML = 'Auction Ends in: ' + hours + 'h ' + minutes + 'm ' + seconds +
-                    's';
-
-                    // Update every second
-                    setTimeout(updateCountdown, 1000);
-                }
-
-                // Initial call to set up the countdown
-                updateCountdown();
-            }
-            document.getElementById('bidBtn').addEventListener('click', function() {
-                document.getElementById('bidForm').style.display = 'block';
-            })
-        });
-    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script src="/js/jquery.countTo.js"></script>
+    <script src="/js/main.js"></script>
 </body>
 
 </html>

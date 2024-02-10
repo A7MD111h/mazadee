@@ -19,9 +19,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/">Home</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="/">Category</a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link" href="about">About Us</a>
                         </li>
@@ -38,7 +38,7 @@
                             </li>
                             
                             <li class="nav-item" style="margin: auto;">
-                                    <a href="notification">
+                                    <a href="{{url('/notification')}}">
                                     <i class="far fa-bell"></i></i>
                                     </a>
                                 </li>

@@ -11,11 +11,12 @@ class endAuctionNotification extends Notification
 {
     use Queueable;
     private $auction_id;
-    // private $user_id;
+    private $subCategoryPhoto;
 
-    public function __construct($auction_id)
+    public function __construct($auction_id,$subCategoryPhoto)
     {
         $this->auction_id=$auction_id;
+        $this->subCategoryPhoto=$subCategoryPhoto;
     }
 
     /**
@@ -40,6 +41,7 @@ class endAuctionNotification extends Notification
     {
         return [
             'auction_id'=>$this->auction_id,
+            'subCatgeoryPhoto'=>$this->subCategoryPhoto,
         ];
     }
 }

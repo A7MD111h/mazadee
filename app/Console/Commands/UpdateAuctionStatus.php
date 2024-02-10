@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Carbon\Carbon;
 use App\Models\Auction;
 use App\Models\Company;
+use App\Models\Sub_Category;
 use App\Models\User;
 use App\Notifications\endAuctionNotification;
 use App\Notifications\winAuctionNotification;
@@ -43,10 +44,12 @@ class UpdateAuctionStatus extends Command
         foreach ($auctions as $auction) {
             $auction->update(['status' => 'pending']);
             $user=User::find($auction->user_id);
-            Notification::send($user, new endAuctionNotification($auction->id));
+            $subCategory=Sub_Category::find($auction->sub_category_id);
+            $subCategoryPhoto=$subCategory->photo;
+            Notification::send($user, new endAuctionNotification($auction->id,$subCategoryPhoto));
             if($auction->company_id != NULL){
                 $company=Company::find($auction->company_id);
-                Notification::send($company,new winAuctionNotification($auction->id));
+                Notification::send($company,new winAuctionNotification($auction->id,$subCategoryPhoto));
             }            
         }
 
