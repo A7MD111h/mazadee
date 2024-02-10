@@ -38,7 +38,7 @@
                             </li>
                             
                             <li class="nav-item" style="margin: auto;">
-                                    <a href="notification">
+                                    <a href="{{url('/notification')}}">
                                     <i class="far fa-bell"></i></i>
                                     </a>
                                 </li>

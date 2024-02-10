@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Auction;
 use App\Models\Sub_Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AddAuctionRequest;
+use App\Models\Company;
+use App\Models\User;
 
 class AuctionController extends Controller
 {
@@ -68,11 +71,30 @@ class AuctionController extends Controller
      * @param  \App\Models\Auction  $auction
      * @return \Illuminate\Http\Response
      */
-    public function show(Auction $auction)
+    public function showNotification($id)
     {
-        //
+        $auction=Auction::find($id);
+        $notificationId=DB::table('notifications')->where('data->auction_id',$id)->where('notifiable_type','App\Models\User')->pluck('id');
+        $updateNotification=DB::table('notifications')->where('id',$notificationId)->update(['read_at'=>now()]);
+        return view('viewNotification',compact('auction'));
     }
 
+    public function markAsReadNotification(){
+        $user=User::find(Auth::User()->id);
+        foreach($user->unreadNotifications as $notification){
+            $notification->markAsRead();
+        }
+        return redirect()->back();
+    }
+
+    public function markAsReadNotificationCompany(){
+        $company=Company::find(Auth::guard('companies')->user()->id);
+        // dd($user);
+        foreach($company->unreadNotifications as $notification){
+            $notification->markAsRead();
+        }
+        return redirect()->back();
+    }
     /**
      * Show the form for editing the specified resource.
      *

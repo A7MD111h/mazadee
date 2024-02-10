@@ -66,6 +66,10 @@ Route::get('/about', function () {
 Route::get('/notification', function () {
     return view('notification');
 });
+
+Route::get('/auction/{id}',[AuctionController::class,'showNotification'])->name('viewAuction');
+Route::get('/readAllNotification',[AuctionController::class,'markAsReadNotification']);
+Route::get('/readAllNotificationCompany',[AuctionController::class,'markAsReadNotificationCompany']);
 /** company routes */
 // Route::get('/submit-a-bid/{id}',[CompanyController::class, 'submitBid']);
 // Route::post('addbid/{id}',[CompanyController::class, 'addbid']);
